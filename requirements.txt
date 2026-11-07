@@ -1,0 +1,4 @@
+# Faker is pinned exactly: its name lists feed the generator, so another
+# version would produce different (still seeded) data.
+faker==40.44.0
+psycopg[binary]>=3.2,<4

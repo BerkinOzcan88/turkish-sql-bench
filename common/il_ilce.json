@@ -1,0 +1,4388 @@
+{
+ "source": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27nin_il%C3%A7eleri",
+ "source_revision": 37373921,
+ "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)",
+ "attribution": "Wikipedia contributors, \"Türkiye'nin ilçeleri\", Vikipedi, Özgür Ansiklopedi",
+ "il_sayisi": 81,
+ "ilce_sayisi": 973,
+ "iller": [
+  {
+   "il": "Adana",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Aladağ",
+     "nufus_2025": 15839
+    },
+    {
+     "ilce": "Ceyhan",
+     "nufus_2025": 156081
+    },
+    {
+     "ilce": "Çukurova",
+     "nufus_2025": 380653
+    },
+    {
+     "ilce": "Feke",
+     "nufus_2025": 15586
+    },
+    {
+     "ilce": "İmamoğlu",
+     "nufus_2025": 27196
+    },
+    {
+     "ilce": "Karaisalı",
+     "nufus_2025": 22872
+    },
+    {
+     "ilce": "Karataş",
+     "nufus_2025": 24005
+    },
+    {
+     "ilce": "Kozan",
+     "nufus_2025": 132572
+    },
+    {
+     "ilce": "Pozantı",
+     "nufus_2025": 19983
+    },
+    {
+     "ilce": "Saimbeyli",
+     "nufus_2025": 13133
+    },
+    {
+     "ilce": "Sarıçam",
+     "nufus_2025": 263080
+    },
+    {
+     "ilce": "Seyhan",
+     "nufus_2025": 782204
+    },
+    {
+     "ilce": "Tufanbeyli",
+     "nufus_2025": 16027
+    },
+    {
+     "ilce": "Yumurtalık",
+     "nufus_2025": 17806
+    },
+    {
+     "ilce": "Yüreğir",
+     "nufus_2025": 396572
+    }
+   ]
+  },
+  {
+   "il": "Adıyaman",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Adıyaman",
+     "nufus_2025": 296876
+    },
+    {
+     "ilce": "Besni",
+     "nufus_2025": 75398
+    },
+    {
+     "ilce": "Çelikhan",
+     "nufus_2025": 14530
+    },
+    {
+     "ilce": "Gerger",
+     "nufus_2025": 14497
+    },
+    {
+     "ilce": "Gölbaşı",
+     "nufus_2025": 47917
+    },
+    {
+     "ilce": "Kâhta",
+     "nufus_2025": 136769
+    },
+    {
+     "ilce": "Samsat",
+     "nufus_2025": 6834
+    },
+    {
+     "ilce": "Sincik",
+     "nufus_2025": 15801
+    },
+    {
+     "ilce": "Tut",
+     "nufus_2025": 9199
+    }
+   ]
+  },
+  {
+   "il": "Afyonkarahisar",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Afyonkarahisar",
+     "nufus_2025": 331982
+    },
+    {
+     "ilce": "Başmakçı",
+     "nufus_2025": 9089
+    },
+    {
+     "ilce": "Bayat",
+     "nufus_2025": 7580
+    },
+    {
+     "ilce": "Bolvadin",
+     "nufus_2025": 45906
+    },
+    {
+     "ilce": "Çay",
+     "nufus_2025": 29140
+    },
+    {
+     "ilce": "Çobanlar",
+     "nufus_2025": 14457
+    },
+    {
+     "ilce": "Dazkırı",
+     "nufus_2025": 11723
+    },
+    {
+     "ilce": "Dinar",
+     "nufus_2025": 46878
+    },
+    {
+     "ilce": "Emirdağ",
+     "nufus_2025": 43350
+    },
+    {
+     "ilce": "Evciler",
+     "nufus_2025": 7038
+    },
+    {
+     "ilce": "Hocalar",
+     "nufus_2025": 8220
+    },
+    {
+     "ilce": "İhsaniye",
+     "nufus_2025": 27636
+    },
+    {
+     "ilce": "İscehisar",
+     "nufus_2025": 25220
+    },
+    {
+     "ilce": "Kızılören",
+     "nufus_2025": 1977
+    },
+    {
+     "ilce": "Sandıklı",
+     "nufus_2025": 54376
+    },
+    {
+     "ilce": "Sinanpaşa",
+     "nufus_2025": 38292
+    },
+    {
+     "ilce": "Sultandağı",
+     "nufus_2025": 13641
+    },
+    {
+     "ilce": "Şuhut",
+     "nufus_2025": 35303
+    }
+   ]
+  },
+  {
+   "il": "Ağrı",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ağrı",
+     "nufus_2025": 150035
+    },
+    {
+     "ilce": "Diyadin",
+     "nufus_2025": 35439
+    },
+    {
+     "ilce": "Doğubayazıt",
+     "nufus_2025": 113699
+    },
+    {
+     "ilce": "Eleşkirt",
+     "nufus_2025": 28661
+    },
+    {
+     "ilce": "Hamur",
+     "nufus_2025": 14336
+    },
+    {
+     "ilce": "Patnos",
+     "nufus_2025": 105968
+    },
+    {
+     "ilce": "Taşlıçay",
+     "nufus_2025": 17431
+    },
+    {
+     "ilce": "Tutak",
+     "nufus_2025": 25920
+    }
+   ]
+  },
+  {
+   "il": "Aksaray",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ağaçören",
+     "nufus_2025": 7480
+    },
+    {
+     "ilce": "Aksaray",
+     "nufus_2025": 327575
+    },
+    {
+     "ilce": "Eskil",
+     "nufus_2025": 27946
+    },
+    {
+     "ilce": "Gülağaç",
+     "nufus_2025": 19099
+    },
+    {
+     "ilce": "Güzelyurt",
+     "nufus_2025": 10419
+    },
+    {
+     "ilce": "Ortaköy",
+     "nufus_2025": 31089
+    },
+    {
+     "ilce": "Sarıyahşi",
+     "nufus_2025": 4717
+    },
+    {
+     "ilce": "Sultanhanı",
+     "nufus_2025": 12811
+    }
+   ]
+  },
+  {
+   "il": "Amasya",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Amasya",
+     "nufus_2025": 151433
+    },
+    {
+     "ilce": "Göynücek",
+     "nufus_2025": 10823
+    },
+    {
+     "ilce": "Gümüşhacıköy",
+     "nufus_2025": 22319
+    },
+    {
+     "ilce": "Hamamözü",
+     "nufus_2025": 3628
+    },
+    {
+     "ilce": "Merzifon",
+     "nufus_2025": 77077
+    },
+    {
+     "ilce": "Suluova",
+     "nufus_2025": 46928
+    },
+    {
+     "ilce": "Taşova",
+     "nufus_2025": 30034
+    }
+   ]
+  },
+  {
+   "il": "Ankara",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akyurt",
+     "nufus_2025": 46956
+    },
+    {
+     "ilce": "Altındağ",
+     "nufus_2025": 418072
+    },
+    {
+     "ilce": "Ayaş",
+     "nufus_2025": 13136
+    },
+    {
+     "ilce": "Balâ",
+     "nufus_2025": 20109
+    },
+    {
+     "ilce": "Beypazarı",
+     "nufus_2025": 48359
+    },
+    {
+     "ilce": "Çamlıdere",
+     "nufus_2025": 10203
+    },
+    {
+     "ilce": "Çankaya",
+     "nufus_2025": 952198
+    },
+    {
+     "ilce": "Çubuk",
+     "nufus_2025": 101437
+    },
+    {
+     "ilce": "Elmadağ",
+     "nufus_2025": 45644
+    },
+    {
+     "ilce": "Etimesgut",
+     "nufus_2025": 632458
+    },
+    {
+     "ilce": "Evren",
+     "nufus_2025": 2927
+    },
+    {
+     "ilce": "Gölbaşı",
+     "nufus_2025": 172810
+    },
+    {
+     "ilce": "Güdül",
+     "nufus_2025": 8028
+    },
+    {
+     "ilce": "Haymana",
+     "nufus_2025": 25798
+    },
+    {
+     "ilce": "Kahramankazan",
+     "nufus_2025": 63134
+    },
+    {
+     "ilce": "Kalecik",
+     "nufus_2025": 12564
+    },
+    {
+     "ilce": "Keçiören",
+     "nufus_2025": 931722
+    },
+    {
+     "ilce": "Kızılcahamam",
+     "nufus_2025": 27841
+    },
+    {
+     "ilce": "Mamak",
+     "nufus_2025": 690329
+    },
+    {
+     "ilce": "Nallıhan",
+     "nufus_2025": 26083
+    },
+    {
+     "ilce": "Polatlı",
+     "nufus_2025": 131894
+    },
+    {
+     "ilce": "Pursaklar",
+     "nufus_2025": 168881
+    },
+    {
+     "ilce": "Sincan",
+     "nufus_2025": 605366
+    },
+    {
+     "ilce": "Şereflikoçhisar",
+     "nufus_2025": 32831
+    },
+    {
+     "ilce": "Yenimahalle",
+     "nufus_2025": 721531
+    }
+   ]
+  },
+  {
+   "il": "Antalya",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Akseki",
+     "nufus_2025": 10609
+    },
+    {
+     "ilce": "Aksu",
+     "nufus_2025": 87070
+    },
+    {
+     "ilce": "Alanya",
+     "nufus_2025": 371547
+    },
+    {
+     "ilce": "Demre",
+     "nufus_2025": 28075
+    },
+    {
+     "ilce": "Döşemealtı",
+     "nufus_2025": 97121
+    },
+    {
+     "ilce": "Elmalı",
+     "nufus_2025": 41550
+    },
+    {
+     "ilce": "Finike",
+     "nufus_2025": 52436
+    },
+    {
+     "ilce": "Gazipaşa",
+     "nufus_2025": 55850
+    },
+    {
+     "ilce": "Gündoğmuş",
+     "nufus_2025": 6953
+    },
+    {
+     "ilce": "İbradı",
+     "nufus_2025": 3256
+    },
+    {
+     "ilce": "Kaş",
+     "nufus_2025": 63957
+    },
+    {
+     "ilce": "Kemer",
+     "nufus_2025": 52339
+    },
+    {
+     "ilce": "Kepez",
+     "nufus_2025": 649102
+    },
+    {
+     "ilce": "Konyaaltı",
+     "nufus_2025": 199414
+    },
+    {
+     "ilce": "Korkuteli",
+     "nufus_2025": 58381
+    },
+    {
+     "ilce": "Kumluca",
+     "nufus_2025": 75588
+    },
+    {
+     "ilce": "Manavgat",
+     "nufus_2025": 266480
+    },
+    {
+     "ilce": "Muratpaşa",
+     "nufus_2025": 510887
+    },
+    {
+     "ilce": "Serik",
+     "nufus_2025": 147062
+    }
+   ]
+  },
+  {
+   "il": "Ardahan",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ardahan",
+     "nufus_2025": 42136
+    },
+    {
+     "ilce": "Çıldır",
+     "nufus_2025": 8048
+    },
+    {
+     "ilce": "Damal",
+     "nufus_2025": 4526
+    },
+    {
+     "ilce": "Göle",
+     "nufus_2025": 22038
+    },
+    {
+     "ilce": "Hanak",
+     "nufus_2025": 7668
+    },
+    {
+     "ilce": "Posof",
+     "nufus_2025": 5976
+    }
+   ]
+  },
+  {
+   "il": "Artvin",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Ardanuç",
+     "nufus_2025": 10889
+    },
+    {
+     "ilce": "Arhavi",
+     "nufus_2025": 22025
+    },
+    {
+     "ilce": "Artvin",
+     "nufus_2025": 35710
+    },
+    {
+     "ilce": "Borçka",
+     "nufus_2025": 21628
+    },
+    {
+     "ilce": "Hopa",
+     "nufus_2025": 27844
+    },
+    {
+     "ilce": "Kemalpaşa",
+     "nufus_2025": 9263
+    },
+    {
+     "ilce": "Murgul",
+     "nufus_2025": 6457
+    },
+    {
+     "ilce": "Şavşat",
+     "nufus_2025": 16151
+    },
+    {
+     "ilce": "Yusufeli",
+     "nufus_2025": 17564
+    }
+   ]
+  },
+  {
+   "il": "Aydın",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Bozdoğan",
+     "nufus_2025": 31624
+    },
+    {
+     "ilce": "Buharkent",
+     "nufus_2025": 13137
+    },
+    {
+     "ilce": "Çine",
+     "nufus_2025": 47906
+    },
+    {
+     "ilce": "Didim",
+     "nufus_2025": 103141
+    },
+    {
+     "ilce": "Efeler",
+     "nufus_2025": 310241
+    },
+    {
+     "ilce": "Germencik",
+     "nufus_2025": 44697
+    },
+    {
+     "ilce": "İncirliova",
+     "nufus_2025": 58230
+    },
+    {
+     "ilce": "Karacasu",
+     "nufus_2025": 17225
+    },
+    {
+     "ilce": "Karpuzlu",
+     "nufus_2025": 10352
+    },
+    {
+     "ilce": "Koçarlı",
+     "nufus_2025": 22234
+    },
+    {
+     "ilce": "Köşk",
+     "nufus_2025": 28307
+    },
+    {
+     "ilce": "Kuşadası",
+     "nufus_2025": 141431
+    },
+    {
+     "ilce": "Kuyucak",
+     "nufus_2025": 26196
+    },
+    {
+     "ilce": "Nazilli",
+     "nufus_2025": 162156
+    },
+    {
+     "ilce": "Söke",
+     "nufus_2025": 123843
+    },
+    {
+     "ilce": "Sultanhisar",
+     "nufus_2025": 19791
+    },
+    {
+     "ilce": "Yenipazar",
+     "nufus_2025": 11596
+    }
+   ]
+  },
+  {
+   "il": "Balıkesir",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Altıeylül",
+     "nufus_2025": 188858
+    },
+    {
+     "ilce": "Ayvalık",
+     "nufus_2025": 75815
+    },
+    {
+     "ilce": "Balya",
+     "nufus_2025": 12296
+    },
+    {
+     "ilce": "Bandırma",
+     "nufus_2025": 169476
+    },
+    {
+     "ilce": "Bigadiç",
+     "nufus_2025": 49275
+    },
+    {
+     "ilce": "Burhaniye",
+     "nufus_2025": 68370
+    },
+    {
+     "ilce": "Dursunbey",
+     "nufus_2025": 32168
+    },
+    {
+     "ilce": "Edremit",
+     "nufus_2025": 176251
+    },
+    {
+     "ilce": "Erdek",
+     "nufus_2025": 32080
+    },
+    {
+     "ilce": "Gömeç",
+     "nufus_2025": 19020
+    },
+    {
+     "ilce": "Gönen",
+     "nufus_2025": 75730
+    },
+    {
+     "ilce": "Havran",
+     "nufus_2025": 28152
+    },
+    {
+     "ilce": "İvrindi",
+     "nufus_2025": 31295
+    },
+    {
+     "ilce": "Karesi",
+     "nufus_2025": 189444
+    },
+    {
+     "ilce": "Kepsut",
+     "nufus_2025": 21386
+    },
+    {
+     "ilce": "Manyas",
+     "nufus_2025": 17650
+    },
+    {
+     "ilce": "Marmara",
+     "nufus_2025": 11827
+    },
+    {
+     "ilce": "Savaştepe",
+     "nufus_2025": 16266
+    },
+    {
+     "ilce": "Sındırgı",
+     "nufus_2025": 31482
+    },
+    {
+     "ilce": "Susurluk",
+     "nufus_2025": 37676
+    }
+   ]
+  },
+  {
+   "il": "Bartın",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Amasra",
+     "nufus_2025": 13705
+    },
+    {
+     "ilce": "Bartın",
+     "nufus_2025": 163766
+    },
+    {
+     "ilce": "Kurucaşile",
+     "nufus_2025": 6316
+    },
+    {
+     "ilce": "Ulus",
+     "nufus_2025": 22876
+    }
+   ]
+  },
+  {
+   "il": "Batman",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Batman",
+     "nufus_2025": 517785
+    },
+    {
+     "ilce": "Beşiri",
+     "nufus_2025": 31864
+    },
+    {
+     "ilce": "Gercüş",
+     "nufus_2025": 18894
+    },
+    {
+     "ilce": "Hasankeyf",
+     "nufus_2025": 7152
+    },
+    {
+     "ilce": "Kozluk",
+     "nufus_2025": 58781
+    },
+    {
+     "ilce": "Sason",
+     "nufus_2025": 28150
+    }
+   ]
+  },
+  {
+   "il": "Bayburt",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Aydıntepe",
+     "nufus_2025": 5982
+    },
+    {
+     "ilce": "Bayburt",
+     "nufus_2025": 68715
+    },
+    {
+     "ilce": "Demirözü",
+     "nufus_2025": 8139
+    }
+   ]
+  },
+  {
+   "il": "Bilecik",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Bilecik",
+     "nufus_2025": 82863
+    },
+    {
+     "ilce": "Bozüyük",
+     "nufus_2025": 81332
+    },
+    {
+     "ilce": "Gölpazarı",
+     "nufus_2025": 10049
+    },
+    {
+     "ilce": "İnhisar",
+     "nufus_2025": 2079
+    },
+    {
+     "ilce": "Osmaneli",
+     "nufus_2025": 22025
+    },
+    {
+     "ilce": "Pazaryeri",
+     "nufus_2025": 9671
+    },
+    {
+     "ilce": "Söğüt",
+     "nufus_2025": 18284
+    },
+    {
+     "ilce": "Yenipazar",
+     "nufus_2025": 2692
+    }
+   ]
+  },
+  {
+   "il": "Bingöl",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Adaklı",
+     "nufus_2025": 7491
+    },
+    {
+     "ilce": "Bingöl",
+     "nufus_2025": 175438
+    },
+    {
+     "ilce": "Genç",
+     "nufus_2025": 31654
+    },
+    {
+     "ilce": "Karlıova",
+     "nufus_2025": 25265
+    },
+    {
+     "ilce": "Kiğı",
+     "nufus_2025": 4487
+    },
+    {
+     "ilce": "Solhan",
+     "nufus_2025": 33233
+    },
+    {
+     "ilce": "Yayladere",
+     "nufus_2025": 1889
+    },
+    {
+     "ilce": "Yedisu",
+     "nufus_2025": 2842
+    }
+   ]
+  },
+  {
+   "il": "Bitlis",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Adilcevaz",
+     "nufus_2025": 28769
+    },
+    {
+     "ilce": "Ahlat",
+     "nufus_2025": 45637
+    },
+    {
+     "ilce": "Bitlis",
+     "nufus_2025": 74904
+    },
+    {
+     "ilce": "Güroymak",
+     "nufus_2025": 49372
+    },
+    {
+     "ilce": "Hizan",
+     "nufus_2025": 29948
+    },
+    {
+     "ilce": "Mutki",
+     "nufus_2025": 26748
+    },
+    {
+     "ilce": "Tatvan",
+     "nufus_2025": 105045
+    }
+   ]
+  },
+  {
+   "il": "Bolu",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Bolu",
+     "nufus_2025": 222589
+    },
+    {
+     "ilce": "Dörtdivan",
+     "nufus_2025": 6214
+    },
+    {
+     "ilce": "Gerede",
+     "nufus_2025": 37196
+    },
+    {
+     "ilce": "Göynük",
+     "nufus_2025": 14257
+    },
+    {
+     "ilce": "Kıbrıscık",
+     "nufus_2025": 3783
+    },
+    {
+     "ilce": "Mengen",
+     "nufus_2025": 14152
+    },
+    {
+     "ilce": "Mudurnu",
+     "nufus_2025": 18101
+    },
+    {
+     "ilce": "Seben",
+     "nufus_2025": 4438
+    },
+    {
+     "ilce": "Yeniçağa",
+     "nufus_2025": 6443
+    }
+   ]
+  },
+  {
+   "il": "Burdur",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Ağlasun",
+     "nufus_2025": 7347
+    },
+    {
+     "ilce": "Altınyayla",
+     "nufus_2025": 5060
+    },
+    {
+     "ilce": "Bucak",
+     "nufus_2025": 68312
+    },
+    {
+     "ilce": "Burdur",
+     "nufus_2025": 120832
+    },
+    {
+     "ilce": "Çavdır",
+     "nufus_2025": 12539
+    },
+    {
+     "ilce": "Çeltikçi",
+     "nufus_2025": 4914
+    },
+    {
+     "ilce": "Gölhisar",
+     "nufus_2025": 23969
+    },
+    {
+     "ilce": "Karamanlı",
+     "nufus_2025": 8097
+    },
+    {
+     "ilce": "Kemer",
+     "nufus_2025": 2727
+    },
+    {
+     "ilce": "Tefenni",
+     "nufus_2025": 9514
+    },
+    {
+     "ilce": "Yeşilova",
+     "nufus_2025": 13915
+    }
+   ]
+  },
+  {
+   "il": "Bursa",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Büyükorhan",
+     "nufus_2025": 9148
+    },
+    {
+     "ilce": "Gemlik",
+     "nufus_2025": 124400
+    },
+    {
+     "ilce": "Gürsu",
+     "nufus_2025": 105799
+    },
+    {
+     "ilce": "Harmancık",
+     "nufus_2025": 6089
+    },
+    {
+     "ilce": "İnegöl",
+     "nufus_2025": 306004
+    },
+    {
+     "ilce": "İznik",
+     "nufus_2025": 45510
+    },
+    {
+     "ilce": "Karacabey",
+     "nufus_2025": 86543
+    },
+    {
+     "ilce": "Keles",
+     "nufus_2025": 10939
+    },
+    {
+     "ilce": "Kestel",
+     "nufus_2025": 77374
+    },
+    {
+     "ilce": "Mudanya",
+     "nufus_2025": 112225
+    },
+    {
+     "ilce": "Mustafakemalpaşa",
+     "nufus_2025": 103652
+    },
+    {
+     "ilce": "Nilüfer",
+     "nufus_2025": 578059
+    },
+    {
+     "ilce": "Orhaneli",
+     "nufus_2025": 18963
+    },
+    {
+     "ilce": "Orhangazi",
+     "nufus_2025": 81997
+    },
+    {
+     "ilce": "Osmangazi",
+     "nufus_2025": 886111
+    },
+    {
+     "ilce": "Yenişehir",
+     "nufus_2025": 55609
+    },
+    {
+     "ilce": "Yıldırım",
+     "nufus_2025": 654589
+    }
+   ]
+  },
+  {
+   "il": "Çanakkale",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Ayvacık",
+     "nufus_2025": 35411
+    },
+    {
+     "ilce": "Bayramiç",
+     "nufus_2025": 28480
+    },
+    {
+     "ilce": "Biga",
+     "nufus_2025": 94526
+    },
+    {
+     "ilce": "Bozcaada",
+     "nufus_2025": 3384
+    },
+    {
+     "ilce": "Çan",
+     "nufus_2025": 46612
+    },
+    {
+     "ilce": "Çanakkale",
+     "nufus_2025": 208613
+    },
+    {
+     "ilce": "Eceabat",
+     "nufus_2025": 8746
+    },
+    {
+     "ilce": "Ezine",
+     "nufus_2025": 31894
+    },
+    {
+     "ilce": "Gelibolu",
+     "nufus_2025": 44689
+    },
+    {
+     "ilce": "Gökçeada",
+     "nufus_2025": 11331
+    },
+    {
+     "ilce": "Lapseki",
+     "nufus_2025": 30654
+    },
+    {
+     "ilce": "Yenice",
+     "nufus_2025": 29636
+    }
+   ]
+  },
+  {
+   "il": "Çankırı",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Atkaracalar",
+     "nufus_2025": 5063
+    },
+    {
+     "ilce": "Bayramören",
+     "nufus_2025": 2209
+    },
+    {
+     "ilce": "Çankırı",
+     "nufus_2025": 99287
+    },
+    {
+     "ilce": "Çerkeş",
+     "nufus_2025": 16927
+    },
+    {
+     "ilce": "Eldivan",
+     "nufus_2025": 6198
+    },
+    {
+     "ilce": "Ilgaz",
+     "nufus_2025": 13948
+    },
+    {
+     "ilce": "Kızılırmak",
+     "nufus_2025": 6830
+    },
+    {
+     "ilce": "Korgun",
+     "nufus_2025": 4239
+    },
+    {
+     "ilce": "Kurşunlu",
+     "nufus_2025": 9130
+    },
+    {
+     "ilce": "Orta",
+     "nufus_2025": 17223
+    },
+    {
+     "ilce": "Şabanözü",
+     "nufus_2025": 12493
+    },
+    {
+     "ilce": "Yapraklı",
+     "nufus_2025": 7002
+    }
+   ]
+  },
+  {
+   "il": "Çorum",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Alaca",
+     "nufus_2025": 28989
+    },
+    {
+     "ilce": "Bayat",
+     "nufus_2025": 13312
+    },
+    {
+     "ilce": "Boğazkale",
+     "nufus_2025": 3587
+    },
+    {
+     "ilce": "Çorum",
+     "nufus_2025": 299565
+    },
+    {
+     "ilce": "Dodurga",
+     "nufus_2025": 5036
+    },
+    {
+     "ilce": "İskilip",
+     "nufus_2025": 28132
+    },
+    {
+     "ilce": "Kargı",
+     "nufus_2025": 15119
+    },
+    {
+     "ilce": "Laçin",
+     "nufus_2025": 4094
+    },
+    {
+     "ilce": "Mecitözü",
+     "nufus_2025": 12911
+    },
+    {
+     "ilce": "Oğuzlar",
+     "nufus_2025": 4610
+    },
+    {
+     "ilce": "Ortaköy",
+     "nufus_2025": 6491
+    },
+    {
+     "ilce": "Osmancık",
+     "nufus_2025": 42673
+    },
+    {
+     "ilce": "Sungurlu",
+     "nufus_2025": 49079
+    },
+    {
+     "ilce": "Uğurludağ",
+     "nufus_2025": 5992
+    }
+   ]
+  },
+  {
+   "il": "Denizli",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Acıpayam",
+     "nufus_2025": 54769
+    },
+    {
+     "ilce": "Babadağ",
+     "nufus_2025": 6199
+    },
+    {
+     "ilce": "Baklan",
+     "nufus_2025": 5266
+    },
+    {
+     "ilce": "Bekilli",
+     "nufus_2025": 6243
+    },
+    {
+     "ilce": "Beyağaç",
+     "nufus_2025": 6011
+    },
+    {
+     "ilce": "Bozkurt",
+     "nufus_2025": 11176
+    },
+    {
+     "ilce": "Buldan",
+     "nufus_2025": 26231
+    },
+    {
+     "ilce": "Çal",
+     "nufus_2025": 17277
+    },
+    {
+     "ilce": "Çameli",
+     "nufus_2025": 17447
+    },
+    {
+     "ilce": "Çardak",
+     "nufus_2025": 8497
+    },
+    {
+     "ilce": "Çivril",
+     "nufus_2025": 59689
+    },
+    {
+     "ilce": "Güney",
+     "nufus_2025": 9043
+    },
+    {
+     "ilce": "Honaz",
+     "nufus_2025": 34468
+    },
+    {
+     "ilce": "Kale",
+     "nufus_2025": 18855
+    },
+    {
+     "ilce": "Merkezefendi",
+     "nufus_2025": 351085
+    },
+    {
+     "ilce": "Pamukkale",
+     "nufus_2025": 343071
+    },
+    {
+     "ilce": "Sarayköy",
+     "nufus_2025": 30883
+    },
+    {
+     "ilce": "Serinhisar",
+     "nufus_2025": 14661
+    },
+    {
+     "ilce": "Tavas",
+     "nufus_2025": 40104
+    }
+   ]
+  },
+  {
+   "il": "Diyarbakır",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Bağlar",
+     "nufus_2025": 402275
+    },
+    {
+     "ilce": "Bismil",
+     "nufus_2025": 119815
+    },
+    {
+     "ilce": "Çermik",
+     "nufus_2025": 49299
+    },
+    {
+     "ilce": "Çınar",
+     "nufus_2025": 79114
+    },
+    {
+     "ilce": "Çüngüş",
+     "nufus_2025": 10057
+    },
+    {
+     "ilce": "Dicle",
+     "nufus_2025": 35948
+    },
+    {
+     "ilce": "Eğil",
+     "nufus_2025": 21674
+    },
+    {
+     "ilce": "Ergani",
+     "nufus_2025": 141098
+    },
+    {
+     "ilce": "Hani",
+     "nufus_2025": 32285
+    },
+    {
+     "ilce": "Hazro",
+     "nufus_2025": 16024
+    },
+    {
+     "ilce": "Kayapınar",
+     "nufus_2025": 454311
+    },
+    {
+     "ilce": "Kocaköy",
+     "nufus_2025": 15088
+    },
+    {
+     "ilce": "Kulp",
+     "nufus_2025": 33973
+    },
+    {
+     "ilce": "Lice",
+     "nufus_2025": 24060
+    },
+    {
+     "ilce": "Silvan",
+     "nufus_2025": 86752
+    },
+    {
+     "ilce": "Sur",
+     "nufus_2025": 97961
+    },
+    {
+     "ilce": "Yenişehir",
+     "nufus_2025": 232622
+    }
+   ]
+  },
+  {
+   "il": "Düzce",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Akçakoca",
+     "nufus_2025": 41134
+    },
+    {
+     "ilce": "Cumayeri",
+     "nufus_2025": 16162
+    },
+    {
+     "ilce": "Çilimli",
+     "nufus_2025": 19022
+    },
+    {
+     "ilce": "Düzce",
+     "nufus_2025": 267249
+    },
+    {
+     "ilce": "Gölyaka",
+     "nufus_2025": 20840
+    },
+    {
+     "ilce": "Gümüşova",
+     "nufus_2025": 17344
+    },
+    {
+     "ilce": "Kaynaşlı",
+     "nufus_2025": 20379
+    },
+    {
+     "ilce": "Yığılca",
+     "nufus_2025": 13492
+    }
+   ]
+  },
+  {
+   "il": "Edirne",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Edirne",
+     "nufus_2025": 200753
+    },
+    {
+     "ilce": "Enez",
+     "nufus_2025": 10399
+    },
+    {
+     "ilce": "Havsa",
+     "nufus_2025": 17302
+    },
+    {
+     "ilce": "İpsala",
+     "nufus_2025": 25278
+    },
+    {
+     "ilce": "Keşan",
+     "nufus_2025": 85259
+    },
+    {
+     "ilce": "Lalapaşa",
+     "nufus_2025": 5932
+    },
+    {
+     "ilce": "Meriç",
+     "nufus_2025": 12329
+    },
+    {
+     "ilce": "Süloğlu",
+     "nufus_2025": 6101
+    },
+    {
+     "ilce": "Uzunköprü",
+     "nufus_2025": 59085
+    }
+   ]
+  },
+  {
+   "il": "Elazığ",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ağın",
+     "nufus_2025": 2532
+    },
+    {
+     "ilce": "Alacakaya",
+     "nufus_2025": 5336
+    },
+    {
+     "ilce": "Arıcak",
+     "nufus_2025": 12340
+    },
+    {
+     "ilce": "Baskil",
+     "nufus_2025": 13397
+    },
+    {
+     "ilce": "Elazığ",
+     "nufus_2025": 463686
+    },
+    {
+     "ilce": "Karakoçan",
+     "nufus_2025": 28320
+    },
+    {
+     "ilce": "Keban",
+     "nufus_2025": 7112
+    },
+    {
+     "ilce": "Kovancılar",
+     "nufus_2025": 37874
+    },
+    {
+     "ilce": "Maden",
+     "nufus_2025": 9139
+    },
+    {
+     "ilce": "Palu",
+     "nufus_2025": 17872
+    },
+    {
+     "ilce": "Sivrice",
+     "nufus_2025": 8070
+    }
+   ]
+  },
+  {
+   "il": "Erzincan",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Çayırlı",
+     "nufus_2025": 7491
+    },
+    {
+     "ilce": "Erzincan",
+     "nufus_2025": 169506
+    },
+    {
+     "ilce": "İliç",
+     "nufus_2025": 8543
+    },
+    {
+     "ilce": "Kemah",
+     "nufus_2025": 6419
+    },
+    {
+     "ilce": "Kemaliye",
+     "nufus_2025": 4484
+    },
+    {
+     "ilce": "Otlukbeli",
+     "nufus_2025": 2123
+    },
+    {
+     "ilce": "Refahiye",
+     "nufus_2025": 10954
+    },
+    {
+     "ilce": "Tercan",
+     "nufus_2025": 16145
+    },
+    {
+     "ilce": "Üzümlü",
+     "nufus_2025": 13960
+    }
+   ]
+  },
+  {
+   "il": "Erzurum",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Aşkale",
+     "nufus_2025": 19983
+    },
+    {
+     "ilce": "Aziziye",
+     "nufus_2025": 71827
+    },
+    {
+     "ilce": "Çat",
+     "nufus_2025": 14015
+    },
+    {
+     "ilce": "Hınıs",
+     "nufus_2025": 23011
+    },
+    {
+     "ilce": "Horasan",
+     "nufus_2025": 34896
+    },
+    {
+     "ilce": "İspir",
+     "nufus_2025": 13984
+    },
+    {
+     "ilce": "Karaçoban",
+     "nufus_2025": 19922
+    },
+    {
+     "ilce": "Karayazı",
+     "nufus_2025": 22570
+    },
+    {
+     "ilce": "Köprüköy",
+     "nufus_2025": 12903
+    },
+    {
+     "ilce": "Narman",
+     "nufus_2025": 11119
+    },
+    {
+     "ilce": "Oltu",
+     "nufus_2025": 29765
+    },
+    {
+     "ilce": "Olur",
+     "nufus_2025": 5985
+    },
+    {
+     "ilce": "Palandöken",
+     "nufus_2025": 181922
+    },
+    {
+     "ilce": "Pasinler",
+     "nufus_2025": 25401
+    },
+    {
+     "ilce": "Pazaryolu",
+     "nufus_2025": 3537
+    },
+    {
+     "ilce": "Şenkaya",
+     "nufus_2025": 14918
+    },
+    {
+     "ilce": "Tekman",
+     "nufus_2025": 20826
+    },
+    {
+     "ilce": "Tortum",
+     "nufus_2025": 12881
+    },
+    {
+     "ilce": "Uzundere",
+     "nufus_2025": 8263
+    },
+    {
+     "ilce": "Yakutiye",
+     "nufus_2025": 189149
+    }
+   ]
+  },
+  {
+   "il": "Eskişehir",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Alpu",
+     "nufus_2025": 9725
+    },
+    {
+     "ilce": "Beylikova",
+     "nufus_2025": 5611
+    },
+    {
+     "ilce": "Çifteler",
+     "nufus_2025": 14487
+    },
+    {
+     "ilce": "Günyüzü",
+     "nufus_2025": 5008
+    },
+    {
+     "ilce": "Han",
+     "nufus_2025": 2126
+    },
+    {
+     "ilce": "İnönü",
+     "nufus_2025": 6114
+    },
+    {
+     "ilce": "Mahmudiye",
+     "nufus_2025": 7407
+    },
+    {
+     "ilce": "Mihalgazi",
+     "nufus_2025": 2861
+    },
+    {
+     "ilce": "Mihalıççık",
+     "nufus_2025": 7605
+    },
+    {
+     "ilce": "Odunpazarı",
+     "nufus_2025": 431652
+    },
+    {
+     "ilce": "Sarıcakaya",
+     "nufus_2025": 4477
+    },
+    {
+     "ilce": "Seyitgazi",
+     "nufus_2025": 12565
+    },
+    {
+     "ilce": "Sivrihisar",
+     "nufus_2025": 20189
+    },
+    {
+     "ilce": "Tepebaşı",
+     "nufus_2025": 398129
+    }
+   ]
+  },
+  {
+   "il": "Gaziantep",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Araban",
+     "nufus_2025": 32540
+    },
+    {
+     "ilce": "İslahiye",
+     "nufus_2025": 66107
+    },
+    {
+     "ilce": "Karkamış",
+     "nufus_2025": 9087
+    },
+    {
+     "ilce": "Nizip",
+     "nufus_2025": 152660
+    },
+    {
+     "ilce": "Nurdağı",
+     "nufus_2025": 38269
+    },
+    {
+     "ilce": "Oğuzeli",
+     "nufus_2025": 36644
+    },
+    {
+     "ilce": "Şahinbey",
+     "nufus_2025": 957792
+    },
+    {
+     "ilce": "Şehitkamil",
+     "nufus_2025": 905880
+    },
+    {
+     "ilce": "Yavuzeli",
+     "nufus_2025": 23436
+    }
+   ]
+  },
+  {
+   "il": "Giresun",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Alucra",
+     "nufus_2025": 8473
+    },
+    {
+     "ilce": "Bulancak",
+     "nufus_2025": 70397
+    },
+    {
+     "ilce": "Çamoluk",
+     "nufus_2025": 5709
+    },
+    {
+     "ilce": "Çanakçı",
+     "nufus_2025": 5783
+    },
+    {
+     "ilce": "Dereli",
+     "nufus_2025": 20100
+    },
+    {
+     "ilce": "Doğankent",
+     "nufus_2025": 7327
+    },
+    {
+     "ilce": "Espiye",
+     "nufus_2025": 39182
+    },
+    {
+     "ilce": "Eynesil",
+     "nufus_2025": 12548
+    },
+    {
+     "ilce": "Giresun",
+     "nufus_2025": 143915
+    },
+    {
+     "ilce": "Görele",
+     "nufus_2025": 31536
+    },
+    {
+     "ilce": "Güce",
+     "nufus_2025": 8194
+    },
+    {
+     "ilce": "Keşap",
+     "nufus_2025": 20859
+    },
+    {
+     "ilce": "Piraziz",
+     "nufus_2025": 15109
+    },
+    {
+     "ilce": "Şebinkarahisar",
+     "nufus_2025": 19130
+    },
+    {
+     "ilce": "Tirebolu",
+     "nufus_2025": 32124
+    },
+    {
+     "ilce": "Yağlıdere",
+     "nufus_2025": 14688
+    }
+   ]
+  },
+  {
+   "il": "Gümüşhane",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Gümüşhane",
+     "nufus_2025": 54697
+    },
+    {
+     "ilce": "Kelkit",
+     "nufus_2025": 38520
+    },
+    {
+     "ilce": "Köse",
+     "nufus_2025": 6107
+    },
+    {
+     "ilce": "Kürtün",
+     "nufus_2025": 11327
+    },
+    {
+     "ilce": "Şiran",
+     "nufus_2025": 18377
+    },
+    {
+     "ilce": "Torul",
+     "nufus_2025": 9779
+    }
+   ]
+  },
+  {
+   "il": "Hakkâri",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Çukurca",
+     "nufus_2025": 14299
+    },
+    {
+     "ilce": "Derecik",
+     "nufus_2025": 24869
+    },
+    {
+     "ilce": "Hakkâri",
+     "nufus_2025": 76165
+    },
+    {
+     "ilce": "Şemdinli",
+     "nufus_2025": 43034
+    },
+    {
+     "ilce": "Yüksekova",
+     "nufus_2025": 121314
+    }
+   ]
+  },
+  {
+   "il": "Hatay",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Altınözü",
+     "nufus_2025": 69834
+    },
+    {
+     "ilce": "Antakya",
+     "nufus_2025": 301855
+    },
+    {
+     "ilce": "Arsuz",
+     "nufus_2025": 115077
+    },
+    {
+     "ilce": "Belen",
+     "nufus_2025": 37876
+    },
+    {
+     "ilce": "Defne",
+     "nufus_2025": 139605
+    },
+    {
+     "ilce": "Dörtyol",
+     "nufus_2025": 132987
+    },
+    {
+     "ilce": "Erzin",
+     "nufus_2025": 43103
+    },
+    {
+     "ilce": "Hassa",
+     "nufus_2025": 57457
+    },
+    {
+     "ilce": "İskenderun",
+     "nufus_2025": 228149
+    },
+    {
+     "ilce": "Kırıkhan",
+     "nufus_2025": 108200
+    },
+    {
+     "ilce": "Kumlu",
+     "nufus_2025": 16242
+    },
+    {
+     "ilce": "Payas",
+     "nufus_2025": 44530
+    },
+    {
+     "ilce": "Reyhanlı",
+     "nufus_2025": 117645
+    },
+    {
+     "ilce": "Samandağ",
+     "nufus_2025": 122952
+    },
+    {
+     "ilce": "Yayladağı",
+     "nufus_2025": 42019
+    }
+   ]
+  },
+  {
+   "il": "Iğdır",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Aralık",
+     "nufus_2025": 18477
+    },
+    {
+     "ilce": "Iğdır",
+     "nufus_2025": 152455
+    },
+    {
+     "ilce": "Karakoyunlu",
+     "nufus_2025": 12614
+    },
+    {
+     "ilce": "Tuzluca",
+     "nufus_2025": 21525
+    }
+   ]
+  },
+  {
+   "il": "Isparta",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Aksu",
+     "nufus_2025": 4073
+    },
+    {
+     "ilce": "Atabey",
+     "nufus_2025": 6204
+    },
+    {
+     "ilce": "Eğirdir",
+     "nufus_2025": 29200
+    },
+    {
+     "ilce": "Gelendost",
+     "nufus_2025": 13985
+    },
+    {
+     "ilce": "Gönen",
+     "nufus_2025": 7065
+    },
+    {
+     "ilce": "Isparta",
+     "nufus_2025": 273638
+    },
+    {
+     "ilce": "Keçiborlu",
+     "nufus_2025": 14033
+    },
+    {
+     "ilce": "Senirkent",
+     "nufus_2025": 10331
+    },
+    {
+     "ilce": "Sütçüler",
+     "nufus_2025": 9228
+    },
+    {
+     "ilce": "Şarkikaraağaç",
+     "nufus_2025": 24310
+    },
+    {
+     "ilce": "Uluborlu",
+     "nufus_2025": 6287
+    },
+    {
+     "ilce": "Yalvaç",
+     "nufus_2025": 44596
+    },
+    {
+     "ilce": "Yenişarbademli",
+     "nufus_2025": 2353
+    }
+   ]
+  },
+  {
+   "il": "İstanbul",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Adalar",
+     "nufus_2025": 17489
+    },
+    {
+     "ilce": "Arnavutköy",
+     "nufus_2025": 358469
+    },
+    {
+     "ilce": "Ataşehir",
+     "nufus_2025": 412125
+    },
+    {
+     "ilce": "Avcılar",
+     "nufus_2025": 440663
+    },
+    {
+     "ilce": "Bağcılar",
+     "nufus_2025": 707635
+    },
+    {
+     "ilce": "Bahçelievler",
+     "nufus_2025": 539035
+    },
+    {
+     "ilce": "Bakırköy",
+     "nufus_2025": 218204
+    },
+    {
+     "ilce": "Başakşehir",
+     "nufus_2025": 536797
+    },
+    {
+     "ilce": "Bayrampaşa",
+     "nufus_2025": 272978
+    },
+    {
+     "ilce": "Beşiktaş",
+     "nufus_2025": 165895
+    },
+    {
+     "ilce": "Beykoz",
+     "nufus_2025": 246833
+    },
+    {
+     "ilce": "Beylikdüzü",
+     "nufus_2025": 422988
+    },
+    {
+     "ilce": "Beyoğlu",
+     "nufus_2025": 215991
+    },
+    {
+     "ilce": "Büyükçekmece",
+     "nufus_2025": 283239
+    },
+    {
+     "ilce": "Çatalca",
+     "nufus_2025": 81143
+    },
+    {
+     "ilce": "Çekmeköy",
+     "nufus_2025": 315959
+    },
+    {
+     "ilce": "Esenler",
+     "nufus_2025": 419878
+    },
+    {
+     "ilce": "Esenyurt",
+     "nufus_2025": 1003905
+    },
+    {
+     "ilce": "Eyüpsultan",
+     "nufus_2025": 425216
+    },
+    {
+     "ilce": "Fatih",
+     "nufus_2025": 351786
+    },
+    {
+     "ilce": "Gaziosmanpaşa",
+     "nufus_2025": 478395
+    },
+    {
+     "ilce": "Güngören",
+     "nufus_2025": 251242
+    },
+    {
+     "ilce": "Kadıköy",
+     "nufus_2025": 458573
+    },
+    {
+     "ilce": "Kâğıthane",
+     "nufus_2025": 446420
+    },
+    {
+     "ilce": "Kartal",
+     "nufus_2025": 475630
+    },
+    {
+     "ilce": "Küçükçekmece",
+     "nufus_2025": 785270
+    },
+    {
+     "ilce": "Maltepe",
+     "nufus_2025": 525044
+    },
+    {
+     "ilce": "Pendik",
+     "nufus_2025": 752033
+    },
+    {
+     "ilce": "Sancaktepe",
+     "nufus_2025": 507500
+    },
+    {
+     "ilce": "Sarıyer",
+     "nufus_2025": 344883
+    },
+    {
+     "ilce": "Silivri",
+     "nufus_2025": 240029
+    },
+    {
+     "ilce": "Sultanbeyli",
+     "nufus_2025": 378908
+    },
+    {
+     "ilce": "Sultangazi",
+     "nufus_2025": 529306
+    },
+    {
+     "ilce": "Şile",
+     "nufus_2025": 50090
+    },
+    {
+     "ilce": "Şişli",
+     "nufus_2025": 261959
+    },
+    {
+     "ilce": "Tuzla",
+     "nufus_2025": 313865
+    },
+    {
+     "ilce": "Ümraniye",
+     "nufus_2025": 728913
+    },
+    {
+     "ilce": "Üsküdar",
+     "nufus_2025": 514294
+    },
+    {
+     "ilce": "Zeytinburnu",
+     "nufus_2025": 275471
+    }
+   ]
+  },
+  {
+   "il": "İzmir",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Aliağa",
+     "nufus_2025": 110892
+    },
+    {
+     "ilce": "Balçova",
+     "nufus_2025": 75743
+    },
+    {
+     "ilce": "Bayındır",
+     "nufus_2025": 39971
+    },
+    {
+     "ilce": "Bayraklı",
+     "nufus_2025": 296481
+    },
+    {
+     "ilce": "Bergama",
+     "nufus_2025": 107549
+    },
+    {
+     "ilce": "Beydağ",
+     "nufus_2025": 11904
+    },
+    {
+     "ilce": "Bornova",
+     "nufus_2025": 452479
+    },
+    {
+     "ilce": "Buca",
+     "nufus_2025": 520941
+    },
+    {
+     "ilce": "Çeşme",
+     "nufus_2025": 51902
+    },
+    {
+     "ilce": "Çiğli",
+     "nufus_2025": 216430
+    },
+    {
+     "ilce": "Dikili",
+     "nufus_2025": 49138
+    },
+    {
+     "ilce": "Foça",
+     "nufus_2025": 37711
+    },
+    {
+     "ilce": "Gaziemir",
+     "nufus_2025": 137220
+    },
+    {
+     "ilce": "Güzelbahçe",
+     "nufus_2025": 39474
+    },
+    {
+     "ilce": "Karabağlar",
+     "nufus_2025": 467572
+    },
+    {
+     "ilce": "Karaburun",
+     "nufus_2025": 13725
+    },
+    {
+     "ilce": "Karşıyaka",
+     "nufus_2025": 339624
+    },
+    {
+     "ilce": "Kemalpaşa",
+     "nufus_2025": 122840
+    },
+    {
+     "ilce": "Kınık",
+     "nufus_2025": 28604
+    },
+    {
+     "ilce": "Kiraz",
+     "nufus_2025": 43340
+    },
+    {
+     "ilce": "Konak",
+     "nufus_2025": 317399
+    },
+    {
+     "ilce": "Menderes",
+     "nufus_2025": 112853
+    },
+    {
+     "ilce": "Menemen",
+     "nufus_2025": 220510
+    },
+    {
+     "ilce": "Narlıdere",
+     "nufus_2025": 61320
+    },
+    {
+     "ilce": "Ödemiş",
+     "nufus_2025": 132548
+    },
+    {
+     "ilce": "Seferihisar",
+     "nufus_2025": 63712
+    },
+    {
+     "ilce": "Selçuk",
+     "nufus_2025": 38578
+    },
+    {
+     "ilce": "Tire",
+     "nufus_2025": 87571
+    },
+    {
+     "ilce": "Torbalı",
+     "nufus_2025": 224133
+    },
+    {
+     "ilce": "Urla",
+     "nufus_2025": 82021
+    }
+   ]
+  },
+  {
+   "il": "Kahramanmaraş",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Afşin",
+     "nufus_2025": 80124
+    },
+    {
+     "ilce": "Andırın",
+     "nufus_2025": 31609
+    },
+    {
+     "ilce": "Çağlayancerit",
+     "nufus_2025": 22440
+    },
+    {
+     "ilce": "Dulkadiroğlu",
+     "nufus_2025": 213930
+    },
+    {
+     "ilce": "Ekinözü",
+     "nufus_2025": 9896
+    },
+    {
+     "ilce": "Elbistan",
+     "nufus_2025": 132036
+    },
+    {
+     "ilce": "Göksun",
+     "nufus_2025": 49145
+    },
+    {
+     "ilce": "Nurhak",
+     "nufus_2025": 11675
+    },
+    {
+     "ilce": "Onikişubat",
+     "nufus_2025": 447591
+    },
+    {
+     "ilce": "Pazarcık",
+     "nufus_2025": 66777
+    },
+    {
+     "ilce": "Türkoğlu",
+     "nufus_2025": 81055
+    }
+   ]
+  },
+  {
+   "il": "Karabük",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Eflani",
+     "nufus_2025": 8663
+    },
+    {
+     "ilce": "Eskipazar",
+     "nufus_2025": 12570
+    },
+    {
+     "ilce": "Karabük",
+     "nufus_2025": 135819
+    },
+    {
+     "ilce": "Ovacık",
+     "nufus_2025": 3986
+    },
+    {
+     "ilce": "Safranbolu",
+     "nufus_2025": 69592
+    },
+    {
+     "ilce": "Yenice",
+     "nufus_2025": 18984
+    }
+   ]
+  },
+  {
+   "il": "Karaman",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ayrancı",
+     "nufus_2025": 7127
+    },
+    {
+     "ilce": "Başyayla",
+     "nufus_2025": 3353
+    },
+    {
+     "ilce": "Ermenek",
+     "nufus_2025": 27629
+    },
+    {
+     "ilce": "Karaman",
+     "nufus_2025": 207973
+    },
+    {
+     "ilce": "Kazımkarabekir",
+     "nufus_2025": 4679
+    },
+    {
+     "ilce": "Sarıveliler",
+     "nufus_2025": 11594
+    }
+   ]
+  },
+  {
+   "il": "Kars",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akyaka",
+     "nufus_2025": 9382
+    },
+    {
+     "ilce": "Arpaçay",
+     "nufus_2025": 13770
+    },
+    {
+     "ilce": "Digor",
+     "nufus_2025": 17557
+    },
+    {
+     "ilce": "Kağızman",
+     "nufus_2025": 42717
+    },
+    {
+     "ilce": "Kars",
+     "nufus_2025": 121154
+    },
+    {
+     "ilce": "Sarıkamış",
+     "nufus_2025": 35518
+    },
+    {
+     "ilce": "Selim",
+     "nufus_2025": 20476
+    },
+    {
+     "ilce": "Susuz",
+     "nufus_2025": 8417
+    }
+   ]
+  },
+  {
+   "il": "Kastamonu",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Abana",
+     "nufus_2025": 4474
+    },
+    {
+     "ilce": "Ağlı",
+     "nufus_2025": 3176
+    },
+    {
+     "ilce": "Araç",
+     "nufus_2025": 18121
+    },
+    {
+     "ilce": "Azdavay",
+     "nufus_2025": 7266
+    },
+    {
+     "ilce": "Bozkurt",
+     "nufus_2025": 9250
+    },
+    {
+     "ilce": "Cide",
+     "nufus_2025": 22496
+    },
+    {
+     "ilce": "Çatalzeytin",
+     "nufus_2025": 7185
+    },
+    {
+     "ilce": "Daday",
+     "nufus_2025": 7736
+    },
+    {
+     "ilce": "Devrekani",
+     "nufus_2025": 12033
+    },
+    {
+     "ilce": "Doğanyurt",
+     "nufus_2025": 5057
+    },
+    {
+     "ilce": "Hanönü",
+     "nufus_2025": 4286
+    },
+    {
+     "ilce": "İhsangazi",
+     "nufus_2025": 4976
+    },
+    {
+     "ilce": "İnebolu",
+     "nufus_2025": 19678
+    },
+    {
+     "ilce": "Kastamonu",
+     "nufus_2025": 158953
+    },
+    {
+     "ilce": "Küre",
+     "nufus_2025": 5108
+    },
+    {
+     "ilce": "Pınarbaşı",
+     "nufus_2025": 5782
+    },
+    {
+     "ilce": "Seydiler",
+     "nufus_2025": 4639
+    },
+    {
+     "ilce": "Şenpazar",
+     "nufus_2025": 4083
+    },
+    {
+     "ilce": "Taşköprü",
+     "nufus_2025": 36544
+    },
+    {
+     "ilce": "Tosya",
+     "nufus_2025": 39091
+    }
+   ]
+  },
+  {
+   "il": "Kayseri",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akkışla",
+     "nufus_2025": 5440
+    },
+    {
+     "ilce": "Bünyan",
+     "nufus_2025": 30362
+    },
+    {
+     "ilce": "Develi",
+     "nufus_2025": 67818
+    },
+    {
+     "ilce": "Felahiye",
+     "nufus_2025": 5529
+    },
+    {
+     "ilce": "Hacılar",
+     "nufus_2025": 13701
+    },
+    {
+     "ilce": "İncesu",
+     "nufus_2025": 29780
+    },
+    {
+     "ilce": "Kocasinan",
+     "nufus_2025": 421472
+    },
+    {
+     "ilce": "Melikgazi",
+     "nufus_2025": 593262
+    },
+    {
+     "ilce": "Özvatan",
+     "nufus_2025": 3877
+    },
+    {
+     "ilce": "Pınarbaşı",
+     "nufus_2025": 20598
+    },
+    {
+     "ilce": "Sarıoğlan",
+     "nufus_2025": 13510
+    },
+    {
+     "ilce": "Sarız",
+     "nufus_2025": 9213
+    },
+    {
+     "ilce": "Talas",
+     "nufus_2025": 173657
+    },
+    {
+     "ilce": "Tomarza",
+     "nufus_2025": 20156
+    },
+    {
+     "ilce": "Yahyalı",
+     "nufus_2025": 35207
+    },
+    {
+     "ilce": "Yeşilhisar",
+     "nufus_2025": 15409
+    }
+   ]
+  },
+  {
+   "il": "Kırıkkale",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Bahşılı",
+     "nufus_2025": 7353
+    },
+    {
+     "ilce": "Balışeyh",
+     "nufus_2025": 5888
+    },
+    {
+     "ilce": "Çelebi",
+     "nufus_2025": 2587
+    },
+    {
+     "ilce": "Delice",
+     "nufus_2025": 10577
+    },
+    {
+     "ilce": "Karakeçili",
+     "nufus_2025": 3062
+    },
+    {
+     "ilce": "Keskin",
+     "nufus_2025": 15841
+    },
+    {
+     "ilce": "Kırıkkale",
+     "nufus_2025": 192821
+    },
+    {
+     "ilce": "Sulakyurt",
+     "nufus_2025": 5564
+    },
+    {
+     "ilce": "Yahşihan",
+     "nufus_2025": 39137
+    }
+   ]
+  },
+  {
+   "il": "Kırklareli",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Babaeski",
+     "nufus_2025": 46355
+    },
+    {
+     "ilce": "Demirköy",
+     "nufus_2025": 9364
+    },
+    {
+     "ilce": "Kırklareli",
+     "nufus_2025": 114710
+    },
+    {
+     "ilce": "Kofçaz",
+     "nufus_2025": 2291
+    },
+    {
+     "ilce": "Lüleburgaz",
+     "nufus_2025": 157136
+    },
+    {
+     "ilce": "Pehlivanköy",
+     "nufus_2025": 3276
+    },
+    {
+     "ilce": "Pınarhisar",
+     "nufus_2025": 17694
+    },
+    {
+     "ilce": "Vize",
+     "nufus_2025": 28769
+    }
+   ]
+  },
+  {
+   "il": "Kırşehir",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akçakent",
+     "nufus_2025": 3301
+    },
+    {
+     "ilce": "Akpınar",
+     "nufus_2025": 6435
+    },
+    {
+     "ilce": "Boztepe",
+     "nufus_2025": 5049
+    },
+    {
+     "ilce": "Çiçekdağı",
+     "nufus_2025": 13350
+    },
+    {
+     "ilce": "Kaman",
+     "nufus_2025": 33354
+    },
+    {
+     "ilce": "Kırşehir",
+     "nufus_2025": 163368
+    },
+    {
+     "ilce": "Mucur",
+     "nufus_2025": 17920
+    }
+   ]
+  },
+  {
+   "il": "Kilis",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Elbeyli",
+     "nufus_2025": 5273
+    },
+    {
+     "ilce": "Kilis",
+     "nufus_2025": 135430
+    },
+    {
+     "ilce": "Musabeyli",
+     "nufus_2025": 11692
+    },
+    {
+     "ilce": "Polateli",
+     "nufus_2025": 4968
+    }
+   ]
+  },
+  {
+   "il": "Kocaeli",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Başiskele",
+     "nufus_2025": 131387
+    },
+    {
+     "ilce": "Çayırova",
+     "nufus_2025": 162262
+    },
+    {
+     "ilce": "Darıca",
+     "nufus_2025": 235632
+    },
+    {
+     "ilce": "Derince",
+     "nufus_2025": 147892
+    },
+    {
+     "ilce": "Dilovası",
+     "nufus_2025": 55355
+    },
+    {
+     "ilce": "Gebze",
+     "nufus_2025": 414960
+    },
+    {
+     "ilce": "Gölcük",
+     "nufus_2025": 181227
+    },
+    {
+     "ilce": "İzmit",
+     "nufus_2025": 381254
+    },
+    {
+     "ilce": "Kandıra",
+     "nufus_2025": 54260
+    },
+    {
+     "ilce": "Karamürsel",
+     "nufus_2025": 59488
+    },
+    {
+     "ilce": "Kartepe",
+     "nufus_2025": 154377
+    },
+    {
+     "ilce": "Körfez",
+     "nufus_2025": 183077
+    }
+   ]
+  },
+  {
+   "il": "Konya",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Ahırlı",
+     "nufus_2025": 4536
+    },
+    {
+     "ilce": "Akören",
+     "nufus_2025": 5744
+    },
+    {
+     "ilce": "Akşehir",
+     "nufus_2025": 93613
+    },
+    {
+     "ilce": "Altınekin",
+     "nufus_2025": 14374
+    },
+    {
+     "ilce": "Beyşehir",
+     "nufus_2025": 80353
+    },
+    {
+     "ilce": "Bozkır",
+     "nufus_2025": 24704
+    },
+    {
+     "ilce": "Cihanbeyli",
+     "nufus_2025": 49126
+    },
+    {
+     "ilce": "Çeltik",
+     "nufus_2025": 9482
+    },
+    {
+     "ilce": "Çumra",
+     "nufus_2025": 68803
+    },
+    {
+     "ilce": "Derbent",
+     "nufus_2025": 3954
+    },
+    {
+     "ilce": "Derebucak",
+     "nufus_2025": 5353
+    },
+    {
+     "ilce": "Doğanhisar",
+     "nufus_2025": 14097
+    },
+    {
+     "ilce": "Emirgazi",
+     "nufus_2025": 7647
+    },
+    {
+     "ilce": "Ereğli",
+     "nufus_2025": 158010
+    },
+    {
+     "ilce": "Güneysınır",
+     "nufus_2025": 9237
+    },
+    {
+     "ilce": "Hadim",
+     "nufus_2025": 10621
+    },
+    {
+     "ilce": "Halkapınar",
+     "nufus_2025": 3947
+    },
+    {
+     "ilce": "Hüyük",
+     "nufus_2025": 14878
+    },
+    {
+     "ilce": "Ilgın",
+     "nufus_2025": 53167
+    },
+    {
+     "ilce": "Kadınhanı",
+     "nufus_2025": 31478
+    },
+    {
+     "ilce": "Karapınar",
+     "nufus_2025": 51756
+    },
+    {
+     "ilce": "Karatay",
+     "nufus_2025": 395499
+    },
+    {
+     "ilce": "Kulu",
+     "nufus_2025": 51732
+    },
+    {
+     "ilce": "Meram",
+     "nufus_2025": 349685
+    },
+    {
+     "ilce": "Sarayönü",
+     "nufus_2025": 28401
+    },
+    {
+     "ilce": "Selçuklu",
+     "nufus_2025": 703449
+    },
+    {
+     "ilce": "Seydişehir",
+     "nufus_2025": 66079
+    },
+    {
+     "ilce": "Taşkent",
+     "nufus_2025": 5669
+    },
+    {
+     "ilce": "Tuzlukçu",
+     "nufus_2025": 6052
+    },
+    {
+     "ilce": "Yalıhüyük",
+     "nufus_2025": 1704
+    },
+    {
+     "ilce": "Yunak",
+     "nufus_2025": 20259
+    }
+   ]
+  },
+  {
+   "il": "Kütahya",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Altıntaş",
+     "nufus_2025": 14739
+    },
+    {
+     "ilce": "Aslanapa",
+     "nufus_2025": 7813
+    },
+    {
+     "ilce": "Çavdarhisar",
+     "nufus_2025": 5503
+    },
+    {
+     "ilce": "Domaniç",
+     "nufus_2025": 13900
+    },
+    {
+     "ilce": "Dumlupınar",
+     "nufus_2025": 2812
+    },
+    {
+     "ilce": "Emet",
+     "nufus_2025": 17352
+    },
+    {
+     "ilce": "Gediz",
+     "nufus_2025": 48539
+    },
+    {
+     "ilce": "Hisarcık",
+     "nufus_2025": 10799
+    },
+    {
+     "ilce": "Kütahya",
+     "nufus_2025": 277000
+    },
+    {
+     "ilce": "Pazarlar",
+     "nufus_2025": 4713
+    },
+    {
+     "ilce": "Simav",
+     "nufus_2025": 60886
+    },
+    {
+     "ilce": "Şaphane",
+     "nufus_2025": 5540
+    },
+    {
+     "ilce": "Tavşanlı",
+     "nufus_2025": 100882
+    }
+   ]
+  },
+  {
+   "il": "Malatya",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akçadağ",
+     "nufus_2025": 31479
+    },
+    {
+     "ilce": "Arapgir",
+     "nufus_2025": 9917
+    },
+    {
+     "ilce": "Arguvan",
+     "nufus_2025": 6859
+    },
+    {
+     "ilce": "Battalgazi",
+     "nufus_2025": 274563
+    },
+    {
+     "ilce": "Darende",
+     "nufus_2025": 24806
+    },
+    {
+     "ilce": "Doğanşehir",
+     "nufus_2025": 36037
+    },
+    {
+     "ilce": "Doğanyol",
+     "nufus_2025": 4002
+    },
+    {
+     "ilce": "Hekimhan",
+     "nufus_2025": 17116
+    },
+    {
+     "ilce": "Kale",
+     "nufus_2025": 7462
+    },
+    {
+     "ilce": "Kuluncak",
+     "nufus_2025": 7414
+    },
+    {
+     "ilce": "Pütürge",
+     "nufus_2025": 12372
+    },
+    {
+     "ilce": "Yazıhan",
+     "nufus_2025": 13937
+    },
+    {
+     "ilce": "Yeşilyurt",
+     "nufus_2025": 309890
+    }
+   ]
+  },
+  {
+   "il": "Manisa",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Ahmetli",
+     "nufus_2025": 17612
+    },
+    {
+     "ilce": "Akhisar",
+     "nufus_2025": 181472
+    },
+    {
+     "ilce": "Alaşehir",
+     "nufus_2025": 104565
+    },
+    {
+     "ilce": "Demirci",
+     "nufus_2025": 35629
+    },
+    {
+     "ilce": "Gölmarmara",
+     "nufus_2025": 15140
+    },
+    {
+     "ilce": "Gördes",
+     "nufus_2025": 25456
+    },
+    {
+     "ilce": "Kırkağaç",
+     "nufus_2025": 37363
+    },
+    {
+     "ilce": "Köprübaşı",
+     "nufus_2025": 12217
+    },
+    {
+     "ilce": "Kula",
+     "nufus_2025": 43015
+    },
+    {
+     "ilce": "Salihli",
+     "nufus_2025": 165007
+    },
+    {
+     "ilce": "Sarıgöl",
+     "nufus_2025": 34786
+    },
+    {
+     "ilce": "Saruhanlı",
+     "nufus_2025": 58475
+    },
+    {
+     "ilce": "Selendi",
+     "nufus_2025": 18568
+    },
+    {
+     "ilce": "Soma",
+     "nufus_2025": 110188
+    },
+    {
+     "ilce": "Şehzadeler",
+     "nufus_2025": 168582
+    },
+    {
+     "ilce": "Turgutlu",
+     "nufus_2025": 179326
+    },
+    {
+     "ilce": "Yunusemre",
+     "nufus_2025": 270355
+    }
+   ]
+  },
+  {
+   "il": "Mardin",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Artuklu",
+     "nufus_2025": 198718
+    },
+    {
+     "ilce": "Dargeçit",
+     "nufus_2025": 26675
+    },
+    {
+     "ilce": "Derik",
+     "nufus_2025": 61553
+    },
+    {
+     "ilce": "Kızıltepe",
+     "nufus_2025": 275217
+    },
+    {
+     "ilce": "Mazıdağı",
+     "nufus_2025": 37381
+    },
+    {
+     "ilce": "Midyat",
+     "nufus_2025": 125791
+    },
+    {
+     "ilce": "Nusaybin",
+     "nufus_2025": 119559
+    },
+    {
+     "ilce": "Ömerli",
+     "nufus_2025": 14112
+    },
+    {
+     "ilce": "Savur",
+     "nufus_2025": 23404
+    },
+    {
+     "ilce": "Yeşilli",
+     "nufus_2025": 21166
+    }
+   ]
+  },
+  {
+   "il": "Mersin",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Akdeniz",
+     "nufus_2025": 254292
+    },
+    {
+     "ilce": "Anamur",
+     "nufus_2025": 66952
+    },
+    {
+     "ilce": "Aydıncık",
+     "nufus_2025": 11271
+    },
+    {
+     "ilce": "Bozyazı",
+     "nufus_2025": 26832
+    },
+    {
+     "ilce": "Çamlıyayla",
+     "nufus_2025": 8383
+    },
+    {
+     "ilce": "Erdemli",
+     "nufus_2025": 157566
+    },
+    {
+     "ilce": "Gülnar",
+     "nufus_2025": 32785
+    },
+    {
+     "ilce": "Mezitli",
+     "nufus_2025": 233140
+    },
+    {
+     "ilce": "Mut",
+     "nufus_2025": 62758
+    },
+    {
+     "ilce": "Silifke",
+     "nufus_2025": 139610
+    },
+    {
+     "ilce": "Tarsus",
+     "nufus_2025": 358510
+    },
+    {
+     "ilce": "Toroslar",
+     "nufus_2025": 322971
+    },
+    {
+     "ilce": "Yenişehir",
+     "nufus_2025": 281358
+    }
+   ]
+  },
+  {
+   "il": "Muğla",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Bodrum",
+     "nufus_2025": 207196
+    },
+    {
+     "ilce": "Dalaman",
+     "nufus_2025": 53327
+    },
+    {
+     "ilce": "Datça",
+     "nufus_2025": 26067
+    },
+    {
+     "ilce": "Fethiye",
+     "nufus_2025": 187332
+    },
+    {
+     "ilce": "Kavaklıdere",
+     "nufus_2025": 10854
+    },
+    {
+     "ilce": "Köyceğiz",
+     "nufus_2025": 41810
+    },
+    {
+     "ilce": "Marmaris",
+     "nufus_2025": 97373
+    },
+    {
+     "ilce": "Menteşe",
+     "nufus_2025": 126288
+    },
+    {
+     "ilce": "Milas",
+     "nufus_2025": 152275
+    },
+    {
+     "ilce": "Ortaca",
+     "nufus_2025": 58704
+    },
+    {
+     "ilce": "Seydikemer",
+     "nufus_2025": 65648
+    },
+    {
+     "ilce": "Ula",
+     "nufus_2025": 27649
+    },
+    {
+     "ilce": "Yatağan",
+     "nufus_2025": 45024
+    }
+   ]
+  },
+  {
+   "il": "Muş",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Bulanık",
+     "nufus_2025": 68983
+    },
+    {
+     "ilce": "Hasköy",
+     "nufus_2025": 27684
+    },
+    {
+     "ilce": "Korkut",
+     "nufus_2025": 19251
+    },
+    {
+     "ilce": "Malazgirt",
+     "nufus_2025": 40595
+    },
+    {
+     "ilce": "Muş",
+     "nufus_2025": 203810
+    },
+    {
+     "ilce": "Varto",
+     "nufus_2025": 28804
+    }
+   ]
+  },
+  {
+   "il": "Nevşehir",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Acıgöl",
+     "nufus_2025": 19430
+    },
+    {
+     "ilce": "Avanos",
+     "nufus_2025": 32093
+    },
+    {
+     "ilce": "Derinkuyu",
+     "nufus_2025": 21107
+    },
+    {
+     "ilce": "Gülşehir",
+     "nufus_2025": 21173
+    },
+    {
+     "ilce": "Hacıbektaş",
+     "nufus_2025": 10564
+    },
+    {
+     "ilce": "Kozaklı",
+     "nufus_2025": 12678
+    },
+    {
+     "ilce": "Nevşehir",
+     "nufus_2025": 163126
+    },
+    {
+     "ilce": "Ürgüp",
+     "nufus_2025": 39979
+    }
+   ]
+  },
+  {
+   "il": "Niğde",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Altunhisar",
+     "nufus_2025": 12004
+    },
+    {
+     "ilce": "Bor",
+     "nufus_2025": 62594
+    },
+    {
+     "ilce": "Çamardı",
+     "nufus_2025": 11631
+    },
+    {
+     "ilce": "Çiftlik",
+     "nufus_2025": 25157
+    },
+    {
+     "ilce": "Niğde",
+     "nufus_2025": 244326
+    },
+    {
+     "ilce": "Ulukışla",
+     "nufus_2025": 18780
+    }
+   ]
+  },
+  {
+   "il": "Ordu",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Akkuş",
+     "nufus_2025": 20465
+    },
+    {
+     "ilce": "Altınordu",
+     "nufus_2025": 239714
+    },
+    {
+     "ilce": "Aybastı",
+     "nufus_2025": 19784
+    },
+    {
+     "ilce": "Çamaş",
+     "nufus_2025": 8407
+    },
+    {
+     "ilce": "Çatalpınar",
+     "nufus_2025": 12888
+    },
+    {
+     "ilce": "Çaybaşı",
+     "nufus_2025": 11656
+    },
+    {
+     "ilce": "Fatsa",
+     "nufus_2025": 129844
+    },
+    {
+     "ilce": "Gölköy",
+     "nufus_2025": 24780
+    },
+    {
+     "ilce": "Gülyalı",
+     "nufus_2025": 8881
+    },
+    {
+     "ilce": "Gürgentepe",
+     "nufus_2025": 12499
+    },
+    {
+     "ilce": "İkizce",
+     "nufus_2025": 12537
+    },
+    {
+     "ilce": "Kabadüz",
+     "nufus_2025": 6794
+    },
+    {
+     "ilce": "Kabataş",
+     "nufus_2025": 9949
+    },
+    {
+     "ilce": "Korgan",
+     "nufus_2025": 26428
+    },
+    {
+     "ilce": "Kumru",
+     "nufus_2025": 27638
+    },
+    {
+     "ilce": "Mesudiye",
+     "nufus_2025": 11829
+    },
+    {
+     "ilce": "Perşembe",
+     "nufus_2025": 30053
+    },
+    {
+     "ilce": "Ulubey",
+     "nufus_2025": 18027
+    },
+    {
+     "ilce": "Ünye",
+     "nufus_2025": 135914
+    }
+   ]
+  },
+  {
+   "il": "Osmaniye",
+   "bolge": "Akdeniz",
+   "ilceler": [
+    {
+     "ilce": "Bahçe",
+     "nufus_2025": 22989
+    },
+    {
+     "ilce": "Düziçi",
+     "nufus_2025": 88274
+    },
+    {
+     "ilce": "Hasanbeyli",
+     "nufus_2025": 4914
+    },
+    {
+     "ilce": "Kadirli",
+     "nufus_2025": 127644
+    },
+    {
+     "ilce": "Osmaniye",
+     "nufus_2025": 284895
+    },
+    {
+     "ilce": "Sumbas",
+     "nufus_2025": 13049
+    },
+    {
+     "ilce": "Toprakkale",
+     "nufus_2025": 22358
+    }
+   ]
+  },
+  {
+   "il": "Rize",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Ardeşen",
+     "nufus_2025": 43519
+    },
+    {
+     "ilce": "Çamlıhemşin",
+     "nufus_2025": 7051
+    },
+    {
+     "ilce": "Çayeli",
+     "nufus_2025": 42032
+    },
+    {
+     "ilce": "Derepazarı",
+     "nufus_2025": 6772
+    },
+    {
+     "ilce": "Fındıklı",
+     "nufus_2025": 16388
+    },
+    {
+     "ilce": "Güneysu",
+     "nufus_2025": 15013
+    },
+    {
+     "ilce": "Hemşin",
+     "nufus_2025": 2299
+    },
+    {
+     "ilce": "İkizdere",
+     "nufus_2025": 6287
+    },
+    {
+     "ilce": "İyidere",
+     "nufus_2025": 8495
+    },
+    {
+     "ilce": "Kalkandere",
+     "nufus_2025": 13350
+    },
+    {
+     "ilce": "Pazar",
+     "nufus_2025": 32144
+    },
+    {
+     "ilce": "Rize",
+     "nufus_2025": 153597
+    }
+   ]
+  },
+  {
+   "il": "Sakarya",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Adapazarı",
+     "nufus_2025": 284006
+    },
+    {
+     "ilce": "Akyazı",
+     "nufus_2025": 99561
+    },
+    {
+     "ilce": "Arifiye",
+     "nufus_2025": 55589
+    },
+    {
+     "ilce": "Erenler",
+     "nufus_2025": 92549
+    },
+    {
+     "ilce": "Ferizli",
+     "nufus_2025": 36015
+    },
+    {
+     "ilce": "Geyve",
+     "nufus_2025": 51708
+    },
+    {
+     "ilce": "Hendek",
+     "nufus_2025": 93990
+    },
+    {
+     "ilce": "Karapürçek",
+     "nufus_2025": 13734
+    },
+    {
+     "ilce": "Karasu",
+     "nufus_2025": 75887
+    },
+    {
+     "ilce": "Kaynarca",
+     "nufus_2025": 25440
+    },
+    {
+     "ilce": "Kocaali",
+     "nufus_2025": 24966
+    },
+    {
+     "ilce": "Pamukova",
+     "nufus_2025": 31536
+    },
+    {
+     "ilce": "Sapanca",
+     "nufus_2025": 47505
+    },
+    {
+     "ilce": "Serdivan",
+     "nufus_2025": 168855
+    },
+    {
+     "ilce": "Söğütlü",
+     "nufus_2025": 15288
+    },
+    {
+     "ilce": "Taraklı",
+     "nufus_2025": 7064
+    }
+   ]
+  },
+  {
+   "il": "Samsun",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "19 Mayıs",
+     "nufus_2025": 28658
+    },
+    {
+     "ilce": "Alaçam",
+     "nufus_2025": 24560
+    },
+    {
+     "ilce": "Asarcık",
+     "nufus_2025": 15673
+    },
+    {
+     "ilce": "Atakum",
+     "nufus_2025": 261809
+    },
+    {
+     "ilce": "Ayvacık",
+     "nufus_2025": 18557
+    },
+    {
+     "ilce": "Bafra",
+     "nufus_2025": 143387
+    },
+    {
+     "ilce": "Canik",
+     "nufus_2025": 100247
+    },
+    {
+     "ilce": "Çarşamba",
+     "nufus_2025": 143206
+    },
+    {
+     "ilce": "Havza",
+     "nufus_2025": 38103
+    },
+    {
+     "ilce": "İlkadım",
+     "nufus_2025": 330290
+    },
+    {
+     "ilce": "Kavak",
+     "nufus_2025": 25370
+    },
+    {
+     "ilce": "Ladik",
+     "nufus_2025": 15942
+    },
+    {
+     "ilce": "Salıpazarı",
+     "nufus_2025": 19406
+    },
+    {
+     "ilce": "Tekkeköy",
+     "nufus_2025": 59356
+    },
+    {
+     "ilce": "Terme",
+     "nufus_2025": 71348
+    },
+    {
+     "ilce": "Vezirköprü",
+     "nufus_2025": 87575
+    },
+    {
+     "ilce": "Yakakent",
+     "nufus_2025": 8916
+    }
+   ]
+  },
+  {
+   "il": "Siirt",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Baykan",
+     "nufus_2025": 23219
+    },
+    {
+     "ilce": "Eruh",
+     "nufus_2025": 18339
+    },
+    {
+     "ilce": "Kurtalan",
+     "nufus_2025": 60674
+    },
+    {
+     "ilce": "Pervari",
+     "nufus_2025": 26437
+    },
+    {
+     "ilce": "Siirt",
+     "nufus_2025": 180837
+    },
+    {
+     "ilce": "Şirvan",
+     "nufus_2025": 18773
+    },
+    {
+     "ilce": "Tillo",
+     "nufus_2025": 4090
+    }
+   ]
+  },
+  {
+   "il": "Sinop",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Ayancık",
+     "nufus_2025": 23818
+    },
+    {
+     "ilce": "Boyabat",
+     "nufus_2025": 44901
+    },
+    {
+     "ilce": "Dikmen",
+     "nufus_2025": 4810
+    },
+    {
+     "ilce": "Durağan",
+     "nufus_2025": 16788
+    },
+    {
+     "ilce": "Erfelek",
+     "nufus_2025": 12565
+    },
+    {
+     "ilce": "Gerze",
+     "nufus_2025": 30701
+    },
+    {
+     "ilce": "Saraydüzü",
+     "nufus_2025": 5656
+    },
+    {
+     "ilce": "Sinop",
+     "nufus_2025": 70311
+    },
+    {
+     "ilce": "Türkeli",
+     "nufus_2025": 16298
+    }
+   ]
+  },
+  {
+   "il": "Sivas",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akıncılar",
+     "nufus_2025": 4641
+    },
+    {
+     "ilce": "Altınyayla",
+     "nufus_2025": 8245
+    },
+    {
+     "ilce": "Divriği",
+     "nufus_2025": 15657
+    },
+    {
+     "ilce": "Doğanşar",
+     "nufus_2025": 2770
+    },
+    {
+     "ilce": "Gemerek",
+     "nufus_2025": 21342
+    },
+    {
+     "ilce": "Gölova",
+     "nufus_2025": 2998
+    },
+    {
+     "ilce": "Gürün",
+     "nufus_2025": 17062
+    },
+    {
+     "ilce": "Hafik",
+     "nufus_2025": 8950
+    },
+    {
+     "ilce": "İmranlı",
+     "nufus_2025": 6788
+    },
+    {
+     "ilce": "Kangal",
+     "nufus_2025": 19406
+    },
+    {
+     "ilce": "Koyulhisar",
+     "nufus_2025": 11782
+    },
+    {
+     "ilce": "Sivas",
+     "nufus_2025": 393912
+    },
+    {
+     "ilce": "Suşehri",
+     "nufus_2025": 25056
+    },
+    {
+     "ilce": "Şarkışla",
+     "nufus_2025": 37282
+    },
+    {
+     "ilce": "Ulaş",
+     "nufus_2025": 7603
+    },
+    {
+     "ilce": "Yıldızeli",
+     "nufus_2025": 26567
+    },
+    {
+     "ilce": "Zara",
+     "nufus_2025": 21340
+    }
+   ]
+  },
+  {
+   "il": "Şanlıurfa",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Akçakale",
+     "nufus_2025": 131351
+    },
+    {
+     "ilce": "Birecik",
+     "nufus_2025": 91837
+    },
+    {
+     "ilce": "Bozova",
+     "nufus_2025": 50534
+    },
+    {
+     "ilce": "Ceylanpınar",
+     "nufus_2025": 93105
+    },
+    {
+     "ilce": "Eyyübiye",
+     "nufus_2025": 414516
+    },
+    {
+     "ilce": "Halfeti",
+     "nufus_2025": 41624
+    },
+    {
+     "ilce": "Haliliye",
+     "nufus_2025": 395975
+    },
+    {
+     "ilce": "Harran",
+     "nufus_2025": 101710
+    },
+    {
+     "ilce": "Hilvan",
+     "nufus_2025": 41969
+    },
+    {
+     "ilce": "Karaköprü",
+     "nufus_2025": 312031
+    },
+    {
+     "ilce": "Siverek",
+     "nufus_2025": 277399
+    },
+    {
+     "ilce": "Suruç",
+     "nufus_2025": 98022
+    },
+    {
+     "ilce": "Viranşehir",
+     "nufus_2025": 215727
+    }
+   ]
+  },
+  {
+   "il": "Şırnak",
+   "bolge": "GAB",
+   "ilceler": [
+    {
+     "ilce": "Beytüşşebap",
+     "nufus_2025": 13971
+    },
+    {
+     "ilce": "Cizre",
+     "nufus_2025": 166290
+    },
+    {
+     "ilce": "Güçlükonak",
+     "nufus_2025": 12562
+    },
+    {
+     "ilce": "İdil",
+     "nufus_2025": 76548
+    },
+    {
+     "ilce": "Silopi",
+     "nufus_2025": 152610
+    },
+    {
+     "ilce": "Şırnak",
+     "nufus_2025": 105697
+    },
+    {
+     "ilce": "Uludere",
+     "nufus_2025": 45988
+    }
+   ]
+  },
+  {
+   "il": "Tekirdağ",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Çerkezköy",
+     "nufus_2025": 223975
+    },
+    {
+     "ilce": "Çorlu",
+     "nufus_2025": 306939
+    },
+    {
+     "ilce": "Ergene",
+     "nufus_2025": 68648
+    },
+    {
+     "ilce": "Hayrabolu",
+     "nufus_2025": 29706
+    },
+    {
+     "ilce": "Kapaklı",
+     "nufus_2025": 152509
+    },
+    {
+     "ilce": "Malkara",
+     "nufus_2025": 50123
+    },
+    {
+     "ilce": "Marmaraereğlisi",
+     "nufus_2025": 33623
+    },
+    {
+     "ilce": "Muratlı",
+     "nufus_2025": 30410
+    },
+    {
+     "ilce": "Saray",
+     "nufus_2025": 51468
+    },
+    {
+     "ilce": "Süleymanpaşa",
+     "nufus_2025": 226582
+    },
+    {
+     "ilce": "Şarköy",
+     "nufus_2025": 34458
+    }
+   ]
+  },
+  {
+   "il": "Tokat",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Almus",
+     "nufus_2025": 28135
+    },
+    {
+     "ilce": "Artova",
+     "nufus_2025": 7589
+    },
+    {
+     "ilce": "Başçiftlik",
+     "nufus_2025": 8445
+    },
+    {
+     "ilce": "Erbaa",
+     "nufus_2025": 103409
+    },
+    {
+     "ilce": "Niksar",
+     "nufus_2025": 63594
+    },
+    {
+     "ilce": "Pazar",
+     "nufus_2025": 12875
+    },
+    {
+     "ilce": "Reşadiye",
+     "nufus_2025": 43108
+    },
+    {
+     "ilce": "Sulusaray",
+     "nufus_2025": 6536
+    },
+    {
+     "ilce": "Tokat",
+     "nufus_2025": 201969
+    },
+    {
+     "ilce": "Turhal",
+     "nufus_2025": 77707
+    },
+    {
+     "ilce": "Yeşilyurt",
+     "nufus_2025": 8045
+    },
+    {
+     "ilce": "Zile",
+     "nufus_2025": 52729
+    }
+   ]
+  },
+  {
+   "il": "Trabzon",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Akçaabat",
+     "nufus_2025": 131162
+    },
+    {
+     "ilce": "Araklı",
+     "nufus_2025": 49230
+    },
+    {
+     "ilce": "Arsin",
+     "nufus_2025": 31493
+    },
+    {
+     "ilce": "Beşikdüzü",
+     "nufus_2025": 23246
+    },
+    {
+     "ilce": "Çarşıbaşı",
+     "nufus_2025": 15004
+    },
+    {
+     "ilce": "Çaykara",
+     "nufus_2025": 12921
+    },
+    {
+     "ilce": "Dernekpazarı",
+     "nufus_2025": 3717
+    },
+    {
+     "ilce": "Düzköy",
+     "nufus_2025": 13105
+    },
+    {
+     "ilce": "Hayrat",
+     "nufus_2025": 7410
+    },
+    {
+     "ilce": "Köprübaşı",
+     "nufus_2025": 4271
+    },
+    {
+     "ilce": "Maçka",
+     "nufus_2025": 24931
+    },
+    {
+     "ilce": "Of",
+     "nufus_2025": 43591
+    },
+    {
+     "ilce": "Ortahisar",
+     "nufus_2025": 335116
+    },
+    {
+     "ilce": "Sürmene",
+     "nufus_2025": 25281
+    },
+    {
+     "ilce": "Şalpazarı",
+     "nufus_2025": 10575
+    },
+    {
+     "ilce": "Tonya",
+     "nufus_2025": 13332
+    },
+    {
+     "ilce": "Vakfıkebir",
+     "nufus_2025": 27278
+    },
+    {
+     "ilce": "Yomra",
+     "nufus_2025": 51660
+    }
+   ]
+  },
+  {
+   "il": "Tunceli",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Çemişgezek",
+     "nufus_2025": 7505
+    },
+    {
+     "ilce": "Hozat",
+     "nufus_2025": 5332
+    },
+    {
+     "ilce": "Mazgirt",
+     "nufus_2025": 7257
+    },
+    {
+     "ilce": "Nazımiye",
+     "nufus_2025": 3095
+    },
+    {
+     "ilce": "Ovacık",
+     "nufus_2025": 6700
+    },
+    {
+     "ilce": "Pertek",
+     "nufus_2025": 10569
+    },
+    {
+     "ilce": "Pülümür",
+     "nufus_2025": 3580
+    },
+    {
+     "ilce": "Tunceli",
+     "nufus_2025": 41045
+    }
+   ]
+  },
+  {
+   "il": "Uşak",
+   "bolge": "Ege",
+   "ilceler": [
+    {
+     "ilce": "Banaz",
+     "nufus_2025": 34624
+    },
+    {
+     "ilce": "Eşme",
+     "nufus_2025": 34444
+    },
+    {
+     "ilce": "Karahallı",
+     "nufus_2025": 9408
+    },
+    {
+     "ilce": "Sivaslı",
+     "nufus_2025": 19193
+    },
+    {
+     "ilce": "Ulubey",
+     "nufus_2025": 11365
+    },
+    {
+     "ilce": "Uşak",
+     "nufus_2025": 265371
+    }
+   ]
+  },
+  {
+   "il": "Van",
+   "bolge": "Doğu Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Bahçesaray",
+     "nufus_2025": 11438
+    },
+    {
+     "ilce": "Başkale",
+     "nufus_2025": 37568
+    },
+    {
+     "ilce": "Çaldıran",
+     "nufus_2025": 50170
+    },
+    {
+     "ilce": "Çatak",
+     "nufus_2025": 16361
+    },
+    {
+     "ilce": "Edremit",
+     "nufus_2025": 132309
+    },
+    {
+     "ilce": "Erciş",
+     "nufus_2025": 169040
+    },
+    {
+     "ilce": "Gevaş",
+     "nufus_2025": 26253
+    },
+    {
+     "ilce": "Gürpınar",
+     "nufus_2025": 28505
+    },
+    {
+     "ilce": "İpekyolu",
+     "nufus_2025": 362816
+    },
+    {
+     "ilce": "Muradiye",
+     "nufus_2025": 41402
+    },
+    {
+     "ilce": "Özalp",
+     "nufus_2025": 51357
+    },
+    {
+     "ilce": "Saray",
+     "nufus_2025": 17036
+    },
+    {
+     "ilce": "Tuşba",
+     "nufus_2025": 167758
+    }
+   ]
+  },
+  {
+   "il": "Yalova",
+   "bolge": "Marmara",
+   "ilceler": [
+    {
+     "ilce": "Altınova",
+     "nufus_2025": 35490
+    },
+    {
+     "ilce": "Armutlu",
+     "nufus_2025": 11984
+    },
+    {
+     "ilce": "Çınarcık",
+     "nufus_2025": 40174
+    },
+    {
+     "ilce": "Çiftlikköy",
+     "nufus_2025": 58589
+    },
+    {
+     "ilce": "Termal",
+     "nufus_2025": 7497
+    },
+    {
+     "ilce": "Yalova",
+     "nufus_2025": 157901
+    }
+   ]
+  },
+  {
+   "il": "Yozgat",
+   "bolge": "İç Anadolu",
+   "ilceler": [
+    {
+     "ilce": "Akdağmadeni",
+     "nufus_2025": 39642
+    },
+    {
+     "ilce": "Aydıncık",
+     "nufus_2025": 9317
+    },
+    {
+     "ilce": "Boğazlıyan",
+     "nufus_2025": 35316
+    },
+    {
+     "ilce": "Çandır",
+     "nufus_2025": 4360
+    },
+    {
+     "ilce": "Çayıralan",
+     "nufus_2025": 11777
+    },
+    {
+     "ilce": "Çekerek",
+     "nufus_2025": 18426
+    },
+    {
+     "ilce": "Kadışehri",
+     "nufus_2025": 9854
+    },
+    {
+     "ilce": "Saraykent",
+     "nufus_2025": 12605
+    },
+    {
+     "ilce": "Sarıkaya",
+     "nufus_2025": 30785
+    },
+    {
+     "ilce": "Sorgun",
+     "nufus_2025": 80068
+    },
+    {
+     "ilce": "Şefaatli",
+     "nufus_2025": 14008
+    },
+    {
+     "ilce": "Yenifakılı",
+     "nufus_2025": 5008
+    },
+    {
+     "ilce": "Yerköy",
+     "nufus_2025": 33000
+    },
+    {
+     "ilce": "Yozgat",
+     "nufus_2025": 109042
+    }
+   ]
+  },
+  {
+   "il": "Zonguldak",
+   "bolge": "Karadeniz",
+   "ilceler": [
+    {
+     "ilce": "Alaplı",
+     "nufus_2025": 43217
+    },
+    {
+     "ilce": "Çaycuma",
+     "nufus_2025": 91796
+    },
+    {
+     "ilce": "Devrek",
+     "nufus_2025": 56900
+    },
+    {
+     "ilce": "Gökçebey",
+     "nufus_2025": 21070
+    },
+    {
+     "ilce": "Karadeniz Ereğli",
+     "nufus_2025": 173884
+    },
+    {
+     "ilce": "Kilimli",
+     "nufus_2025": 32441
+    },
+    {
+     "ilce": "Kozlu",
+     "nufus_2025": 50616
+    },
+    {
+     "ilce": "Zonguldak",
+     "nufus_2025": 115279
+    }
+   ]
+  }
+ ]
+}

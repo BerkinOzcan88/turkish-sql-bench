@@ -12,7 +12,7 @@ intent, no trap) linked by `pair_id`:
 | trap | what goes wrong |
 |---|---|
 | `case_i` | İ/ı casing. SQLite's `LOWER()`/`UPPER()`/`LIKE` fold ASCII only (`LOWER('IĞDIR')` = `'iĞdir'`); Postgres depends on the collation. |
-| `suffix_value` | Values appear inflected in the question (`Esenler'deki`, `Gül Sokağı'nda`, `depo görevlimiz`, `Kadir Bey`) but are stored bare. |
+| `suffix_value` | Values appear inflected in the question (`Esenler'deki`, `Turgut Özal Mahallesi'nde`, `depo görevlimiz`, `Mahir Bey`) but are stored bare. |
 | `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `sicil_no`, `ctv_tutari`, `'RESMI'`, `'UCRETSIZ'`), and words that point to one of two similar columns (net vs brüt). |
 | `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`. |
 | `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic; payroll and labour law (asgari ücret, income and stamp tax, overtime and leave rules). |
@@ -292,6 +292,15 @@ and Postgres copies have identical row contents in every table.
   Controls have `trap_sql: null`.
 - `evidence` holds only facts the database can't provide (the extract date,
   how seniority is counted). It deliberately doesn't reveal the trap.
+- Fairness rules, learned from model runs:
+  - a trap value must have one stored form a model can infer. Streets are
+    stored as both `Gül Sokak` and `Gül Sokağı` (different streets), so no
+    question depends on a street suffix;
+  - the control must carry the same Turkish letters as its trap. An extra
+    İ-name in only one twin (`İzmir’in Kemalpaşa…`) turns a pair into a
+    case test;
+  - wording must be unambiguous: subscriber counts say "aktif", "KDV hariç"
+    names exactly which amounts are summed.
 - Rules for gold SQL, so it runs on both engines:
   - no `LOWER`/`UPPER`/`LIKE` on letters
   - no `ORDER BY` on text (the collations differ)
@@ -373,9 +382,12 @@ have a 30 s limit and a 10,000-row cap.
 **Metrics** (per engine):
 - **EX**: the model's result equals the gold result, compared like the
   validator (numbers to 2 decimals; row order only when gold has `ORDER BY`).
-  Dates count as equal whatever their form: `'09.12.2024'` text, a `DATE`
-  and a midnight timestamp of the same day all match.
-- **EX relaxed**: the same, but extra output columns are allowed.
+  Extra output columns are allowed: every gold column must appear, so
+  answering "abonemiz kim?" with name *and* surname still counts. Dates count
+  as equal whatever their form: `'09.12.2024'` text, a `DATE` and a midnight
+  timestamp of the same day all match.
+- **EX strict**: the same, but the output columns must match exactly. Shown
+  for reference only; every other metric and the leaderboard use EX.
 - **Control / trap accuracy** and accuracy per trap category.
 - **Pairs**: *fell for trap* = control right and trap wrong, which isolates
   the trap; *both wrong* means the model failed for some other reason.

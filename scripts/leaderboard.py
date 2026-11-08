@@ -2,6 +2,7 @@
 
     python scripts/leaderboard.py          # prints the table, writes results/leaderboard.md
 
+EX is relaxed EX (extra output columns allowed), like every other column.
 Percentages are averaged over the engines each run covered. "Fell for trap"
 counts pairs where the control was right and the trap wrong, summed over engines.
 """
@@ -31,7 +32,7 @@ def main() -> int:
         data = json.loads(path.read_text(encoding="utf-8"))
         meta, summ = data["meta"], data["summary"]
         eng = {e: summ[e] for e in meta["engines"]}
-        ex = {e: 100 * s["ex"] / s["n"] for e, s in eng.items()}
+        ex = {e: 100 * s["relaxed"] / s["n"] for e, s in eng.items()}
         rows.append({
             "run": meta["run"],
             "model": meta["model"],

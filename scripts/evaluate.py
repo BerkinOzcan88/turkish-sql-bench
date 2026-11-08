@@ -410,15 +410,17 @@ def summarize(items: list[dict], engines: list[str]) -> dict:
     out = {}
     for eng in engines:
         rows = [i for i in items if i["engine"] == eng]
+        # everything below the strict EX row scores relaxed EX: a lookup answered with extra
+        # context columns ("kim?" -> name and surname) is right, and pairs shouldn't count it as a miss
         cats = defaultdict(lambda: [0, 0])
         for i in rows:
-            cats[i["trap"]][0] += i["correct"]
+            cats[i["trap"]][0] += i["relaxed"]
             cats[i["trap"]][1] += 1
         traps = [i for i in rows if i["trap"] != "control"]
         controls = [i for i in rows if i["trap"] == "control"]
         by_pair = defaultdict(dict)
         for i in rows:
-            by_pair[i["pair_id"]]["control" if i["trap"] == "control" else "trap"] = i["correct"]
+            by_pair[i["pair_id"]]["control" if i["trap"] == "control" else "trap"] = i["relaxed"]
         pairs = Counter()
         for p in by_pair.values():
             if len(p) == 2:
@@ -430,8 +432,8 @@ def summarize(items: list[dict], engines: list[str]) -> dict:
             "n": len(rows),
             "ex": sum(i["correct"] for i in rows),
             "relaxed": sum(i["relaxed"] for i in rows),
-            "trap": [sum(i["correct"] for i in traps), len(traps)],
-            "control": [sum(i["correct"] for i in controls), len(controls)],
+            "trap": [sum(i["relaxed"] for i in traps), len(traps)],
+            "control": [sum(i["relaxed"] for i in controls), len(controls)],
             "categories": {k: v for k, v in sorted(cats.items())},
             "pairs": dict(pairs),
             "trap_sql_reproduced": [sum(hits), len(hits)],
@@ -458,8 +460,8 @@ def render_report(meta: dict, summary: dict, items: list[dict]) -> str:
     def row(label, fn):
         lines.append(f"| {label} | " + " | ".join(fn(summary[e]) for e in engines) + " |")
 
-    row("**EX (all)**", lambda s: pct(s["ex"], s["n"]))
-    row("EX relaxed (extra columns ok)", lambda s: pct(s["relaxed"], s["n"]))
+    row("**EX** (extra output columns ok)", lambda s: pct(s["relaxed"], s["n"]))
+    row("EX strict (exact columns)", lambda s: pct(s["ex"], s["n"]))
     row("control questions", lambda s: pct(*s["control"]))
     row("trap questions", lambda s: pct(*s["trap"]))
     cats = sorted({c for s in summary.values() for c in s["categories"]} - {"control"})

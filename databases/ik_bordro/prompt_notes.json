@@ -1,0 +1,12 @@
+{
+  "_comment": "Shown to models by scripts/evaluate.py. Notes document the legacy quirks the way a team's data dictionary would, without hinting at any trap. example_rows: per table, WHERE conditions whose first matching row (by id) must be among the example rows; the rest are the first rows by id.",
+  "notes": [
+    "personel: rows migrated from the previous HR system (kaynak_sistem = 'ESKI_AKTARIM') store ad, soyad and unvan in upper case; the other rows use normal capitalization.",
+    "bordro.donem is text holding the Turkish month name and the year of the payroll month.",
+    "fazla_mesai.saat is text with a decimal comma."
+  ],
+  "example_rows": {
+    "personel": ["kaynak_sistem = 'ESKI_AKTARIM'"],
+    "fazla_mesai": ["saat LIKE '%,%'"]
+  }
+}

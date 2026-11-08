@@ -12,10 +12,10 @@ intent, no trap) linked by `pair_id`:
 | trap | what goes wrong |
 |---|---|
 | `case_i` | İ/ı casing. SQLite's `LOWER()`/`UPPER()`/`LIKE` fold ASCII only (`LOWER('IĞDIR')` = `'iĞdir'`); Postgres depends on the collation. |
-| `suffix_value` | Values appear inflected in the question (`Esenler'deki`, `Gül Sokağı'nda`, `Mahallesi'nde`) but are stored bare. |
-| `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `tc_no`, `ctv_tutari`, `'RESMI'`). |
-| `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, Turkish month names. |
-| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic. |
+| `suffix_value` | Values appear inflected in the question (`Esenler'deki`, `Gül Sokağı'nda`, `depo görevlimiz`, `Kadir Bey`) but are stored bare. |
+| `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `sicil_no`, `ctv_tutari`, `'RESMI'`, `'UCRETSIZ'`), and words that point to one of two similar columns (net vs brüt). |
+| `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`. |
+| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic; payroll and labour law (asgari ücret, income and stamp tax, overtime and leave rules). |
 | `control` | No trap; the twin of a trap question. |
 
 ## Layout
@@ -26,7 +26,9 @@ databases/belediye_su/schema.sql       portable DDL (SQLite + Postgres)
 databases/belediye_su/generate.py      deterministic generator
 databases/belediye_su/prompt_notes.json  data notes + example-row choice for model prompts
 databases/belediye_su/belediye_su.sqlite   build output
+databases/ik_bordro/...                same four files for the HR / payroll database
 questions/belediye_su.json             50 draft questions (25 trap + 25 control)
+questions/ik_bordro.json               50 draft questions (25 trap + 25 control)
 scripts/build_il_ilce.py               refreshes common/il_ilce.json from Wikipedia
 scripts/load_postgres.py               copies a built SQLite DB into Postgres
 scripts/validate.py                    checks every question on both engines
@@ -44,9 +46,11 @@ Requires Python 3.11+ and Docker.
 ```bash
 pip install -r requirements.txt
 python databases/belediye_su/generate.py     # -> belediye_su.sqlite (~15 MB, ~5 s)
+python databases/ik_bordro/generate.py       # -> ik_bordro.sqlite (~8 MB, ~3 s)
 docker compose up -d --wait                  # Postgres 16 on localhost:5433
 python scripts/load_postgres.py belediye_su  # drops + recreates database belediye_su
-python scripts/validate.py                   # exit 1 on any failure
+python scripts/load_postgres.py ik_bordro
+python scripts/validate.py                   # all question files; exit 1 on any failure
 python -m unittest discover tests
 ```
 
@@ -68,7 +72,7 @@ settings come from `PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD` (defaults
   - Wikipedia names a province's central district after the province
     (`Iğdır` ilçesi in `Iğdır` ili), not "Merkez" as e-İçişleri does. The
     data follows Wikipedia.
-- **People and streets:** [Faker](https://github.com/joke2k/faker) `tr_TR`
+- **People and streets (`belediye_su`):** [Faker](https://github.com/joke2k/faker) `tr_TR`
   (MIT) provides first names and surnames. Faker's `tr_TR` `street_name()`
   returns English-style names ("Lezize Vista"), so streets are built from
   Faker surnames plus Turkish street types (`Sokak`, `Caddesi`, `Sokağı`,
@@ -78,6 +82,10 @@ settings come from `PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD` (defaults
   (`… Gıda San. ve Tic. Ltd. Şti.`, `… Eczanesi`). All T.C. kimlik and vergi
   numbers are random values with valid checksums. They are not real people's
   numbers.
+- **People (`ik_bordro`):** Faker's `tr_TR` first names are mostly rare
+  (Heyvetullah, Minibe) and miss Mehmet, Ayşe and Fatma, so `ik_bordro` draws
+  from short hand-written lists of common Turkish first names and surnames,
+  weighted roughly by frequency. It doesn't use Faker.
 
 ## Postgres collation
 
@@ -185,9 +193,94 @@ deterministic sorts. Two consecutive builds produce a byte-identical
 `belediye_su.sqlite`. The SQLite and Postgres copies have identical row
 contents in every table (checked by hash, with numerics normalized).
 
+## Database: `ik_bordro` (HR and payroll)
+
+The HR and payroll records of a fictional company group with 25 locations in
+20 il: the head office (`Genel Müdürlük`, Şişli), 3 factories, 4 depots and
+17 sales offices. The İ/ı provinces from `belediye_su` are among them
+(İstanbul, İzmir, Iğdır, Isparta, Kırıkkale, Çankırı, Ağrı, Diyarbakır).
+Payroll covers Jan 2023 – Dec 2024, and the extract was taken on
+**05.01.2025**. 2,344 people are still employed at the snapshot; 531 left
+during 2023–2024 and 565 were hired in that period.
+
+| table | rows | notes |
+|---|---:|---|
+| `sube` | 25 | `sube_kodu` (`IZM01`), `sube_adi` (`Bornova Şubesi`, `Genel Müdürlük`), `sehir`, `ilce`, `acilis_tarihi` |
+| `departman` | 12 | `departman_adi` (`İnsan Kaynakları`, `Ar-Ge`, … and also `Genel Müdürlük`) |
+| `personel` | 2,875 | `sicil_no` (hire year + sequence), `ad`, `soyad`, `tc_no`, `cinsiyet` `E`/`K`, birth/hire/exit dates, `unvan`, `kaynak_sistem` |
+| `bordro` | 57,166 | one payslip per person and month; `donem` **TEXT `'Şubat 2024'`**, `calisma_gunu`, `brut_ucret`, `fazla_mesai_ucreti`, the four employee deductions, `net_ucret` |
+| `izin` | 8,968 | `izin_turu` `YILLIK`/`RAPOR`/`MAZERET`/`UCRETSIZ`, start/end dates, `gun_sayisi` (Monday–Friday days) |
+| `fazla_mesai` | 31,527 | one overtime session per row; `saat` **TEXT `'2,5'`**, `ucret` |
+
+`net_ucret = brut_ucret + fazla_mesai_ucreti − sgk_isci_payi −
+issizlik_isci_payi − gelir_vergisi − damga_vergisi` holds on every payslip,
+and `fazla_mesai_ucreti` equals the month's sum of `fazla_mesai.ucret`.
+
+### Where the traps live
+
+- **Legacy import (case_i):** 468 people (16%), all hired before 2019, came
+  from the previous HR system (`kaynak_sistem = 'ESKI_AKTARIM'`) with `ad`,
+  `soyad` and `unvan` in Turkish-correct ALL CAPS (`IŞIL`, `ALİ`, `DEMİR`,
+  `MÜDÜR YARDIMCISI`).
+- **Inflected values (suffix_value):** questions say `depo görevlimiz`,
+  `satış temsilcilerimiz`, `Kadir Bey`, `Duygu Hanım’ın`, `Bornova’daki
+  şubemiz`; the data holds `Depo Görevlisi`, `Satış Temsilcisi`, `Kadir`,
+  `Duygu`, `Bornova Şubesi`.
+- **Codes and look-alike columns (schema_link):** `izin_turu` holds ASCII
+  codes (`'UCRETSIZ'`, not `'ÜCRETSİZ'`); `sicil_no` is not `personel_id`;
+  "eline geçen" is `net_ucret`, not `brut_ucret`; `Genel Müdürlük` is both a
+  location (`sube`) and a department.
+- **Text periods and hours (tr_format):** `bordro.donem` is `'Şubat 2024'`,
+  so `BETWEEN`, `MAX()` and `ORDER BY donem` compare month names
+  alphabetically (and differently on each engine). Month order needs a
+  `CASE` mapping. `fazla_mesai.saat` is `'2,5'`. The portable parse is
+  `CAST(REPLACE(saat, ',', '.') AS NUMERIC)`. Getting it wrong silently
+  truncates in SQLite and raises an error in Postgres.
+- **Payroll rules (domain):** the 2024 minimum wage, hourly pay as monthly
+  gross / 225, the 270-hour yearly overtime limit, leave entitlement by
+  seniority *and* age, and "vergi" meaning income plus stamp tax (SGK
+  premiums are not taxes).
+
+### Rates (checked against legislation, November 2026)
+
+| item | value used | source |
+|---|---|---|
+| Asgari ücret, monthly gross | 10.008,00 (Jan–Jun 2023)<br>13.414,50 (Jul–Dec 2023)<br>20.002,50 (2024) | Asgari Ücret Tespit Komisyonu decisions; RG 24.06.2023 for Jul 2023 and RG 30.12.2023 for 2024 |
+| SGK prime esas kazanç tavanı (7.5 × asgari ücret) | 75.060,00 / 100.608,90 / 150.018,90 | SGK genelgeleri 2023/3, 2023/22, 2024/2 |
+| SGK employee share | 14% (MYÖ 9% + GSS 5%) | 5510 md. 81 |
+| İşsizlik sigortası employee share | 1% | 4447 md. 49 |
+| Damga vergisi on wages | binde 7,59 of gross | 488 DVK 1 sayılı tablo IV-1-b |
+| Gelir vergisi tariff on wages | 2023: 70k / 150k / 550k / 1.9M<br>2024: 110k / 230k / 870k / 3M<br>at 15 / 20 / 27 / 35 / 40% | GVK md. 103; GV Genel Tebliği Seri No 323 (2023) and 324 (2024) |
+| Minimum-wage exemptions | income tax on the minimum wage's own cumulative base, deducted every month and in full for part months; damga vergisi on the gross minimum wage | GVK 23/1-18 (7349 sayılı Kanun); DVK 2 sayılı tablo IV-34; GİB Ücret Geliri Vergi Rehberi 2024, 4.3 |
+| Fazla mesai | each hour paid at +50%; at most 270 hours a year | İş Kanunu md. 41 |
+| Hourly wage | monthly gross / 225 (30 days × 7.5 h of a 45-hour week) | payroll practice under İş Kanunu md. 63 |
+| Yıllık izin | 1–5 years: 14 days, 6–14: 20, 15+: 26; at least 20 for age ≤ 18 or ≥ 50 | İş Kanunu md. 53 |
+
+The generator reproduces published net figures for a minimum-wage employee:
+8.506,80 (Jan 2023), 11.402,32 (Jul 2023) and 17.002,12 (2024).
+
+Known simplifications:
+- **Employee side only:** employer premiums, BES, union dues, disability
+  allowance and garnishments are not modelled.
+- **Sick leave:** salary is cut for every `RAPOR` and `UCRETSIZ` day. In
+  reality SGK pays an allowance from the third day of a report and some
+  employers top it up.
+- **Raises:** salaries change only on 01.07.2023 and 01.01.2024, and never
+  fall below the minimum wage of the period.
+- **Leave:** each employee takes 40–100% of the year's entitlement; no
+  carry-over, and no leave crosses a year boundary.
+- **Overtime:** about half of the staff in production, logistics, IT, quality
+  and admin work overtime; a few exceed the 270-hour limit on purpose.
+
+### Determinism
+
+`SEED = 20250105` drives `random`; no other source of randomness is used. Two
+consecutive builds produce a byte-identical `ik_bordro.sqlite`, and the SQLite
+and Postgres copies have identical row contents in every table.
+
 ## Questions
 
-`questions/belediye_su.json` uses BIRD-style records:
+`questions/<db_id>.json` uses BIRD-style records:
 
 ```json
 {"question_id": "belediye_su_001", "db_id": "belediye_su", "question": "...",
@@ -195,15 +288,17 @@ contents in every table (checked by hash, with numerics normalized).
  "pair_id": "belediye_su_p01", "status": "draft"}
 ```
 
-- There are 25 pairs: 5 per trap category, each with a control twin.
+- Each database has 25 pairs: 5 per trap category, each with a control twin.
   Controls have `trap_sql: null`.
-- `evidence` holds only facts the database can't provide (the extract date).
-  It deliberately doesn't reveal the trap.
+- `evidence` holds only facts the database can't provide (the extract date,
+  how seniority is counted). It deliberately doesn't reveal the trap.
 - Rules for gold SQL, so it runs on both engines:
   - no `LOWER`/`UPPER`/`LIKE` on letters
   - no `ORDER BY` on text (the collations differ)
   - ISO dates compared only with ranges, and cast to text before `SUBSTR`
   - numeric results wrapped in `ROUND(…, 2)`
+  - divide by a decimal literal (`/ 225.0`): SQLite stores whole `NUMERIC`
+    amounts as integers, so `45100 / 225` is integer division there
   - `ORDER BY` with a unique key whenever row order matters
 
 ## Validator

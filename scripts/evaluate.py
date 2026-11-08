@@ -51,6 +51,7 @@ from validate import (QueryError, cells_equal, describe, has_top_level_order_by,
 
 ROOT = Path(__file__).resolve().parent.parent
 PROMPT_VERSION = 2  # bump when the prompt template changes; invalidates cached answers
+NO_THINK_PREFILL = "<think>\n\n</think>\n\n"  # --no-think-prefill: reply starts after an empty think block
 
 # name: (base_url, api-key env var, default requests/minute)
 PROVIDERS = {
@@ -230,7 +231,9 @@ def extract_sql(text: str | None) -> str | None:
         text = text.rsplit("</think>", 1)[1]
     if "<think>" in text:  # reasoning never closed: the answer was cut off
         return None
-    blocks = re.findall(r"```[ \t]*(?:sql|sqlite|postgresql|postgres)?[ \t]*\n?(.*?)```", text, flags=re.S | re.I)
+    # longest tag first, whole word: "```sqlite" must not leave "ite" in front of the query
+    blocks = re.findall(r"```[ \t]*(?:(?:sqlite3?|postgresql|postgres|pgsql|psql|sql)\b)?[ \t]*\n?(.*?)```",
+                        text, flags=re.S | re.I)
     if blocks:
         sql = blocks[-1]
     else:
@@ -518,6 +521,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--temperature", type=float, default=0.0)
     p.add_argument("--max-tokens", type=int, default=2048, help="raise for reasoning models")
     p.add_argument("--extra-body", default="{}", help='JSON merged into the request, e.g. \'{"top_p": 1}\'')
+    p.add_argument("--no-think-prefill", action="store_true",
+                   help="start the reply with an empty <think></think> block (turns off thinking in "
+                        "Qwen3.5-style local models that ignore reasoning settings)")
     p.add_argument("--rpm", type=float, help="max requests per minute (nim preset: 35)")
     p.add_argument("--workers", type=int, default=1, help="parallel requests")
     p.add_argument("--timeout", type=float, default=180, help="seconds per request")
@@ -554,7 +560,10 @@ def main() -> int:
     for q in questions:
         for eng in args.engines:
             prompt = build_prompt(q, eng, schemas[q["db_id"]], notes[q["db_id"]], args.sample_rows)
-            body = {"model": args.model, "messages": [{"role": "user", "content": prompt}],
+            messages = [{"role": "user", "content": prompt}]
+            if args.no_think_prefill:
+                messages.append({"role": "assistant", "content": NO_THINK_PREFILL})
+            body = {"model": args.model, "messages": messages,
                     "temperature": args.temperature, "max_tokens": args.max_tokens, **extra}
             key = hashlib.sha256(json.dumps([PROMPT_VERSION, body], sort_keys=True,
                                             ensure_ascii=False).encode("utf-8")).hexdigest()[:24]
@@ -632,7 +641,7 @@ def main() -> int:
             "question_files": [Path(f).name for f in files], "n_questions": len(questions),
             "engines": args.engines, "prompt_version": PROMPT_VERSION, "sample_rows": args.sample_rows,
             "temperature": args.temperature, "max_tokens": args.max_tokens, "extra_body": extra,
-            "scored_at": dt.datetime.now().isoformat(timespec="seconds")}
+            "no_think_prefill": args.no_think_prefill, "scored_at": dt.datetime.now().isoformat(timespec="seconds")}
     summary = summarize(items, args.engines)
     missing = sum(i["status"] == "missing" for i in items)
     (run_dir / "scores.json").write_text(json.dumps({"meta": meta, "summary": summary, "missing": missing},

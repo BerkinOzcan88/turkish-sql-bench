@@ -353,7 +353,9 @@ Model names are the provider's own IDs (NIM: see build.nvidia.com; LM Studio:
 the identifier of the loaded model). Useful options: `--engines sqlite` (no
 Postgres needed), `--ids`, `--workers N`, `--rpm N`, `--max-tokens` (raise it
 for reasoning models), `--extra-body '{...}'` for model-specific request
-fields, `--run-name`.
+fields, `--run-name`, `--no-think-prefill` (starts the reply with an empty
+`<think></think>` block; Qwen3.5 in LM Studio ignores the usual reasoning-off
+settings and otherwise thinks for ~1,000 tokens per question).
 
 **Prompt.** One user message (no system message, since some models reject
 it): the engine name (SQLite 3 or PostgreSQL 16), the `CREATE TABLE`

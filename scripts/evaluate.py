@@ -270,10 +270,27 @@ def has_multiple_statements(sql: str) -> bool:
     return False
 
 
+DMY_DATE = re.compile(r"^(\d{2})\.(\d{2})\.(\d{4})$")
+MIDNIGHT = re.compile(r"^(\d{4}-\d{2}-\d{2})[T ]00:00:00(?:\.0+)?(?:Z|[+-]\d{2}(?::?\d{2})?)?$")
+
+
+def canon_cell(v):
+    """Same day, same value: 'DD.MM.YYYY' text and midnight timestamps compare as ISO dates."""
+    v = norm_cell(v)
+    if isinstance(v, str):
+        m = DMY_DATE.match(v)
+        if m:
+            return f"{m[3]}-{m[2]}-{m[1]}"
+        m = MIDNIGHT.match(v)
+        if m:
+            return m[1]
+    return v
+
+
 def finish_rows(rows: list) -> list[tuple]:
     if len(rows) > MAX_ROWS:
         raise QueryError(f"result has more than {MAX_ROWS} rows")
-    return [tuple(norm_cell(c) for c in r) for r in rows]
+    return [tuple(canon_cell(c) for c in r) for r in rows]
 
 
 class SQLiteRunner:

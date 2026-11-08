@@ -278,12 +278,26 @@ have a 30 s limit and a 10,000-row cap.
 **Metrics** (per engine):
 - **EX**: the model's result equals the gold result, compared like the
   validator (numbers to 2 decimals; row order only when gold has `ORDER BY`).
+  Dates count as equal whatever their form: `'09.12.2024'` text, a `DATE`
+  and a midnight timestamp of the same day all match.
 - **EX relaxed**: the same, but extra output columns are allowed.
 - **Control / trap accuracy** and accuracy per trap category.
 - **Pairs**: *fell for trap* = control right and trap wrong, which isolates
   the trap; *both wrong* means the model failed for some other reason.
 - **trap_sql reproduced**: how often the model's result equals the
   anticipated wrong result, i.e. whether the traps predict real failures.
+
+**Read the pairs first.** *Fell for trap* is the headline number; raw
+accuracy per category is only a rough guide. Turkish place names are full of
+Ç, Ğ, İ, Ş, Ü, Ö, and every place also has upper-case migrated rows, so on
+SQLite any `LOWER(...)` match on such a name (Bağlar, Kemalpaşa, Yenişehir,
+Çankaya) fails whatever the question's category. That is the benchmark's
+premise, not a data bug. Because the trap and control in a pair use the same
+place, such a failure shows up as *both wrong* and does not count as falling
+for the trap; it does lower the per-category accuracy of suffix_value and
+domain on SQLite. Similarly, *trap_sql reproduced* is low by design of
+real models: they fall into a trap in many ways (`ILIKE 'İğdır'` instead of
+`LOWER`), and only one of them is the anticipated query.
 
 **Output** in `results/<provider>__<model>/`: `responses.jsonl` (raw answers;
 also the cache, so an interrupted run resumes and nothing is asked twice),

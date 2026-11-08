@@ -24,6 +24,7 @@ intent, no trap) linked by `pair_id`:
 common/il_ilce.json                    81 il / 973 ilçe (Wikipedia, CC BY-SA 4.0)
 databases/belediye_su/schema.sql       portable DDL (SQLite + Postgres)
 databases/belediye_su/generate.py      deterministic generator
+databases/belediye_su/prompt_notes.json  data notes + example-row choice for model prompts
 databases/belediye_su/belediye_su.sqlite   build output
 questions/belediye_su.json             50 draft questions (25 trap + 25 control)
 scripts/build_il_ilce.py               refreshes common/il_ilce.json from Wikipedia
@@ -253,9 +254,18 @@ fields, `--run-name`.
 **Prompt.** One user message (no system message, since some models reject
 it): the engine name (SQLite 3 or PostgreSQL 16), the `CREATE TABLE`
 statements from `schema.sql` with all comments removed (they would give the
-traps away), 3 example rows per table (the first rows by id, BIRD style), the
-`evidence` when non-empty, the question, and a request for one ```sql block.
-Temperature 0. Bump `PROMPT_VERSION` in the script when changing the template.
+traps away), 3 example rows per table, the data notes, the `evidence` when
+non-empty, the question, and a request for one ```sql block. Temperature 0.
+Bump `PROMPT_VERSION` in the script when changing the template.
+
+Each database can have a `prompt_notes.json` next to its schema:
+- `notes`: a short data dictionary of the legacy quirks (upper-case migrated
+  addresses, text dates, Turkish-format text amounts). Without it a model has
+  no way to know the upper-case rows exist, so trap and control fail alike and
+  the pair measures nothing. The notes never hint at a trap.
+- `example_rows`: per table, conditions whose first matching row must be among
+  the example rows (e.g. one migrated upper-case address, one amount over
+  1.000); the remaining rows are the first by id.
 
 **Answer parsing.** Reasoning before `</think>` is dropped; an answer whose
 reasoning never closes counts as no SQL. The last ```sql block is used,

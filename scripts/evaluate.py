@@ -50,7 +50,7 @@ from validate import (QueryError, cells_equal, describe, has_top_level_order_by,
                       norm_cell, results_equal, sort_key)
 
 ROOT = Path(__file__).resolve().parent.parent
-PROMPT_VERSION = 1  # bump when the prompt template changes; invalidates cached answers
+PROMPT_VERSION = 2  # bump when the prompt template changes; invalidates cached answers
 
 # name: (base_url, api-key env var, default requests/minute)
 PROVIDERS = {
@@ -70,7 +70,7 @@ Database schema{rows_note}:
 
 {schema}
 
-{evidence}Question: {question}
+{notes}{evidence}Question: {question}
 
 Answer with the SQL query only, in a single ```sql code block."""
 
@@ -87,10 +87,30 @@ def strip_sql_comments(text: str) -> str:
     return "\n".join(ln for ln in lines if ln.strip())
 
 
+def load_notes(db_id: str) -> dict:
+    path = ROOT / "databases" / db_id / "prompt_notes.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def example_rows(con: sqlite3.Connection, table: str, n: int, conditions: list[str]) -> tuple[list, list]:
+    """The first matching row for each condition, topped up with the first rows by id."""
+    cols = [d[0] for d in con.execute(f'SELECT * FROM "{table}" LIMIT 0').description]
+    picked = {}
+    for cond in conditions:
+        for r in con.execute(f'SELECT * FROM "{table}" WHERE {cond} ORDER BY 1 LIMIT 1'):
+            picked[r[0]] = r
+    for r in con.execute(f'SELECT * FROM "{table}" ORDER BY 1 LIMIT {n}'):
+        if len(picked) >= n:
+            break
+        picked.setdefault(r[0], r)
+    return cols, [picked[k] for k in sorted(picked)]
+
+
 def schema_text(db_id: str, n_rows: int) -> str:
     """CREATE TABLE statements without comments, each followed by example rows."""
     db_dir = ROOT / "databases" / db_id
     ddl = strip_sql_comments((db_dir / "schema.sql").read_text(encoding="utf-8"))
+    wanted = load_notes(db_id).get("example_rows", {})
     con = sqlite3.connect(f"file:{(db_dir / f'{db_id}.sqlite').as_posix()}?mode=ro", uri=True)
     parts = []
     for stmt in ddl.split(";"):
@@ -99,20 +119,27 @@ def schema_text(db_id: str, n_rows: int) -> str:
             continue
         block = stmt + ";"
         if n_rows:
-            cur = con.execute(f'SELECT * FROM "{stmt.split()[2]}" ORDER BY 1 LIMIT {n_rows}')
-            lines = [f"{n_rows} example rows:", " | ".join(d[0] for d in cur.description)]
-            lines += [" | ".join("NULL" if v is None else str(v) for v in r) for r in cur.fetchall()]
+            table = stmt.split()[2]
+            cols, rows = example_rows(con, table, n_rows, wanted.get(table, []))
+            lines = [f"{len(rows)} example rows:", " | ".join(cols)]
+            lines += [" | ".join("NULL" if v is None else str(v) for v in r) for r in rows]
             block += "\n/*\n" + "\n".join(lines) + "\n*/"
         parts.append(block)
     con.close()
     return "\n\n".join(parts)
 
 
-def build_prompt(q: dict, engine: str, schema: str, n_rows: int) -> str:
+def notes_text(db_id: str) -> str:
+    notes = load_notes(db_id).get("notes", [])
+    return "Data notes:\n" + "\n".join(f"- {n}" for n in notes) + "\n\n" if notes else ""
+
+
+def build_prompt(q: dict, engine: str, schema: str, notes: str, n_rows: int) -> str:
     return PROMPT.format(
         dialect=DIALECTS[engine],
         rows_note=f", with {n_rows} example rows per table" if n_rows else "",
         schema=schema,
+        notes=notes,
         evidence=f"Evidence: {q['evidence']}\n" if q["evidence"] else "",
         question=q["question"],
     )
@@ -176,7 +203,10 @@ class ChatClient:
                 wait, reason = 2.0 * 2 ** attempt, type(e).__name__
             if attempt == self.max_retries:
                 raise RuntimeError(f"gave up after {attempt + 1} attempts ({reason})")
-            time.sleep(min(wait, 120.0))
+            wait = min(wait, 120.0)
+            print(f"  ... {reason} after {time.monotonic() - started:.0f}s, retry {attempt + 1}/{self.max_retries} "
+                  f"in {wait:.0f}s")
+            time.sleep(wait)
         raise AssertionError("unreachable")
 
 
@@ -471,15 +501,15 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--extra-body", default="{}", help='JSON merged into the request, e.g. \'{"top_p": 1}\'')
     p.add_argument("--rpm", type=float, help="max requests per minute (nim preset: 35)")
     p.add_argument("--workers", type=int, default=1, help="parallel requests")
-    p.add_argument("--timeout", type=float, default=300, help="seconds per request")
-    p.add_argument("--max-retries", type=int, default=6)
+    p.add_argument("--timeout", type=float, default=180, help="seconds per request")
+    p.add_argument("--max-retries", type=int, default=4)
     p.add_argument("--show-prompt", action="store_true", help="print the first prompt and exit")
     return p.parse_args()
 
 
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
     args = parse_args()
     if not args.provider and not args.base_url:
         raise SystemExit("give --provider or --base-url")
@@ -500,10 +530,11 @@ def main() -> int:
         raise SystemExit("no questions selected")
 
     schemas = {db: schema_text(db, args.sample_rows) for db in sorted({q["db_id"] for q in questions})}
+    notes = {db: notes_text(db) for db in schemas}
     tasks = []  # (question, engine, key, body)
     for q in questions:
         for eng in args.engines:
-            prompt = build_prompt(q, eng, schemas[q["db_id"]], args.sample_rows)
+            prompt = build_prompt(q, eng, schemas[q["db_id"]], notes[q["db_id"]], args.sample_rows)
             body = {"model": args.model, "messages": [{"role": "user", "content": prompt}],
                     "temperature": args.temperature, "max_tokens": args.max_tokens, **extra}
             key = hashlib.sha256(json.dumps([PROMPT_VERSION, body], sort_keys=True,

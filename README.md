@@ -12,10 +12,10 @@ intent, no trap) linked by `pair_id`:
 | trap | what goes wrong |
 |---|---|
 | `case_i` | İ/ı casing. SQLite's `LOWER()`/`UPPER()`/`LIKE` fold ASCII only (`LOWER('IĞDIR')` = `'iĞdir'`); Postgres depends on the collation. |
-| `suffix_value` | Values appear inflected in the question (`Esenler'deki`, `Turgut Özal Mahallesi'nde`, `depo görevlimiz`, `Mahir Bey`) but are stored bare. |
+| `suffix_value` | Values appear inflected or spelled out in the question (`Esenler'deki`, `Turgut Özal Mahallesi'nde`, `depo görevlimiz`, `Mahir Bey`, `Anonim Şirketi`, `M.Kemalpaşa`, `İK`) but are stored bare or abbreviated. |
 | `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `sicil_no`, `ctv_tutari`, `'RESMI'`, `'UCRETSIZ'`), and words that point to one of two similar columns (net vs brüt). |
-| `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`. |
-| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic; payroll and labour law (asgari ücret, income and stamp tax, overtime and leave rules). |
+| `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`; Turkish formats in the question itself (`1.500 TL`, `01.10.2024`, `2024/02`). |
+| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic, utility terms (mesken, kanalizasyon, ton); payroll and labour law (asgari ücret, income and stamp tax, 30-day month, overtime, leave and notice rules); dates relative to the extract. |
 | `control` | No trap; the twin of a trap question. |
 
 ## Layout
@@ -300,7 +300,7 @@ and Postgres copies have identical row contents in every table (checked by
  "pair_id": "belediye_su_p01", "status": "draft"}
 ```
 
-- Each database has 25 pairs: 5 per trap category, each with a control twin.
+- Each database has 50 pairs: 10 per trap category, each with a control twin.
   Controls have `trap_sql: null`.
 - `evidence` holds only facts the database can't provide (the extract date,
   how seniority is counted). It deliberately doesn't reveal the trap.
@@ -312,7 +312,17 @@ and Postgres copies have identical row contents in every table (checked by
     İ-name in only one twin (`İzmir’in Kemalpaşa…`) turns a pair into a
     case test;
   - wording must be unambiguous: subscriber counts say "aktif", "KDV hariç"
-    names exactly which amounts are summed.
+    names exactly which amounts are summed;
+  - a control carries no trap of its own. Outside `case_i`, neither twin
+    depends on the ALL CAPS legacy rows: the pair is narrowed to rows that
+    have none (closed accounts, hires since 2019, …), so the gold result is
+    the same with or without the upper-case spellings. `case_i` controls do
+    need the legacy rows, but use ASCII-only names (`Bursa`, `Uzman`, `Şef`)
+    that any case-folding handles, so the Turkish letter is the only
+    difference between the twins;
+  - controls write numbers plainly (`45 bin TL`, `40005 TL`), never in
+    Turkish thousands or decimal format; that format is a `tr_format` trap
+    (`1.500 TL’yi aşan`).
 - Rules for gold SQL, so it runs on both engines:
   - no `LOWER`/`UPPER`/`LIKE` on letters
   - no `ORDER BY` on text (the collations differ)

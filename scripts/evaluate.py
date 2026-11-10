@@ -15,13 +15,14 @@ PostgreSQL), with the engine named in the prompt.
 Model answers are cached in results/<run>/responses.jsonl, so an interrupted
 run resumes where it stopped and re-running never re-queries a finished item.
 Scoring is recomputed from the cache on every run and written to
-results/<run>/{scores.json, details.jsonl, report.md}.
+results/<run>/{scores.json, details.jsonl, report.md} (*.partial.* for a
+subset of the run); --rescore scores the cache without sending requests.
 
 Metrics, per engine:
   EX       model result == gold result (numbers to 2 decimals; row order only
            matters when the gold SQL has a top-level ORDER BY)
-  relaxed  EX, but extra output columns are allowed (each gold column must
-           appear among the model's columns)
+  relaxed  EX, but extra output columns, another column order and adjacent
+           text columns joined by a space (ad || ' ' || soyad) are allowed
   pairs    control right + trap wrong = the model fell for the trap
   trap_sql reproduced: the model's result equals the anticipated wrong result
 """
@@ -107,6 +108,15 @@ def example_rows(con: sqlite3.Connection, table: str, n: int, conditions: list[s
     return cols, [picked[k] for k in sorted(picked)]
 
 
+def cell_text(v) -> str:
+    """Example-row value: amounts stored as REAL print like they did as NUMERIC (45100, not 45100.0)."""
+    if v is None:
+        return "NULL"
+    if isinstance(v, float) and v.is_integer():
+        return str(int(v))
+    return str(v)
+
+
 def schema_text(db_id: str, n_rows: int) -> str:
     """CREATE TABLE statements without comments, each followed by example rows."""
     db_dir = ROOT / "databases" / db_id
@@ -123,7 +133,7 @@ def schema_text(db_id: str, n_rows: int) -> str:
             table = stmt.split()[2]
             cols, rows = example_rows(con, table, n_rows, wanted.get(table, []))
             lines = [f"{len(rows)} example rows:", " | ".join(cols)]
-            lines += [" | ".join("NULL" if v is None else str(v) for v in r) for r in rows]
+            lines += [" | ".join(cell_text(v) for v in r) for r in rows]
             block += "\n/*\n" + "\n".join(lines) + "\n*/"
         parts.append(block)
     con.close()
@@ -223,21 +233,25 @@ def parse_completion(payload: dict, latency: float) -> dict:
     }
 
 
+# a fence opens and closes at the start of a line; the info string ("sql", "sqlite", "mysql", ...) is dropped
+CODE_BLOCK = re.compile(r"^[ \t]*```[^\n`]*\n(.*?)^[ \t]*```", flags=re.S | re.M)
+QUERY_START = re.compile(r"^\s*(?:--[^\n]*\n\s*)*(?:SELECT|WITH|\()", flags=re.I)
+
+
 def extract_sql(text: str | None) -> str | None:
-    """SQL from a model answer: the last ```sql block, else from the first SELECT/WITH."""
+    """SQL from a model answer: the last code block that holds a query, else a bare query on its own lines."""
     if not text:
         return None
     if "</think>" in text:
         text = text.rsplit("</think>", 1)[1]
     if "<think>" in text:  # reasoning never closed: the answer was cut off
         return None
-    # longest tag first, whole word: "```sqlite" must not leave "ite" in front of the query
-    blocks = re.findall(r"```[ \t]*(?:(?:sqlite3?|postgresql|postgres|pgsql|psql|sql)\b)?[ \t]*\n?(.*?)```",
-                        text, flags=re.S | re.I)
+    blocks = CODE_BLOCK.findall(text)
     if blocks:
-        sql = blocks[-1]
+        queries = [b for b in blocks if QUERY_START.match(b)]
+        sql = (queries or blocks)[-1]
     else:
-        m = re.search(r"\b(WITH|SELECT)\b.*", text, flags=re.S | re.I)
+        m = re.search(r"^[ \t]*(WITH|SELECT)\b.*", text, flags=re.S | re.I | re.M)
         if not m:
             return None
         sql = m.group(0)
@@ -307,11 +321,13 @@ class SQLiteRunner:
         self.con = sqlite3.connect(f"file:{path.as_posix()}?mode=ro", uri=True)
 
     def run(self, sql: str) -> list[tuple]:
+        if has_multiple_statements(sql):  # before 3.12 sqlite3 raised Warning here, not Error
+            raise QueryError("multiple statements are not allowed")
         deadline = time.monotonic() + QUERY_TIMEOUT_S
         self.con.set_progress_handler(lambda: time.monotonic() > deadline, 10_000)
         try:
             rows = self.con.execute(sql).fetchmany(MAX_ROWS + 1)
-        except sqlite3.Error as e:
+        except (sqlite3.Error, sqlite3.Warning) as e:
             raise QueryError(str(e)) from None
         finally:
             self.con.set_progress_handler(None, 0)
@@ -319,16 +335,16 @@ class SQLiteRunner:
 
 
 class PostgresRunner:
-    """Read-only session, one statement per query, rolled back afterwards."""
+    """Read-only role and session, one statement per query, rolled back afterwards."""
     name = "postgres"
 
     def __init__(self, db_id: str):
         try:
-            self.con = psycopg.connect(conninfo(db_id))
+            self.con = psycopg.connect(conninfo(db_id, reader=True))
         except psycopg.OperationalError as e:
-            raise SystemExit(f"cannot connect to Postgres database {db_id!r}: {e}\n"
-                             "start it with `docker compose up -d` and run scripts/load_postgres.py, "
-                             "or pass --engines sqlite") from None
+            raise SystemExit(f"cannot connect to Postgres database {db_id!r} as the read-only role: {e}\n"
+                             "start it with `docker compose up -d` and run scripts/load_postgres.py "
+                             "(it creates the role), or pass --engines sqlite") from None
         self.con.execute("SET default_transaction_read_only = on")
         self.con.execute(f"SET statement_timeout = '{QUERY_TIMEOUT_S}s'")
         self.con.commit()
@@ -358,20 +374,54 @@ def execute(runner, sql: str) -> list[tuple] | QueryError:
 
 # ---------------------------------------------------------------- scoring
 
-def relaxed_equal(pred: list[tuple], gold: list[tuple], ordered: bool) -> bool:
-    """Like results_equal, but the prediction may have extra columns."""
-    if results_equal(pred, gold, ordered):
-        return True
-    if not pred or len(pred) != len(gold) or len(pred[0]) <= len(gold[0]):
-        return False
+def gold_variants(gold: list[tuple]) -> list[list[tuple]]:
+    """gold, plus each way of joining adjacent text columns with a space ("Ali", "Kaya") -> "Ali Kaya"."""
+    width = len(gold[0])
+    text = [all(isinstance(r[i], str) for r in gold) for i in range(width)]
+    variants = []
+    for mask in range(2 ** (width - 1) if width <= 6 else 1):  # bit i set: join column i with column i + 1
+        if any(mask >> i & 1 and not (text[i] and text[i + 1]) for i in range(width - 1)):
+            continue
+        groups, cur = [], [0]
+        for i in range(1, width):
+            if mask >> (i - 1) & 1:
+                cur.append(i)
+            else:
+                groups.append(cur)
+                cur = [i]
+        groups.append(cur)
+        variants.append([tuple(" ".join(r[i] for i in g) if len(g) > 1 else r[g[0]] for g in groups)
+                         for r in gold])
+    return variants
+
+
+def projects_to(pred: list[tuple], gold: list[tuple], ordered: bool) -> bool:
+    """Some choice of distinct pred columns, in gold's column order, gives exactly the gold rows."""
+    pred_cols, gold_cols = list(zip(*pred)), list(zip(*gold))
 
     def same_column(a, b):
         if not ordered:
             a, b = sorted(a, key=lambda c: sort_key((c,))), sorted(b, key=lambda c: sort_key((c,)))
         return all(cells_equal(x, y) for x, y in zip(a, b))
 
-    pred_cols, gold_cols = list(zip(*pred)), list(zip(*gold))
-    return all(any(same_column(p, g) for p in pred_cols) for g in gold_cols)
+    candidates = [[j for j, p in enumerate(pred_cols) if same_column(p, g)] for g in gold_cols]
+
+    def search(k: int, used: tuple) -> bool:
+        if k == len(gold_cols):
+            return results_equal([tuple(r[j] for j in used) for r in pred], gold, ordered)
+        return any(search(k + 1, used + (j,)) for j in candidates[k] if j not in used)
+
+    return all(candidates) and search(0, ())
+
+
+def relaxed_equal(pred: list[tuple], gold: list[tuple], ordered: bool) -> bool:
+    """Like results_equal, but the prediction may have extra columns, its columns in another order,
+    and adjacent text columns joined with a space (name and surname as one "Ali Kaya" column)."""
+    if results_equal(pred, gold, ordered):
+        return True
+    if not pred or not gold or len(pred) != len(gold):
+        return False
+    return any(len(pred[0]) >= len(g[0]) and projects_to(pred, g, ordered) for g in gold_variants(gold))
 
 
 def error_line(e: QueryError) -> str:
@@ -388,6 +438,9 @@ def score_item(q: dict, engine: str, runner, response: dict | None, gold, trap) 
                 usage=response.get("usage"))
     sql = extract_sql(response.get("content"))
     item["pred_sql"] = sql
+    if response.get("finish_reason") == "length":  # cut off by max_tokens: any SQL in it may be a draft
+        item["status"] = "truncated"
+        return item
     if sql is None:
         item["status"] = "no_sql"
         return item
@@ -423,7 +476,8 @@ def summarize(items: list[dict], engines: list[str]) -> dict:
         controls = [i for i in rows if i["trap"] == "control"]
         by_pair = defaultdict(dict)
         for i in rows:
-            by_pair[i["pair_id"]]["control" if i["trap"] == "control" else "trap"] = i["relaxed"]
+            if i["status"] != "missing":  # no answer yet: the pair can't say anything
+                by_pair[i["pair_id"]]["control" if i["trap"] == "control" else "trap"] = i["relaxed"]
         pairs = Counter()
         for p in by_pair.values():
             if len(p) == 2:
@@ -455,7 +509,8 @@ def render_report(meta: dict, summary: dict, items: list[dict]) -> str:
     lines = [f"# {meta['run']}", "",
              f"- model: `{meta['model']}` via {meta['provider']} ({meta['base_url']})",
              f"- questions: {', '.join(meta['question_files'])}; prompt v{meta['prompt_version']}, "
-             f"{meta['sample_rows']} example rows, temperature {meta['temperature']}, max_tokens {meta['max_tokens']}",
+             f"{meta['sample_rows']} example rows, temperature {meta['temperature']}, max_tokens {meta['max_tokens']}"
+             + (", reply prefilled with an empty `<think></think>` block" if meta.get("no_think_prefill") else ""),
              f"- scored: {meta['scored_at']}", ""]
     head = "| metric | " + " | ".join(engines) + " |"
     lines += [head, "|---" * (len(engines) + 1) + "|"]
@@ -496,6 +551,27 @@ def slug(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "_", text).strip("_")
 
 
+# settings that change the model's answers; one run directory holds one combination of them
+RUN_SETTINGS = ("temperature", "max_tokens", "sample_rows", "extra_body", "no_think_prefill")
+
+
+def settings_conflict(old_meta: dict, new_meta: dict) -> list[str]:
+    return [k for k in RUN_SETTINGS if k in old_meta and old_meta[k] != new_meta.get(k)]
+
+
+def is_partial(old_meta: dict | None, n_items: int, subset_flags: bool) -> bool:
+    """A smoke test (--limit/--ids), or fewer items than the run already scored: don't overwrite its scores."""
+    if subset_flags:
+        return True
+    return old_meta is not None and old_meta["n_questions"] * len(old_meta["engines"]) > n_items
+
+
+def format_messages(messages: list[dict]) -> str:
+    if len(messages) == 1:
+        return messages[0]["content"]
+    return "\n\n".join(f"===== {m['role']} =====\n{m['content']}" for m in messages)
+
+
 def load_cache(path: Path) -> dict:
     cache = {}
     if path.exists():
@@ -529,6 +605,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--timeout", type=float, default=180, help="seconds per request")
     p.add_argument("--max-retries", type=int, default=4)
     p.add_argument("--show-prompt", action="store_true", help="print the first prompt and exit")
+    p.add_argument("--rescore", action="store_true",
+                   help="score the cached answers only, sending no requests (uncached items stay missing)")
     return p.parse_args()
 
 
@@ -570,11 +648,11 @@ def main() -> int:
             tasks.append((q, eng, key, body))
 
     if args.show_prompt:
-        print(tasks[0][3]["messages"][0]["content"])
+        print(format_messages(tasks[0][3]["messages"]))
         return 0
 
     api_key = None
-    if key_env:
+    if key_env and not args.rescore:
         import os
         api_key = os.environ.get(key_env)
         if not api_key:
@@ -582,6 +660,18 @@ def main() -> int:
 
     run = args.run_name or slug(f"{provider}__{args.model}")
     run_dir = ROOT / "results" / run
+    meta = {"run": run, "provider": provider, "base_url": base_url, "model": args.model,
+            "question_files": [Path(f).name for f in files], "n_questions": len(questions),
+            "engines": args.engines, "prompt_version": PROMPT_VERSION, "sample_rows": args.sample_rows,
+            "temperature": args.temperature, "max_tokens": args.max_tokens, "extra_body": extra,
+            "no_think_prefill": args.no_think_prefill}
+    old_scores = run_dir / "scores.json"
+    old_meta = json.loads(old_scores.read_text(encoding="utf-8"))["meta"] if old_scores.exists() else None
+    if old_meta and settings_conflict(old_meta, meta):
+        diff = ", ".join(f"{k} {old_meta[k]!r} -> {meta[k]!r}" for k in settings_conflict(old_meta, meta))
+        raise SystemExit(f"results/{run} was run with other settings ({diff}); "
+                         "pass --run-name to keep this run separate, or use the same settings")
+    partial = is_partial(old_meta, len(tasks), bool(args.limit or args.ids))
     run_dir.mkdir(parents=True, exist_ok=True)
     cache_path = run_dir / "responses.jsonl"
     cache = load_cache(cache_path)
@@ -590,6 +680,10 @@ def main() -> int:
     todo = [t for t in tasks if t[2] not in cache]
     print(f"run {run}: {len(tasks)} prompts, {len(tasks) - len(todo)} cached, {len(todo)} to query "
           f"({base_url}, model {args.model})")
+    if args.rescore and todo:
+        uncached = sorted({q["question_id"] + " " + e for q, e, _, _ in todo})
+        print(f"--rescore: not querying; {', '.join(uncached)} stay missing")
+        todo = []
     fatal = None
     if todo:
         client = ChatClient(base_url, api_key, rpm, args.timeout, args.max_retries)
@@ -637,25 +731,26 @@ def main() -> int:
         rec = cache.get(key)
         items.append(score_item(q, eng, runner, rec["response"] if rec else None, gold, trap))
 
-    meta = {"run": run, "provider": provider, "base_url": base_url, "model": args.model,
-            "question_files": [Path(f).name for f in files], "n_questions": len(questions),
-            "engines": args.engines, "prompt_version": PROMPT_VERSION, "sample_rows": args.sample_rows,
-            "temperature": args.temperature, "max_tokens": args.max_tokens, "extra_body": extra,
-            "no_think_prefill": args.no_think_prefill, "scored_at": dt.datetime.now().isoformat(timespec="seconds")}
+    meta["scored_at"] = dt.datetime.now().isoformat(timespec="seconds")
     summary = summarize(items, args.engines)
     missing = sum(i["status"] == "missing" for i in items)
-    (run_dir / "scores.json").write_text(json.dumps({"meta": meta, "summary": summary, "missing": missing},
-                                                    ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (run_dir / "details.jsonl").write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items),
-                                           encoding="utf-8")
+    part = ".partial" if partial else ""  # the leaderboard reads only scores.json
+    outputs = [f"scores{part}.json", f"details{part}.jsonl", f"report{part}.md"]
+    (run_dir / outputs[0]).write_text(json.dumps({"meta": meta, "summary": summary, "missing": missing},
+                                                 ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (run_dir / outputs[1]).write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items),
+                                      encoding="utf-8")
     report = render_report(meta, summary, items)
-    (run_dir / "report.md").write_text(report, encoding="utf-8")
-    for eng in args.engines:
-        q0 = next(t for t in tasks if t[1] == eng)
-        (run_dir / f"prompt_example_{eng}.txt").write_text(q0[3]["messages"][0]["content"] + "\n", encoding="utf-8")
+    (run_dir / outputs[2]).write_text(report, encoding="utf-8")
+    if not partial:
+        for eng in args.engines:
+            q0 = next(t for t in tasks if t[1] == eng)
+            (run_dir / f"prompt_example_{eng}.txt").write_text(format_messages(q0[3]["messages"]) + "\n",
+                                                               encoding="utf-8")
 
     print("\n" + report.split("\n## ")[0].strip())
-    print(f"\nwritten to {run_dir.relative_to(ROOT)}/ (report.md, details.jsonl, scores.json)")
+    print(f"\nwritten to {run_dir.relative_to(ROOT)}/ ({', '.join(outputs)})"
+          + (" -- a subset, so the full run's scores are left alone" if partial else ""))
     if missing:
         print(f"INCOMPLETE: {missing} item(s) without a model answer; re-run the same command to fill them")
         return 1

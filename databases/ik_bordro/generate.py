@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 import sqlite3
 from dataclasses import dataclass, field
 from datetime import date, timedelta
@@ -561,7 +562,9 @@ def write_sqlite(tables: dict[str, list[tuple]]) -> None:
         DB_PATH.unlink()
     con = sqlite3.connect(DB_PATH)
     con.execute("PRAGMA foreign_keys = ON")
-    con.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
+    # NUMERIC affinity would store whole amounts as integers (45100.00 -> 45100), so `x * rate / 100`
+    # would do integer division on SQLite only; REAL keeps every amount a float, like NUMERIC in Postgres
+    con.executescript(re.sub(r"NUMERIC\(\d+,\s*\d+\)", "REAL", SCHEMA_PATH.read_text(encoding="utf-8")))
     for name, rows in tables.items():
         marks = ",".join("?" * len(rows[0]))
         con.executemany(f"INSERT INTO {name} VALUES ({marks})", rows)

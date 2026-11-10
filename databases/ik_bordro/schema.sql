@@ -1,6 +1,7 @@
 -- ik_bordro: payroll and HR records of a fictional company group with branches across Türkiye
 -- Portable DDL: runs unchanged on SQLite 3 and PostgreSQL 16.
 -- ISO date columns are DATE in Postgres and ISO-8601 TEXT in SQLite.
+-- NUMERIC amounts are REAL in SQLite (generate.py swaps the type), so whole amounts never become integers.
 -- Legacy quirks are intentional; see README.md ("Where the traps live").
 
 CREATE TABLE sube (

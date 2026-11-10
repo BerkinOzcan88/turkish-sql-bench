@@ -11,11 +11,13 @@ controls have trap_sql = null, categories are known.
 
     python scripts/validate.py                      # all files in questions/
     python scripts/validate.py questions/belediye_su.json
+    python scripts/validate.py --engines sqlite     # without Postgres
 
 Exits 1 on any failure. Postgres settings: see scripts/load_postgres.py.
 """
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import json
 import sqlite3
@@ -33,6 +35,9 @@ ROOT = Path(__file__).resolve().parent.parent
 CATEGORIES = {"case_i", "suffix_value", "schema_link", "tr_format", "domain", "control"}
 REQUIRED_KEYS = {"question_id", "db_id", "question", "evidence", "SQL", "trap", "trap_sql", "pair_id", "status"}
 TOLERANCE = 0.011  # cents; absorbs float vs NUMERIC rounding at the .005 boundary
+# non-integer values may also differ by this share: summing amounts rounded per invoice instead of
+# rounding the sum drifts by up to ~1.7e-5 on the belediye_su KDV totals; counts stay exact
+REL_TOLERANCE = 2e-5
 
 
 # ---------------------------------------------------------------- result handling
@@ -58,7 +63,12 @@ def sort_key(row):
 
 def cells_equal(a, b) -> bool:
     if isinstance(a, float) and isinstance(b, float):
-        return abs(a - b) <= TOLERANCE
+        diff = abs(a - b)
+        if diff <= TOLERANCE:
+            return True
+        if a.is_integer() and b.is_integer():
+            return False
+        return diff <= REL_TOLERANCE * max(abs(a), abs(b))
     return a == b
 
 
@@ -184,7 +194,10 @@ def validate_question(q: dict, engines: list) -> dict:
     if len(gold) == 2 and not results_equal(gold["sqlite"], gold["postgres"], ordered):
         out["failures"].append(f"gold differs across engines: sqlite={describe(gold['sqlite'])} "
                                f"postgres={describe(gold['postgres'])}")
-    out["cross_engine"] = "ok" if len(gold) == 2 and not any("across" in f for f in out["failures"]) else "FAIL"
+    if len(engines) < 2:
+        out["cross_engine"] = "-"
+    else:
+        out["cross_engine"] = "ok" if len(gold) == 2 and not any("across" in f for f in out["failures"]) else "FAIL"
 
     if q["trap"] != "control":
         trap_ordered = ordered or has_top_level_order_by(q["trap_sql"])
@@ -215,7 +228,13 @@ def trap_cell(res: dict) -> str:
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    files = [Path(a) for a in sys.argv[1:]] or sorted((ROOT / "questions").glob("*.json"))
+    p = argparse.ArgumentParser(description="Validate benchmark questions against SQLite and PostgreSQL.")
+    p.add_argument("files", nargs="*", type=Path, help="question files (default: questions/*.json)")
+    p.add_argument("--engines", nargs="+", choices=["sqlite", "postgres"], default=["sqlite", "postgres"],
+                   help="--engines sqlite checks without Postgres (no cross-engine check)")
+    args = p.parse_args()
+    files = args.files or sorted((ROOT / "questions").glob("*.json"))
+    engine_classes = [{"sqlite": SQLiteEngine, "postgres": PostgresEngine}[e] for e in args.engines]
     all_results, structure_errors = [], []
     for path in files:
         questions = json.loads(path.read_text(encoding="utf-8"))
@@ -224,7 +243,7 @@ def main() -> int:
         for q in questions:
             by_db[q["db_id"]].append(q)
         for db_id, qs in by_db.items():
-            engines = [SQLiteEngine(db_id), PostgresEngine(db_id)]
+            engines = [cls(db_id) for cls in engine_classes]
             all_results += [validate_question(q, engines) for q in qs]
 
     header = f"{'question_id':<18} {'trap':<13} {'gold (sqlite)':<22} {'gold (postgres)':<22} {'engines':<8} {'trap differs':<13} result"

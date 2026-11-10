@@ -443,7 +443,7 @@
     "question_id": "ik_bordro_041",
     "db_id": "ik_bordro",
     "question": "Bugün itibarıyla yıllık izin hakkı 20 gün olan kaç çalışanımız var?",
-    "evidence": "Veriler 05.01.2025 tarihi itibarıyla alınmıştır. Kıdem, tamamlanmış hizmet yılı olarak hesaplanır.",
+    "evidence": "Veriler 05.01.2025 tarihi itibarıyla alınmıştır. Kıdem, tamamlanmış hizmet yılı olarak hesaplanır; kıdemi tam 5 yıl olan çalışan hâlâ 1–5 yıl dilimindedir.",
     "SQL": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ((ise_giris_tarihi <= '2019-01-05' AND ise_giris_tarihi > '2010-01-05') OR (ise_giris_tarihi > '2019-01-05' AND ise_giris_tarihi <= '2024-01-05' AND (dogum_tarihi <= '1975-01-05' OR dogum_tarihi > '2006-01-05')))",
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ise_giris_tarihi <= '2019-01-05' AND ise_giris_tarihi > '2010-01-05'",

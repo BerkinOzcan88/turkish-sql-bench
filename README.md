@@ -30,12 +30,14 @@ databases/ik_bordro/...                same four files for the HR / payroll data
 questions/belediye_su.json             50 draft questions (25 trap + 25 control)
 questions/ik_bordro.json               50 draft questions (25 trap + 25 control)
 scripts/build_il_ilce.py               refreshes common/il_ilce.json from Wikipedia
-scripts/load_postgres.py               copies a built SQLite DB into Postgres
+scripts/load_postgres.py               copies the built SQLite DBs into Postgres and checks the copy
 scripts/validate.py                    checks every question on both engines
 scripts/evaluate.py                    runs a model on the questions, scores it on both engines
 scripts/leaderboard.py                 compares evaluation runs
 results/<run>/                         evaluation output (one folder per model run)
 tests/test_sqlite_lower.py             proves LOWER('IĞDIR') != 'ığdır' in SQLite
+tests/test_scoring.py                  answer parsing, result comparison, pairs, leaderboard
+tests/test_databases.py                money storage in SQLite, Postgres copy check
 docker-compose.yml                     Postgres 16
 ```
 
@@ -48,16 +50,19 @@ pip install -r requirements.txt
 python databases/belediye_su/generate.py     # -> belediye_su.sqlite (~15 MB, ~5 s)
 python databases/ik_bordro/generate.py       # -> ik_bordro.sqlite (~8 MB, ~3 s)
 docker compose up -d --wait                  # Postgres 16 on localhost:5433
-python scripts/load_postgres.py belediye_su  # drops + recreates database belediye_su
-python scripts/load_postgres.py ik_bordro
+python scripts/load_postgres.py              # drops + recreates both databases, checks the copy
 python scripts/validate.py                   # all question files; exit 1 on any failure
 python -m unittest discover tests
 ```
 
 All scripts can be re-run safely: the generator overwrites the SQLite file,
-and the loader drops and recreates the Postgres database. Postgres connection
-settings come from `PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD` (defaults
-`localhost:5433`, `postgres`/`postgres`).
+and the loader drops and recreates the Postgres database
+(`load_postgres.py ik_bordro` loads just one). Postgres connection settings
+come from `PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD` (defaults `localhost:5433`,
+`postgres`/`postgres`). The loader also creates a read-only role
+(`PGREADER_USER`/`PGREADER_PASSWORD`, default `bench_reader`) with `SELECT`
+only; `evaluate.py` runs model SQL as that role. Without Docker,
+`validate.py --engines sqlite` and `evaluate.py --engines sqlite` still work.
 
 ## Data sources and licenses
 
@@ -191,7 +196,13 @@ Known simplifications:
 The generator never iterates over sets, and IDs are assigned after
 deterministic sorts. Two consecutive builds produce a byte-identical
 `belediye_su.sqlite`. The SQLite and Postgres copies have identical row
-contents in every table (checked by hash, with numerics normalized).
+contents in every table: `load_postgres.py` checks this by hash, with numbers
+and dates normalized, every time it loads.
+
+Money columns are `NUMERIC(p,2)` in `schema.sql` and in Postgres, but the
+generator creates them as `REAL` in SQLite. With `NUMERIC` affinity SQLite
+stores a whole amount like 45100.00 as the integer 45100, and
+`brut_ucret * 2 / 100` then does integer division on SQLite only.
 
 ## Database: `ik_bordro` (HR and payroll)
 
@@ -276,7 +287,8 @@ Known simplifications:
 
 `SEED = 20250105` drives `random`; no other source of randomness is used. Two
 consecutive builds produce a byte-identical `ik_bordro.sqlite`, and the SQLite
-and Postgres copies have identical row contents in every table.
+and Postgres copies have identical row contents in every table (checked by
+`load_postgres.py`). Money columns are `REAL` in SQLite, as in `belediye_su`.
 
 ## Questions
 
@@ -306,8 +318,9 @@ and Postgres copies have identical row contents in every table.
   - no `ORDER BY` on text (the collations differ)
   - ISO dates compared only with ranges, and cast to text before `SUBSTR`
   - numeric results wrapped in `ROUND(…, 2)`
-  - divide by a decimal literal (`/ 225.0`): SQLite stores whole `NUMERIC`
-    amounts as integers, so `45100 / 225` is integer division there
+  - divide by a decimal literal (`/ 100.0`) whenever the dividend can be an
+    integer column (`su_kdv_orani / 100` is 0 on both engines); money columns
+    are `REAL` in SQLite, so they never divide as integers
   - `ORDER BY` with a unique key whenever row order matters
 
 ## Validator
@@ -315,7 +328,10 @@ and Postgres copies have identical row contents in every table.
 `scripts/validate.py` checks, for each question and each engine:
 1. Gold SQL runs and returns a non-empty, not-all-NULL result.
 2. Gold results match across engines. Numbers are compared with ±0.011
-   tolerance, and row order is ignored unless the query has a top-level
+   tolerance; non-integer values may also differ by 0.002% of their size,
+   which absorbs rounding each invoice before summing instead of rounding the
+   sum (up to 4.15 TL on a 248,870 TL total). Whole numbers such as counts must
+   match exactly. Row order is ignored unless the query has a top-level
    `ORDER BY`.
 3. For trap questions, `trap_sql` differs from gold on at least one engine.
    An error counts as a difference. The table shows `both`, `sqlite only` or
@@ -323,7 +339,8 @@ and Postgres copies have identical row contents in every table.
 
 It also checks the file structure: required keys, known categories, and
 exactly one trap plus one control per `pair_id`. It prints a summary table and
-exits 1 on any failure.
+exits 1 on any failure. `--engines sqlite` runs it without Postgres, skipping
+the cross-engine check.
 
 ## Evaluation
 
@@ -346,6 +363,7 @@ python scripts/evaluate.py --provider nim --model qwen/qwen2.5-coder-32b-instruc
 python scripts/evaluate.py --provider nim --model qwen/qwen2.5-coder-32b-instruct
 python scripts/evaluate.py --provider lmstudio --model qwen2.5-coder-14b-instruct
 python scripts/evaluate.py --provider nim --model x --show-prompt                # print one prompt
+python scripts/evaluate.py --provider nim --model qwen/qwen2.5-coder-32b-instruct --rescore  # re-score the cache only
 python scripts/leaderboard.py                                                     # compare runs
 ```
 
@@ -355,10 +373,22 @@ Postgres needed), `--ids`, `--workers N`, `--rpm N`, `--max-tokens` (raise it
 for reasoning models), `--extra-body '{...}'` for model-specific request
 fields, `--run-name`, `--no-think-prefill` (starts the reply with an empty
 `<think></think>` block; Qwen3.5 in LM Studio ignores the usual reasoning-off
-settings and otherwise thinks for ~1,000 tokens per question).
+settings and otherwise thinks for ~1,000 tokens per question; such a model
+may still reason in its visible answer, so the leaderboard marks the run),
+`--rescore` (score the cached answers after a harness or data change, sending
+no requests).
+
+**Run folders.** One folder holds one combination of settings: re-running into
+a folder that was scored with a different `--temperature`, `--max-tokens`,
+`--sample-rows`, `--extra-body` or `--no-think-prefill` stops with an error
+(use `--run-name` for a separate run). A smoke test (`--limit`, `--ids`) or any
+subset of an already scored run writes `scores.partial.json`,
+`details.partial.jsonl` and `report.partial.md`, so the full run's scores and
+the leaderboard are left alone. Both share the answer cache.
 
 **Prompt.** One user message (no system message, since some models reject
-it): the engine name (SQLite 3 or PostgreSQL 16), the `CREATE TABLE`
+it), followed by the empty-think assistant message when `--no-think-prefill`
+is set (`--show-prompt` and `prompt_example_<engine>.txt` show both): the engine name (SQLite 3 or PostgreSQL 16), the `CREATE TABLE`
 statements from `schema.sql` with all comments removed (they would give the
 traps away), 3 example rows per table, the data notes, the `evidence` when
 non-empty, the question, and a request for one ```sql block. Temperature 0.
@@ -373,31 +403,44 @@ Each database can have a `prompt_notes.json` next to its schema:
   the example rows (e.g. one migrated upper-case address, one amount over
   1.000); the remaining rows are the first by id.
 
-**Answer parsing.** Reasoning before `</think>` is dropped; an answer whose
-reasoning never closes counts as no SQL. The last ```sql block is used,
-otherwise the text from the first `SELECT`/`WITH`.
+**Answer parsing.** An answer cut off by `max_tokens` (`finish_reason`
+`length`) is scored *truncated*, never right: any query in it may be a draft.
+Reasoning before `</think>` is dropped; an answer whose reasoning never closes
+counts as no SQL. Code fences count only at the start of a line, whatever
+their tag (` ```sql `, ` ```sqlite `, ` ```mysql `); the last block that starts
+with `SELECT`/`WITH` is used (so a trailing ` ```bash ` block is ignored),
+otherwise the text from the first line that starts with `SELECT`/`WITH`.
 
-**Running model SQL safely.** SQLite is opened read-only; Postgres runs in a
-read-only session, one statement at a time, rolled back after each query. Both
-have a 30 s limit and a 10,000-row cap.
+**Running model SQL safely.** SQLite is opened read-only; Postgres runs as a
+role that may only `SELECT`, in a read-only session, rolled back after each
+query. Both refuse multiple statements and have a 30 s limit and a 10,000-row
+cap.
 
 **Metrics** (per engine):
 - **EX**: the model's result equals the gold result, compared like the
   validator (numbers to 2 decimals; row order only when gold has `ORDER BY`).
-  Extra output columns are allowed: every gold column must appear, so
-  answering "abonemiz kim?" with name *and* surname still counts. Dates count
-  as equal whatever their form: `'09.12.2024'` text, a `DATE` and a midnight
-  timestamp of the same day all match.
+  Extra output columns are allowed and column order doesn't matter: every
+  gold column must appear, row by row, so answering "abonemiz kim?" with name,
+  surname *and* subscriber number still counts. Adjacent text columns may come
+  joined by a space: `ad || ' ' || soyad` matches gold `(ad, soyad)`. Dates
+  count as equal whatever their form: `'09.12.2024'` text, a `DATE` and a
+  midnight timestamp of the same day all match.
 - **EX strict**: the same, but the output columns must match exactly. Shown
   for reference only; every other metric and the leaderboard use EX.
 - **Control / trap accuracy** and accuracy per trap category.
 - **Pairs**: *fell for trap* = control right and trap wrong, which isolates
-  the trap; *both wrong* means the model failed for some other reason.
+  the trap; *both wrong* means the model failed for some other reason. A pair
+  with a missing answer is left out.
 - **trap_sql reproduced**: how often the model's result equals the
   anticipated wrong result, i.e. whether the traps predict real failures.
 
 **Read the pairs first.** *Fell for trap* is the headline number; raw
-accuracy per category is only a rough guide. Turkish place names are full of
+accuracy per category is only a rough guide. The leaderboard gives it as a
+share of the pairs whose control was right (`32/80 (40%)`): a model that
+fails most controls has few chances to fall for a trap, so the raw count
+would rank it too well. Its note column lists what makes a row not directly
+comparable: thinking switched off by prefill, a raised `max_tokens`, answers
+cut off by the token limit, answers collected outside the harness. Turkish place names are full of
 Ç, Ğ, İ, Ş, Ü, Ö, and every place also has upper-case migrated rows, so on
 SQLite any `LOWER(...)` match on such a name (Bağlar, Kemalpaşa, Yenişehir,
 Çankaya) fails whatever the question's category. That is the benchmark's

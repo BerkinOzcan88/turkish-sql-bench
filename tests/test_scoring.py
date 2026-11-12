@@ -16,6 +16,19 @@ def fence(tag, body):
     return f"```{tag}\n{body}\n```"
 
 
+class EngineSQLTest(unittest.TestCase):
+    # date arithmetic has no portable form, so a question may carry SQL_postgres / trap_sql_postgres
+    q = {"SQL": "SELECT julianday('2024-01-15') - julianday('2024-01-01')",
+         "SQL_postgres": "SELECT DATE '2024-01-15' - DATE '2024-01-01'", "trap_sql": "SELECT 13"}
+
+    def test_engine_override_is_used_on_its_engine(self):
+        self.assertEqual(ev.engine_sql(self.q, "SQL", "postgres"), self.q["SQL_postgres"])
+
+    def test_other_engines_use_the_shared_sql(self):
+        self.assertEqual(ev.engine_sql(self.q, "SQL", "sqlite"), self.q["SQL"])
+        self.assertEqual(ev.engine_sql(self.q, "trap_sql", "postgres"), "SELECT 13")
+
+
 class ExtractSQLTest(unittest.TestCase):
     def test_known_tags(self):
         for tag in ("sql", "SQL", "sqlite", "postgresql", ""):

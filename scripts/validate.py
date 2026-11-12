@@ -6,6 +6,8 @@ For every question, on both engines:
     row order ignored unless the query has a top-level ORDER BY);
   * trap questions: trap_sql gives a different result than gold on at least
     one engine (an error counts as different); the table reports which.
+A question may add SQL_postgres / trap_sql_postgres where the SQL has no
+portable form (date arithmetic); they replace SQL / trap_sql on Postgres.
 Also checks the file structure: one trap + one control per pair_id,
 controls have trap_sql = null, categories are known.
 
@@ -104,6 +106,12 @@ def has_top_level_order_by(sql: str) -> bool:
     return "ORDER BY" in " ".join("".join(flat).upper().split())
 
 
+def engine_sql(q: dict, key: str, engine: str) -> str | None:
+    """Gold or trap SQL for one engine. Questions whose SQL has no portable form (date
+    arithmetic) carry `SQL_postgres` / `trap_sql_postgres`, which win on that engine."""
+    return q.get(f"{key}_{engine}") or q[key]
+
+
 def describe(rows: list[tuple] | QueryError) -> str:
     if isinstance(rows, QueryError):
         return f"error: {str(rows).splitlines()[0][:70]}"
@@ -182,7 +190,7 @@ def validate_question(q: dict, engines: list) -> dict:
     gold = {}
     for eng in engines:
         try:
-            rows = eng.run(q["SQL"])
+            rows = eng.run(engine_sql(q, "SQL", eng.name))
         except QueryError as e:
             out["failures"].append(f"gold fails on {eng.name}: {e}")
             out["gold"][eng.name] = "ERROR"
@@ -205,7 +213,7 @@ def validate_question(q: dict, engines: list) -> dict:
             if eng.name not in gold:
                 continue
             try:
-                rows = eng.run(q["trap_sql"])
+                rows = eng.run(engine_sql(q, "trap_sql", eng.name))
             except QueryError as e:
                 out["trap_diff"][eng.name] = (True, describe(e))
                 continue

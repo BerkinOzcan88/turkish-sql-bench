@@ -47,7 +47,7 @@ import psycopg
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from load_postgres import conninfo  # noqa: E402
-from validate import (QueryError, cells_equal, describe, has_top_level_order_by,  # noqa: E402
+from validate import (QueryError, cells_equal, describe, engine_sql, has_top_level_order_by,  # noqa: E402
                       norm_cell, results_equal, sort_key)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -721,10 +721,10 @@ def main() -> int:
     items = []
     for q, eng, key, _ in tasks:
         runner = engines_by_db[q["db_id"]][eng]
-        gold = runner.run(q["SQL"])  # validated by scripts/validate.py
+        gold = runner.run(engine_sql(q, "SQL", eng))  # validated by scripts/validate.py
         trap = None
         if q["trap"] != "control":
-            t = execute(runner, q["trap_sql"])
+            t = execute(runner, engine_sql(q, "trap_sql", eng))
             ordered = has_top_level_order_by(q["SQL"]) or has_top_level_order_by(q["trap_sql"])
             if isinstance(t, QueryError) or not results_equal(t, gold, ordered):
                 trap = t

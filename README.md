@@ -12,10 +12,10 @@ intent, no trap) linked by `pair_id`:
 | trap | what goes wrong |
 |---|---|
 | `case_i` | İ/ı casing. SQLite's `LOWER()`/`UPPER()`/`LIKE` fold ASCII only (`LOWER('IĞDIR')` = `'iĞdir'`); Postgres depends on the collation. |
-| `suffix_value` | Values appear inflected or spelled out in the question (`Esenler'deki`, `Turgut Özal Mahallesi'nde`, `depo görevlimiz`, `Mahir Bey`, `Anonim Şirketi`, `M.Kemalpaşa`, `İK`) but are stored bare or abbreviated. |
-| `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `sicil_no`, `ctv_tutari`, `'RESMI'`, `'UCRETSIZ'`), and words that point to one of two similar columns (net vs brüt). |
-| `tr_format` | Dates as `'DD.MM.YYYY'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`; Turkish formats in the question itself (`1.500 TL`, `01.10.2024`, `2024/02`). |
-| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic, utility terms (mesken, kanalizasyon, ton); payroll and labour law (asgari ücret, income and stamp tax, 30-day month, overtime, leave and notice rules); dates relative to the extract. |
+| `suffix_value` | Values appear inflected or spelled out in the question (`Esenler'deki`, `Turgut Özal Mahallesi'nde`, `depo görevlimiz`, `Mahir Bey`, `saklama kaplarından`, `Anonim Şirketi`, `M.Kemalpaşa`, `İK`) but are stored bare, singular or abbreviated. |
+| `schema_link` | ASCII-fied or abbreviated identifiers and codes (`vkn`, `sicil_no`, `ctv_tutari`, `'RESMI'`, `'UCRETSIZ'`), and words that point to one of two similar columns (net vs brüt, price paid vs list price, delivery address vs any address). |
+| `tr_format` | Dates as `'DD.MM.YYYY'` or `'DD.MM.YYYY HH:MM'` text, amounts as `'1.250,50'` text, periods as `'Şubat 2024'`, hours as `'2,5'`; Turkish formats in the question itself (`1.500 TL`, `01.10.2024`, `2024/02`, `2,5 desi`). |
+| `domain` | KDV, ÇTV, il/ilçe hierarchy, due-date (vade) logic, utility terms (mesken, kanalizasyon, ton); payroll and labour law (asgari ücret, income and stamp tax, 30-day month, overtime, leave and notice rules); e-commerce rules (KDV-inclusive prices, cayma süresi, desi, Efsane Cuma); dates relative to the extract. |
 | `control` | No trap; the twin of a trap question. |
 
 ## Layout
@@ -27,8 +27,10 @@ databases/belediye_su/generate.py      deterministic generator
 databases/belediye_su/prompt_notes.json  data notes + example-row choice for model prompts
 databases/belediye_su/belediye_su.sqlite   build output
 databases/ik_bordro/...                same four files for the HR / payroll database
-questions/belediye_su.json             50 draft questions (25 trap + 25 control)
-questions/ik_bordro.json               50 draft questions (25 trap + 25 control)
+databases/eticaret/...                 same four files for the online shop database
+questions/belediye_su.json             100 draft questions (50 trap + 50 control)
+questions/ik_bordro.json               100 draft questions (50 trap + 50 control)
+questions/eticaret.json                100 draft questions (50 trap + 50 control)
 scripts/build_il_ilce.py               refreshes common/il_ilce.json from Wikipedia
 scripts/load_postgres.py               copies the built SQLite DBs into Postgres and checks the copy
 scripts/validate.py                    checks every question on both engines
@@ -37,7 +39,7 @@ scripts/leaderboard.py                 compares evaluation runs
 results/<run>/                         evaluation output (one folder per model run)
 tests/test_sqlite_lower.py             proves LOWER('IĞDIR') != 'ığdır' in SQLite
 tests/test_scoring.py                  answer parsing, result comparison, pairs, leaderboard
-tests/test_databases.py                money storage in SQLite, Postgres copy check
+tests/test_databases.py                money storage in SQLite, eticaret data formats, Postgres copy check
 docker-compose.yml                     Postgres 16
 ```
 
@@ -49,8 +51,9 @@ Requires Python 3.11+ and Docker.
 pip install -r requirements.txt
 python databases/belediye_su/generate.py     # -> belediye_su.sqlite (~15 MB, ~5 s)
 python databases/ik_bordro/generate.py       # -> ik_bordro.sqlite (~8 MB, ~3 s)
+python databases/eticaret/generate.py        # -> eticaret.sqlite (~22 MB, ~16 s)
 docker compose up -d --wait                  # Postgres 16 on localhost:5433
-python scripts/load_postgres.py              # drops + recreates both databases, checks the copy
+python scripts/load_postgres.py              # drops + recreates every database, checks the copy
 python scripts/validate.py                   # all question files; exit 1 on any failure
 python -m unittest discover tests
 ```
@@ -91,6 +94,11 @@ only; `evaluate.py` runs model SQL as that role. Without Docker,
   (Heyvetullah, Minibe) and miss Mehmet, Ayşe and Fatma, so `ik_bordro` draws
   from short hand-written lists of common Turkish first names and surnames,
   weighted roughly by frequency. It doesn't use Faker.
+- **Customers, brands and carriers (`eticaret`):** customer names come from
+  the `ik_bordro` lists plus a few names common among younger people. Brands,
+  publishers and the three carriers (`Kanat`, `Pusula`, `Ulak Kargo`) are
+  made up. Delivery addresses are spread over il and ilçe by the 2025 ilçe
+  population in `common/il_ilce.json`.
 
 ## Postgres collation
 
@@ -290,6 +298,86 @@ consecutive builds produce a byte-identical `ik_bordro.sqlite`, and the SQLite
 and Postgres copies have identical row contents in every table (checked by
 `load_postgres.py`). Money columns are `REAL` in SQLite, as in `belediye_su`.
 
+## Database: `eticaret` (online shop)
+
+The orders of a fictional online shop that sells only its own stock: home and
+lifestyle goods in 8 main groups (Elektronik, Küçük Ev Aletleri, Mutfak, Ev
+Tekstili, Giyim, Ayakkabı ve Çanta, Kitap, Gurme Gıda), 46 categories and 674
+products. It ships from two warehouses (`İstanbul Deposu`, `Ankara Deposu`) to
+all 81 il through three carriers. Orders cover Jan 2023 – Dec 2024, and the
+extract was taken on **05.01.2025**.
+
+| table | rows | notes |
+|---|---:|---|
+| `kategori` | 46 | `kategori_adi` in the singular (`Kulaklık`, `Saklama Kabı`), `ana_kategori` |
+| `urun` | 674 | `stok_kodu` (`ELK-0012`), `marka`, `liste_fiyati` (today's price, KDV included), `kdv_orani` (today's rate), weight, package size in cm, `satista` |
+| `musteri` | 21,000 | `musteri_no` (`M0012345`), `ad`, `soyad`, `cinsiyet` `E`/`K`, `dogum_tarihi` (empty for 35%), `kayit_tarihi`, `eposta_izni`, `kaynak_sistem` |
+| `adres` | 28,630 | `adres_basligi` (`Ev`, `İş`, `Annemler`, `Evim`, `Yazlık`), `sehir`, `ilce`, `kaynak_sistem` |
+| `siparis` | 51,986 | `siparis_no`, delivery address, `kanal`, `odeme_yontemi`, `taksit_sayisi`, `kupon_kodu`, amounts, `durum` |
+| `siparis_kalemi` | 91,403 | `adet`, `birim_fiyat` (price paid, KDV included), `kdv_orani` (rate on the order date) |
+| `kargo` | 50,219 | one per shipped order; `cikis_deposu`, `kargoya_verilis_tarihi`, `teslim_zamani` **TEXT `'DD.MM.YYYY HH:MM'`**, `desi`, `agirlik_kg`, `kargo_maliyeti` (KDV excluded) |
+| `iade` | 4,713 | one per return request; `iade_nedeni`, `durum`, `iade_tutari` **TEXT `'1.299,90'`** (approved requests only) |
+
+`odenen_tutar = urun_toplami − indirim_tutari + kargo_ucreti` holds on every
+order, and `urun_toplami` equals the sum of `adet × birim_fiyat` over its lines.
+
+### Where the traps live
+
+- **Legacy import (case_i):** customers who registered before the platform
+  move on 01.09.2022 (11,264 of 21,000) and the addresses created before it
+  (13,004 of 28,630) store `ad`, `soyad`, `sehir` and `ilce` in
+  Turkish-correct ALL CAPS (`İSMAİL`, `KILIÇ`, `İZMİR`, `KARŞIYAKA`).
+- **Singular values (suffix_value):** questions say `saklama kaplarından`,
+  `çocuk kitaplarımızdan`, `spor ayakkabılarımızdan`, `Ankara depomuzdan`; the
+  data holds `Saklama Kabı`, `Çocuk Kitabı`, `Spor Ayakkabı`, `Ankara Deposu`.
+- **Look-alike columns (schema_link):** the price paid
+  (`siparis_kalemi.birim_fiyat`) vs today's list price, the KDV rate on the
+  order vs today's rate, the delivery address vs any of the customer's
+  addresses, units (`SUM(adet)`) vs order lines, the carrier's charge
+  (`kargo_maliyeti`) vs the shipping fee the customer paid (`kargo_ucreti`),
+  an order with a returned item vs `durum = 'IADE_EDILDI'` (every item
+  returned).
+- **Text timestamps and amounts (tr_format):** `kargo.teslim_zamani` is
+  `'DD.MM.YYYY HH:MM'` text, so `LIKE '2024-11%'`, string `MAX()` and
+  `ORDER BY` give wrong answers; `iade.iade_tutari` is `'1.299,90'`.
+- **E-commerce rules (domain):** prices include KDV, so the amount without KDV
+  is `tutar * 100 / (100 + oran)`, not `tutar * (1 − oran / 100)`; KDV rates
+  rose on 10.07.2023; the cayma süresi runs 14 days from delivery, not from the
+  order; the billable weight is the greater of desi and kilograms, and desi is
+  `en × boy × yükseklik / 3000`; Efsane Cuma 2024 was 29 November, not the
+  fourth Friday (22 November); carrier charges carry 20% KDV.
+
+### Rates and rules (checked against legislation, November 2026)
+
+| item | value used | source |
+|---|---|---|
+| KDV, general rate | 18% → 20% on 10.07.2023: electronics, small appliances, kitchenware, carrier services | 7346 sayılı CK (RG 07.07.2023) |
+| KDV, list (II) | 8% → 10% on 10.07.2023: clothing and home textiles (item 5), shoes (7), bags (8), books (14) | KDV Oranları Kararnamesi (II) sayılı liste; 7346 sayılı CK |
+| KDV, list (I) | 1% throughout: coffee and tea (item A-7), olive oil (A-11), honey (A-2), chocolate (A-14), pasta (A-15) | KDV Oranları Kararnamesi (I) sayılı liste |
+| Prices on display | include KDV | Fiyat Etiketi Yönetmeliği |
+| Cayma süresi | 14 days from the day the goods are delivered; the evidence says the last day is 14 days after the start | Mesafeli Sözleşmeler Yönetmeliği md. 9(2) |
+| Desi | `en × boy × yükseklik / 3000`, billed on the greater of desi and kg | Turkish carriers' published convention |
+| Efsane Cuma | 24.11.2023 and 29.11.2024 | the Turkish name for Black Friday, the day after US Thanksgiving (the fourth Thursday of November) |
+
+Known simplifications:
+- **Prices:** synthetic. List prices follow a monthly inflation index (4.2% in
+  2023, 3.1% in 2024) and are repriced every 40–110 days. On 10.07.2023 they
+  rise by the KDV change, and 35% of the products are discounted in November.
+- **Shipping:** the fee is 39.90 TL, free from 400 TL, in 2023, and 69.90 TL,
+  free from 750 TL, in 2024. Carrier tariffs are synthetic.
+- **Returns:** return rates depend on the main group. Requests for
+  `VAZGECTIM` or `BEDEN_UYMADI` after the cayma süresi are rejected. Requests
+  from 30.12.2024 on are still `BEKLIYOR`. Refunds are reduced in proportion
+  to any coupon discount, and an order becomes `IADE_EDILDI` once every item
+  has been returned.
+
+### Determinism
+
+`SEED = 20250107` drives `random`; no other source of randomness is used. Two
+consecutive builds produce a byte-identical `eticaret.sqlite`, and the SQLite
+and Postgres copies have identical row contents in every table (checked by
+`load_postgres.py`). Money columns are `REAL` in SQLite.
+
 ## Questions
 
 `questions/<db_id>.json` uses BIRD-style records:
@@ -326,7 +414,13 @@ and Postgres copies have identical row contents in every table (checked by
 - Rules for gold SQL, so it runs on both engines:
   - no `LOWER`/`UPPER`/`LIKE` on letters
   - no `ORDER BY` on text (the collations differ)
-  - ISO dates compared only with ranges, and cast to text before `SUBSTR`
+  - ISO dates compared only with whole dates (`BETWEEN '2024-11-01' AND
+    '2024-11-30'`, `= '2024-11-29'`), and cast to text before `SUBSTR`
+  - date arithmetic has no form both engines accept, so such a question adds
+    `SQL_postgres` (and `trap_sql_postgres` for a trap), which `validate.py`
+    and `evaluate.py` use on Postgres instead of `SQL` / `trap_sql`
+    (`julianday(…) + 14` on SQLite, `TO_DATE(…, 'DD.MM.YYYY') + 14` on
+    Postgres)
   - numeric results wrapped in `ROUND(…, 2)`
   - divide by a decimal literal (`/ 100.0`) whenever the dividend can be an
     integer column (`su_kdv_orani / 100` is 0 on both engines); money columns

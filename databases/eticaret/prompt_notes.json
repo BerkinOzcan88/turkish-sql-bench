@@ -1,0 +1,15 @@
+{
+  "_comment": "Shown to models by scripts/evaluate.py. Notes document the legacy quirks the way a team's data dictionary would, without hinting at any trap. example_rows: per table, WHERE conditions whose first matching row (by id) must be among the example rows; the rest are the first rows by id.",
+  "notes": [
+    "musteri and adres: rows migrated from the previous e-commerce platform (kaynak_sistem = 'ESKI_AKTARIM') store ad and soyad, and sehir and ilce, in upper case; the other rows use normal capitalization.",
+    "Prices and order amounts (urun, siparis, siparis_kalemi, iade) include KDV; kargo.kargo_maliyeti is the carrier's charge without KDV.",
+    "kargo.teslim_zamani is text in DD.MM.YYYY HH:MM format; the other date columns hold ISO dates.",
+    "iade.iade_tutari is text in Turkish number format."
+  ],
+  "example_rows": {
+    "musteri": ["kaynak_sistem = 'YENI'"],
+    "adres": ["kaynak_sistem = 'YENI'", "adres_basligi = 'İş'"],
+    "siparis": ["durum = 'IADE_EDILDI'"],
+    "iade": ["iade_tutari LIKE '%.%'", "durum = 'REDDEDILDI'"]
+  }
+}

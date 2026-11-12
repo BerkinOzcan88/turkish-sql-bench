@@ -30,7 +30,7 @@ class MoneyStorageTest(unittest.TestCase):
     def test_money_is_stored_as_real_in_sqlite(self):
         # with NUMERIC affinity SQLite stores 45100.00 as the integer 45100, so `x * rate / 100`
         # does integer division on SQLite only: an engine artefact, not a trap
-        for db_id in ("belediye_su", "ik_bordro"):
+        for db_id in ("belediye_su", "ik_bordro", "eticaret"):
             con = connect(db_id)
             cols = money_columns(db_id)
             self.assertTrue(cols, db_id)
@@ -42,6 +42,52 @@ class MoneyStorageTest(unittest.TestCase):
         con = connect("ik_bordro")
         (v,) = con.execute("SELECT brut_ucret * 2 / 7 FROM bordro WHERE brut_ucret = 45100").fetchone()
         self.assertAlmostEqual(v, 12885.71, places=2)  # integer division would give 12885
+
+
+class EticaretDataTest(unittest.TestCase):
+    """Formats and rules the eticaret questions are built on."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.con = connect("eticaret")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.con.close()
+
+    def count(self, sql):
+        return self.con.execute(sql).fetchone()[0]
+
+    def test_text_columns_keep_their_turkish_formats(self):
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM kargo WHERE teslim_zamani IS NOT NULL AND teslim_zamani "
+            "NOT GLOB '[0-3][0-9].[01][0-9].20[0-9][0-9] [0-2][0-9]:[0-5][0-9]'"), 0)
+        # thousands always grouped with '.', decimals after ','
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM iade WHERE iade_tutari NOT GLOB '*[0-9],[0-9][0-9]' "
+            "OR iade_tutari GLOB '*[0-9][0-9][0-9][0-9]*'"), 0)
+        self.assertGreater(self.count("SELECT COUNT(*) FROM iade WHERE iade_tutari GLOB '*.*'"), 0)
+
+    def test_refund_amount_only_on_approved_returns(self):
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM iade WHERE (durum = 'ONAYLANDI') <> (iade_tutari IS NOT NULL)"), 0)
+
+    def test_line_kdv_switches_on_10_july_2023(self):
+        rows = self.con.execute(
+            "SELECT DISTINCT k.kdv_orani, s.siparis_tarihi >= '2023-07-10' FROM siparis_kalemi k "
+            "JOIN siparis s ON s.siparis_id = k.siparis_id").fetchall()
+        self.assertEqual({r for r, after in rows if not after}, {1, 8, 18})
+        self.assertEqual({r for r, after in rows if after}, {1, 10, 20})
+
+    def test_only_migrated_rows_are_upper_case(self):
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM musteri WHERE (kaynak_sistem = 'ESKI_AKTARIM') <> (kayit_tarihi < '2022-09-01')"), 0)
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM musteri WHERE kaynak_sistem = 'ESKI_AKTARIM' AND ad || soyad GLOB '*[a-zçğıöşü]*'"), 0)
+        self.assertEqual(self.count(
+            "SELECT COUNT(*) FROM adres WHERE kaynak_sistem = 'ESKI_AKTARIM' AND sehir || ilce GLOB '*[a-zçğıöşü]*'"), 0)
+        self.assertGreater(self.count(
+            "SELECT COUNT(*) FROM musteri WHERE kaynak_sistem = 'YENI' AND ad GLOB '*[a-zçğıöşü]*'"), 0)
 
 
 class CopyCheckTest(unittest.TestCase):

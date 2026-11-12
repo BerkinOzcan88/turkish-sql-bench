@@ -1,0 +1,20 @@
+Benchmark data license: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+Copyright (c) 2026 BerkinOzcan88
+
+Covered files:
+- questions/*.json (questions, evidence, gold and trap SQL)
+- databases/*/prompt_notes.json
+- common/il_ilce.json
+- the databases built by the generators (databases/*/*.sqlite and the Postgres copies)
+
+common/il_ilce.json is derived from the Turkish Wikipedia article "Türkiye'nin ilçeleri"
+(https://tr.wikipedia.org/wiki/Türkiye'nin_ilçeleri), which is licensed under CC BY-SA 4.0. Its
+share-alike term is why the data as a whole uses the same license.
+
+You may share and adapt the data for any purpose, including commercially, as long as you give
+appropriate credit, indicate if changes were made, and distribute your contributions under the
+same license. The full terms are in the legal code linked above.
+
+The code that generates and evaluates the data is MIT-licensed; see LICENSE.

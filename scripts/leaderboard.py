@@ -10,6 +10,11 @@ over engines: a model that fails most controls can't fall for many traps, so a
 raw count would rank it too well. The note lists what makes a row not directly
 comparable with the others (thinking switched off by prefill, a raised token
 limit, answers cut off by that limit, answers collected outside the harness).
+
+Only runs on the current question suite are ranked: scores.json must carry the suite
+fingerprint of today's question files, schema and notes text, have every answer, and cover
+both engines. The others are listed with the reason they were left out; re-run or
+--rescore them to bring them up to date.
 """
 from __future__ import annotations
 
@@ -19,6 +24,31 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_MAX_TOKENS = 2048
+ENGINES = ["postgres", "sqlite"]
+SAMPLE_ROWS = 3  # evaluate.py's default
+
+
+def current_suite() -> str:
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import evaluate as ev
+    files = sorted((ROOT / "questions").glob("*.json"))
+    questions = [q for f in files for q in json.loads(f.read_text(encoding="utf-8"))]
+    schemas = {db: ev.schema_text(db, SAMPLE_ROWS) for db in sorted({q["db_id"] for q in questions})}
+    return ev.suite_fingerprint(questions, schemas, {db: ev.notes_text(db) for db in schemas})
+
+
+def skip_reason(data: dict, suite: str) -> str | None:
+    """Why a run can't be ranked against the current suite, or None if it can."""
+    meta = data["meta"]
+    if "suite" not in meta:
+        return "scored before suite fingerprints existed"
+    if meta["suite"] != suite:
+        return "scored on another version of the questions or prompt"
+    if sorted(meta["engines"]) != ENGINES:
+        return f"engines {', '.join(meta['engines'])} only"
+    if data["missing"]:
+        return f"{data['missing']} answers missing"
+    return None
 
 
 def ratio(pairs: list[list[int]]) -> float | None:
@@ -79,14 +109,25 @@ def render(rows: list[dict]) -> str:
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    rows = [row_for(json.loads(p.read_text(encoding="utf-8")))
-            for p in sorted((ROOT / "results").glob("*/scores.json"))]
+    suite = current_suite()
+    rows, skipped = [], []
+    for p in sorted((ROOT / "results").glob("*/scores.json")):
+        data = json.loads(p.read_text(encoding="utf-8"))
+        reason = skip_reason(data, suite)
+        if reason:
+            skipped.append(f"{data['meta']['run']}: {reason}")
+        else:
+            rows.append(row_for(data))
+    if skipped:
+        print("not ranked:\n" + "\n".join(f"  {s}" for s in skipped) + "\n")
     if not rows:
-        print("no runs in results/; run scripts/evaluate.py first")
+        print(f"no complete runs on the current suite ({suite}); run scripts/evaluate.py first")
         return 1
     table = render(rows)
     print(table)
-    (ROOT / "results" / "leaderboard.md").write_text("# Leaderboard\n\n" + table + "\n", encoding="utf-8")
+    (ROOT / "results" / "leaderboard.md").write_text(
+        f"# Leaderboard\n\nQuestion suite `{suite}`, both engines, every answer present.\n\n{table}\n",
+        encoding="utf-8")
     return 0
 
 

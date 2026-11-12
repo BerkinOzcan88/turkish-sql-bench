@@ -203,6 +203,27 @@ class LeaderboardTest(unittest.TestCase):
         self.assertIn("2 truncated", note)
         self.assertIn("subagent", lb.row_for(self.scores(run="subagent__x"))["note"])
 
+    def test_only_complete_runs_on_the_current_suite_are_ranked(self):
+        full = dict(suite="abc", engines=["sqlite", "postgres"])
+        self.assertIsNone(lb.skip_reason(self.scores(**full), "abc"))
+        self.assertIn("before", lb.skip_reason(self.scores(engines=["sqlite", "postgres"]), "abc"))
+        self.assertIn("another version", lb.skip_reason(self.scores(**full), "xyz"))
+        self.assertIn("sqlite only", lb.skip_reason(self.scores(suite="abc"), "abc"))
+        self.assertIn("3 answers missing", lb.skip_reason(dict(self.scores(**full), missing=3), "abc"))
+
+
+class SuiteFingerprintTest(unittest.TestCase):
+    Q = [{"question_id": "a_001", "question": "Kaç abone?", "SQL": "SELECT 1"},
+         {"question_id": "a_002", "question": "Kaç fatura?", "SQL": "SELECT 2"}]
+
+    def test_order_does_not_matter_but_content_does(self):
+        fp = ev.suite_fingerprint(self.Q, {"a": "schema"}, {"a": ""})
+        self.assertEqual(fp, ev.suite_fingerprint(self.Q[::-1], {"a": "schema"}, {"a": ""}))
+        changed = [self.Q[0], dict(self.Q[1], SQL="SELECT 3")]
+        self.assertNotEqual(fp, ev.suite_fingerprint(changed, {"a": "schema"}, {"a": ""}))
+        self.assertNotEqual(fp, ev.suite_fingerprint(self.Q, {"a": "schema 2"}, {"a": ""}))
+        self.assertNotEqual(fp, ev.suite_fingerprint(self.Q, {"a": "schema"}, {"a": "note"}))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -145,6 +145,15 @@ def notes_text(db_id: str) -> str:
     return "Data notes:\n" + "\n".join(f"- {n}" for n in notes) + "\n\n" if notes else ""
 
 
+def suite_fingerprint(questions: list[dict], schemas: dict, notes: dict) -> str:
+    """Names what a run was scored on: the prompt template, every question field (gold SQL
+    included) and the schema and notes text shown. Any change to these gives a new fingerprint,
+    so the leaderboard can tell runs on the current suite from runs on an older one."""
+    blob = json.dumps([PROMPT, sorted(questions, key=lambda q: q["question_id"]), schemas, notes],
+                      sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
+
+
 def build_prompt(q: dict, engine: str, schema: str, notes: str, n_rows: int) -> str:
     return PROMPT.format(
         dialect=DIALECTS[engine],
@@ -662,6 +671,7 @@ def main() -> int:
     run_dir = ROOT / "results" / run
     meta = {"run": run, "provider": provider, "base_url": base_url, "model": args.model,
             "question_files": [Path(f).name for f in files], "n_questions": len(questions),
+            "suite": suite_fingerprint(questions, schemas, notes),
             "engines": args.engines, "prompt_version": PROMPT_VERSION, "sample_rows": args.sample_rows,
             "temperature": args.temperature, "max_tokens": args.max_tokens, "extra_body": extra,
             "no_think_prefill": args.no_think_prefill}

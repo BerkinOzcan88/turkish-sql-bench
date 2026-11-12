@@ -9,7 +9,7 @@
   "example_rows": {
     "musteri": ["kaynak_sistem = 'YENI'"],
     "adres": ["kaynak_sistem = 'YENI'", "adres_basligi = 'İş'"],
-    "siparis": ["durum = 'IADE_EDILDI'"],
+    "siparis": ["durum = 'IADE_EDILDI'", "durum = 'IPTAL_EDILDI'"],
     "iade": ["iade_tutari LIKE '%.%'", "durum = 'REDDEDILDI'"]
   }
 }

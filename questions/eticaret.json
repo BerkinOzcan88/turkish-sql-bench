@@ -8,7 +8,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM siparis s JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE LOWER(a.sehir) = 'izmir' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p01",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_002",
@@ -19,7 +19,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p01",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_003",
@@ -30,7 +30,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(DISTINCT s.musteri_id) FROM siparis s JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE LOWER(a.sehir) = 'ığdır'",
     "pair_id": "eticaret_p02",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_004",
@@ -41,7 +41,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p02",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_005",
@@ -52,7 +52,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM siparis s JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE LOWER(a.ilce) = LOWER('Karşıyaka') AND s.kargo_ucreti = 0 AND s.siparis_tarihi BETWEEN '2023-01-01' AND '2023-12-31'",
     "pair_id": "eticaret_p03",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_006",
@@ -63,7 +63,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p03",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_007",
@@ -74,7 +74,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM kargo g JOIN siparis s ON s.siparis_id = g.siparis_id JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE UPPER(a.ilce) = UPPER('Çiğli') AND g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p04",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_008",
@@ -85,7 +85,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p04",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_009",
@@ -96,7 +96,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM siparis s JOIN musteri m ON m.musteri_id = s.musteri_id WHERE UPPER(m.ad) = 'İSMAİL' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p05",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_010",
@@ -107,7 +107,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p05",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_011",
@@ -118,7 +118,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT SUM(k.adet) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Saklama Kap' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p06",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_012",
@@ -129,7 +129,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p06",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_013",
@@ -140,7 +140,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT ROUND(SUM(k.adet * k.birim_fiyat), 2) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Çocuk Kitapları' AND s.siparis_tarihi BETWEEN '2023-01-01' AND '2023-12-31'",
     "pair_id": "eticaret_p07",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_014",
@@ -151,7 +151,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p07",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_015",
@@ -162,7 +162,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT ROUND(AVG(u.liste_fiyati), 2) FROM urun u JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Kahve Makineleri' AND u.satista = 1",
     "pair_id": "eticaret_p08",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_016",
@@ -173,7 +173,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p08",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_017",
@@ -184,7 +184,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Nevresim Takımları' AND i.talep_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p09",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_018",
@@ -195,7 +195,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p09",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_019",
@@ -206,7 +206,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(DISTINCT s.siparis_id) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Sırt Çantaları' AND s.siparis_tarihi BETWEEN '2024-09-01' AND '2024-09-30'",
     "pair_id": "eticaret_p10",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_020",
@@ -217,7 +217,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p10",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_021",
@@ -228,7 +228,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT MIN(u.liste_fiyati) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Kulaklık' AND s.siparis_tarihi BETWEEN '2024-08-01' AND '2024-08-31'",
     "pair_id": "eticaret_p11",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_022",
@@ -239,7 +239,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p11",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_023",
@@ -250,7 +250,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT DISTINCT u.kdv_orani FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Roman' AND s.siparis_tarihi BETWEEN '2023-06-01' AND '2023-06-30'",
     "pair_id": "eticaret_p12",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_024",
@@ -261,7 +261,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p12",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_025",
@@ -272,7 +272,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM siparis s WHERE s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31' AND EXISTS (SELECT 1 FROM adres a WHERE a.musteri_id = s.musteri_id AND a.adres_basligi = 'İş')",
     "pair_id": "eticaret_p13",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_026",
@@ -283,7 +283,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p13",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_027",
@@ -294,7 +294,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM siparis s WHERE s.durum = 'IADE_EDILDI' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p14",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_028",
@@ -305,7 +305,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p14",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_029",
@@ -316,7 +316,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT ROUND(SUM(s.kargo_ucreti), 2) FROM kargo g JOIN siparis s ON s.siparis_id = g.siparis_id WHERE g.kargoya_verilis_tarihi BETWEEN '2024-11-01' AND '2024-11-30'",
     "pair_id": "eticaret_p15",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_030",
@@ -327,7 +327,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p15",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_031",
@@ -338,7 +338,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM kargo g WHERE g.teslim_zamani LIKE '2024-11%'",
     "pair_id": "eticaret_p16",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_032",
@@ -349,7 +349,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p16",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_033",
@@ -360,7 +360,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT s.siparis_no FROM kargo g JOIN siparis s ON s.siparis_id = g.siparis_id JOIN musteri m ON m.musteri_id = s.musteri_id WHERE m.musteri_no = 'M0009266' AND g.teslim_zamani IS NOT NULL ORDER BY g.teslim_zamani DESC LIMIT 1",
     "pair_id": "eticaret_p17",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_034",
@@ -371,7 +371,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p17",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_035",
@@ -382,7 +382,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT ROUND(SUM(CAST(REPLACE(i.iade_tutari, ',', '.') AS NUMERIC)), 2) FROM iade i WHERE i.durum = 'ONAYLANDI' AND i.talep_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p18",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_036",
@@ -393,7 +393,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p18",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_037",
@@ -404,7 +404,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM urun WHERE satista = 1 AND liste_fiyati > 1.5",
     "pair_id": "eticaret_p19",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_038",
@@ -415,7 +415,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p19",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_039",
@@ -426,7 +426,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM siparis s WHERE s.siparis_tarihi BETWEEN '2024-01-11' AND '2024-11-15'",
     "pair_id": "eticaret_p20",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_040",
@@ -437,7 +437,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p20",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_041",
@@ -448,7 +448,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(SUM(k.adet * k.birim_fiyat * (100 - k.kdv_orani) / 100.0), 2) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.ana_kategori = 'Elektronik' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p21",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_042",
@@ -459,7 +459,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p21",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_043",
@@ -470,7 +470,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(SUM(k.adet * k.birim_fiyat * k.kdv_orani / 100.0), 2) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.ana_kategori = 'Kitap' AND s.siparis_tarihi BETWEEN '2024-11-01' AND '2024-11-30'",
     "pair_id": "eticaret_p22",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_044",
@@ -481,7 +481,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p22",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_045",
@@ -492,7 +492,7 @@
     "trap": "domain",
     "trap_sql": "SELECT SUM(k.adet) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.ana_kategori = 'Giyim' AND s.siparis_tarihi < '2023-07-01'",
     "pair_id": "eticaret_p23",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_046",
@@ -503,7 +503,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p23",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_047",
@@ -514,7 +514,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN siparis s ON s.siparis_id = k.siparis_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE SUBSTR(g.teslim_zamani, 7, 4) = '2024' AND julianday(i.talep_tarihi) <= julianday(s.siparis_tarihi) + 14",
     "pair_id": "eticaret_p24",
-    "status": "draft",
+    "status": "v0.1",
     "SQL_postgres": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE SUBSTR(g.teslim_zamani, 7, 4) = '2024' AND i.talep_tarihi <= TO_DATE(SUBSTR(g.teslim_zamani, 1, 10), 'DD.MM.YYYY') + 14",
     "trap_sql_postgres": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN siparis s ON s.siparis_id = k.siparis_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE SUBSTR(g.teslim_zamani, 7, 4) = '2024' AND i.talep_tarihi <= s.siparis_tarihi + 14"
   },
@@ -527,7 +527,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p24",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_049",
@@ -538,7 +538,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM kargo g WHERE g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31' AND g.agirlik_kg > 10",
     "pair_id": "eticaret_p25",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_050",
@@ -549,7 +549,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p25",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_051",
@@ -560,7 +560,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM musteri WHERE LOWER(soyad) = 'yıldız' AND eposta_izni = 1",
     "pair_id": "eticaret_p26",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_052",
@@ -571,7 +571,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p26",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_053",
@@ -582,7 +582,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM musteri WHERE soyad = 'Kılıç' AND dogum_tarihi IS NOT NULL",
     "pair_id": "eticaret_p27",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_054",
@@ -593,7 +593,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p27",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_055",
@@ -604,7 +604,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(DISTINCT musteri_id) FROM adres WHERE LOWER(sehir) = 'istanbul'",
     "pair_id": "eticaret_p28",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_056",
@@ -615,7 +615,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p28",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_057",
@@ -626,7 +626,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM siparis s JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE LOWER(a.sehir) = 'kırıkkale' AND s.taksit_sayisi > 1 AND s.durum <> 'IPTAL_EDILDI' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p29",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_058",
@@ -637,7 +637,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p29",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_059",
@@ -648,7 +648,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM siparis s JOIN adres a ON a.adres_id = s.teslimat_adres_id WHERE UPPER(a.ilce) = 'ÜMRANİYE' AND s.kupon_kodu IS NOT NULL AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p30",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_060",
@@ -659,7 +659,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p30",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_061",
@@ -670,7 +670,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT SUM(k.adet) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Zeytinyağları' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p31",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_062",
@@ -681,7 +681,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p31",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_063",
@@ -692,7 +692,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(DISTINCT u.marka) FROM urun u JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Çaydanlıklar' AND u.satista = 1",
     "pair_id": "eticaret_p32",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_064",
@@ -703,7 +703,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p32",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_065",
@@ -714,7 +714,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT u.urun_adi FROM urun u JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Saç Kurutma Makineleri' AND u.satista = 1 ORDER BY u.liste_fiyati DESC LIMIT 1",
     "pair_id": "eticaret_p33",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_066",
@@ -725,7 +725,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p33",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_067",
@@ -736,7 +736,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT SUM(k.adet) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Spor Ayakkabılar' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p34",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_068",
@@ -747,7 +747,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p34",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_069",
@@ -758,7 +758,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM kargo g WHERE g.cikis_deposu = 'Ankara Depo' AND g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p35",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_070",
@@ -769,7 +769,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p35",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_071",
@@ -780,7 +780,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM siparis_kalemi k JOIN siparis s ON s.siparis_id = k.siparis_id JOIN urun u ON u.urun_id = k.urun_id JOIN kategori c ON c.kategori_id = u.kategori_id WHERE c.kategori_adi = 'Makarna' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p36",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_072",
@@ -791,7 +791,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p36",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_073",
@@ -802,7 +802,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT MAX(t.kg) FROM (SELECT SUM(k.adet * u.agirlik_kg) AS kg FROM kargo g JOIN siparis_kalemi k ON k.siparis_id = g.siparis_id JOIN urun u ON u.urun_id = k.urun_id WHERE g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY g.siparis_id) t",
     "pair_id": "eticaret_p37",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_074",
@@ -813,7 +813,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p37",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_075",
@@ -824,7 +824,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT SUM(k.adet) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id WHERE i.durum = 'ONAYLANDI' AND i.talep_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p38",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_076",
@@ -835,7 +835,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p38",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_077",
@@ -846,7 +846,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN siparis s ON s.siparis_id = k.siparis_id WHERE s.siparis_tarihi BETWEEN '2024-12-01' AND '2024-12-31'",
     "pair_id": "eticaret_p39",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_078",
@@ -857,7 +857,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p39",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_079",
@@ -868,7 +868,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM siparis s WHERE s.siparis_tarihi BETWEEN '2024-12-01' AND '2024-12-31' AND s.durum <> 'IPTAL_EDILDI'",
     "pair_id": "eticaret_p40",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_080",
@@ -879,7 +879,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p40",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_081",
@@ -890,7 +890,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM kargo g WHERE g.desi > 25 AND g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p41",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_082",
@@ -901,7 +901,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p41",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_083",
@@ -912,7 +912,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM kargo g WHERE g.teslim_zamani BETWEEN '01.10.2024' AND '31.12.2024 23:59'",
     "pair_id": "eticaret_p42",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_084",
@@ -923,7 +923,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p42",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_085",
@@ -934,7 +934,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT ROUND(AVG(julianday(SUBSTR(g.teslim_zamani, 1, 10)) - julianday(g.kargoya_verilis_tarihi)), 2) FROM kargo g WHERE g.kargoya_verilis_tarihi BETWEEN '2024-11-01' AND '2024-11-30' AND g.teslim_zamani IS NOT NULL",
     "pair_id": "eticaret_p43",
-    "status": "draft",
+    "status": "v0.1",
     "SQL_postgres": "SELECT ROUND(AVG(TO_DATE(SUBSTR(g.teslim_zamani, 1, 10), 'DD.MM.YYYY') - g.kargoya_verilis_tarihi), 2) FROM kargo g WHERE g.kargoya_verilis_tarihi BETWEEN '2024-11-01' AND '2024-11-30' AND g.teslim_zamani IS NOT NULL",
     "trap_sql_postgres": "SELECT ROUND(AVG(CAST(SUBSTR(g.teslim_zamani, 1, 10) AS DATE) - g.kargoya_verilis_tarihi), 2) FROM kargo g WHERE g.kargoya_verilis_tarihi BETWEEN '2024-11-01' AND '2024-11-30' AND g.teslim_zamani IS NOT NULL"
   },
@@ -947,7 +947,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p43",
-    "status": "draft",
+    "status": "v0.1",
     "SQL_postgres": "SELECT ROUND(AVG(g.kargoya_verilis_tarihi - s.siparis_tarihi), 2) FROM kargo g JOIN siparis s ON s.siparis_id = g.siparis_id WHERE s.siparis_tarihi BETWEEN '2024-11-01' AND '2024-11-30'"
   },
   {
@@ -959,7 +959,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT MAX(i.iade_tutari) FROM iade i",
     "pair_id": "eticaret_p44",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_088",
@@ -970,7 +970,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p44",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_089",
@@ -981,7 +981,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM siparis s WHERE s.odenen_tutar > 2.0 AND s.durum <> 'IPTAL_EDILDI' AND s.siparis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p45",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_090",
@@ -992,7 +992,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p45",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_091",
@@ -1003,7 +1003,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM urun WHERE satista = 1 AND en_cm * boy_cm * yukseklik_cm / 5000.0 > 10",
     "pair_id": "eticaret_p46",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_092",
@@ -1014,7 +1014,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p46",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_093",
@@ -1025,7 +1025,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM siparis WHERE siparis_tarihi = '2024-11-22'",
     "pair_id": "eticaret_p47",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_094",
@@ -1036,7 +1036,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p47",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_095",
@@ -1047,7 +1047,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(SUM(g.kargo_maliyeti * 1.18), 2) FROM kargo g WHERE g.kargoya_verilis_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "eticaret_p48",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_096",
@@ -1058,7 +1058,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p48",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_097",
@@ -1069,7 +1069,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN siparis s ON s.siparis_id = k.siparis_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE i.iade_nedeni = 'VAZGECTIM' AND julianday(i.talep_tarihi) > julianday(s.siparis_tarihi) + 14",
     "pair_id": "eticaret_p49",
-    "status": "draft",
+    "status": "v0.1",
     "SQL_postgres": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE i.iade_nedeni = 'VAZGECTIM' AND i.talep_tarihi > TO_DATE(SUBSTR(g.teslim_zamani, 1, 10), 'DD.MM.YYYY') + 14",
     "trap_sql_postgres": "SELECT COUNT(*) FROM iade i JOIN siparis_kalemi k ON k.kalem_id = i.kalem_id JOIN siparis s ON s.siparis_id = k.siparis_id JOIN kargo g ON g.siparis_id = k.siparis_id WHERE i.iade_nedeni = 'VAZGECTIM' AND i.talep_tarihi > s.siparis_tarihi + 14"
   },
@@ -1082,7 +1082,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p49",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_099",
@@ -1093,7 +1093,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(liste_fiyati * (100 - kdv_orani) / 100.0, 2) FROM urun WHERE urun_adi = 'Kervansaray Türk Kahvesi 250 g'",
     "pair_id": "eticaret_p50",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "eticaret_100",
@@ -1104,6 +1104,6 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "eticaret_p50",
-    "status": "draft"
+    "status": "v0.1"
   }
 ]

@@ -8,6 +8,7 @@
   "example_rows": {
     "abone": ["abone_tipi = 'RESMI'", "abone_tipi = 'ISYERI'"],
     "adres": ["kaynak_sistem = 'ESKI_AKTARIM'"],
-    "odeme": ["odenen_tutar LIKE '%.%'"]
+    "odeme": ["odeme_kanali = 'VEZNE' AND odenen_tutar LIKE '%.%'", "odeme_kanali = 'BANKA'", "odeme_kanali = 'OTOMATIK'"],
+    "okuma": ["okuma_tipi = 'TAHMINI'"]
   }
 }

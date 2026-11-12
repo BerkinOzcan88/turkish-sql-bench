@@ -8,7 +8,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE LOWER(ad) = LOWER('Aslı') AND isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p01",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_002",
@@ -19,7 +19,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p01",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_003",
@@ -30,7 +30,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT SUM(i.gun_sayisi) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE p.soyad = 'Yıldırım' AND i.izin_turu = 'YILLIK' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p02",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_004",
@@ -41,7 +41,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p02",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_005",
@@ -52,7 +52,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE LOWER(unvan) = 'müdür yardımcısı' AND isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p03",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_006",
@@ -63,7 +63,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p03",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_007",
@@ -74,7 +74,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT ROUND(SUM(b.net_ucret), 2) FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE UPPER(p.soyad) = UPPER('Demir') AND b.donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p04",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_008",
@@ -85,7 +85,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p04",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_009",
@@ -96,7 +96,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE p.ad LIKE 'ali' AND i.izin_turu = 'RAPOR' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p05",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_010",
@@ -107,7 +107,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p05",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_011",
@@ -118,7 +118,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT p.ise_giris_tarihi FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'Muhasebe' AND p.ad = 'Kadir Bey'",
     "pair_id": "ik_bordro_p06",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_012",
@@ -129,7 +129,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p06",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_013",
@@ -140,7 +140,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT p.sicil_no FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'İnsan Kaynakları' AND p.ad = 'Duygu Hanım'",
     "pair_id": "ik_bordro_p07",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_014",
@@ -151,7 +151,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p07",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_015",
@@ -162,7 +162,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM personel p JOIN sube s ON s.sube_id = p.sube_id WHERE s.sube_adi = 'Bornova' AND p.isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p08",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_016",
@@ -173,7 +173,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p08",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_017",
@@ -184,7 +184,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE unvan IN ('Satış Temsilcileri', 'SATIŞ TEMSİLCİLERİ') AND ise_giris_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p09",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_018",
@@ -195,7 +195,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p09",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_019",
@@ -206,7 +206,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE unvan IN ('Depo Görevli', 'DEPO GÖREVLİ') AND ise_giris_tarihi >= '2019-01-01' AND isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p10",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_020",
@@ -217,7 +217,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p10",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_021",
@@ -228,7 +228,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT ROUND(SUM(b.brut_ucret), 2) FROM bordro b JOIN personel p ON p.personel_id = b.personel_id JOIN sube s ON s.sube_id = p.sube_id WHERE s.sube_adi = 'Esenyurt Şubesi' AND b.donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p11",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_022",
@@ -239,7 +239,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p11",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_023",
@@ -250,7 +250,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT d.departman_adi FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE p.personel_id = 20210048",
     "pair_id": "ik_bordro_p12",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_024",
@@ -261,7 +261,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p12",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_025",
@@ -272,7 +272,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM izin WHERE izin_turu = 'ÜCRETSİZ' AND baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p13",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_026",
@@ -283,7 +283,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p13",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_027",
@@ -294,7 +294,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT ad, soyad FROM personel WHERE isten_cikis_tarihi IS NULL ORDER BY dogum_tarihi LIMIT 1",
     "pair_id": "ik_bordro_p14",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_028",
@@ -305,7 +305,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p14",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_029",
@@ -316,7 +316,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'Genel Müdürlük' AND p.isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p15",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_030",
@@ -327,7 +327,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p15",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_031",
@@ -338,7 +338,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT ROUND(SUM(gelir_vergisi), 2) FROM bordro WHERE donem BETWEEN 'Ocak 2024' AND 'Mart 2024'",
     "pair_id": "ik_bordro_p16",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_032",
@@ -349,7 +349,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p16",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_033",
@@ -360,7 +360,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT b.donem FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.sicil_no = '20140064' ORDER BY b.donem DESC LIMIT 1",
     "pair_id": "ik_bordro_p17",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_034",
@@ -371,7 +371,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p17",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_035",
@@ -382,7 +382,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT ROUND(SUM(saat), 2) FROM fazla_mesai WHERE tarih BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p18",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_036",
@@ -393,7 +393,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p18",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_037",
@@ -404,7 +404,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM fazla_mesai WHERE saat > '3' AND tarih BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p19",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_038",
@@ -415,7 +415,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p19",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_039",
@@ -426,7 +426,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE SUBSTR(donem, 1, 4) = '2023'",
     "pair_id": "ik_bordro_p20",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_040",
@@ -437,7 +437,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p20",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_041",
@@ -448,7 +448,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ise_giris_tarihi <= '2019-01-05' AND ise_giris_tarihi > '2010-01-05'",
     "pair_id": "ik_bordro_p21",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_042",
@@ -459,7 +459,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p21",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_043",
@@ -470,7 +470,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM (SELECT personel_id FROM fazla_mesai WHERE tarih BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY personel_id HAVING SUM(CAST(REPLACE(saat, ',', '.') AS NUMERIC)) > 300) t",
     "pair_id": "ik_bordro_p22",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_044",
@@ -481,7 +481,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p22",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_045",
@@ -492,7 +492,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(SUM(gelir_vergisi), 2) FROM bordro WHERE donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p23",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_046",
@@ -503,7 +503,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p23",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_047",
@@ -514,7 +514,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE donem = 'Ocak 2024' AND brut_ucret > 34004.24",
     "pair_id": "ik_bordro_p24",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_048",
@@ -525,7 +525,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p24",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_049",
@@ -536,7 +536,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE donem = 'Aralık 2024' AND calisma_gunu = 30 AND brut_ucret / 240.0 > 200",
     "pair_id": "ik_bordro_p25",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_050",
@@ -547,7 +547,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p25",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_051",
@@ -558,7 +558,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT ROUND(SUM(b.brut_ucret), 2) FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE UPPER(p.unvan) = 'MÜHENDİS' AND b.donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p26",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_052",
@@ -569,29 +569,29 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p26",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_053",
     "db_id": "ik_bordro",
-    "question": "Soyadı Kılıç olan çalışanlarımız 2024’te toplam kaç gün rapor aldı?",
+    "question": "Soyadı Kılıç olan çalışanlarımız 2024’te toplam kaç iş günü rapor aldı?",
     "evidence": "",
     "SQL": "SELECT SUM(i.gun_sayisi) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE p.soyad IN ('Kılıç', 'KILIÇ') AND i.izin_turu = 'RAPOR' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "trap": "case_i",
     "trap_sql": "SELECT SUM(i.gun_sayisi) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE LOWER(p.soyad) = LOWER('Kılıç') AND i.izin_turu = 'RAPOR' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p27",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_054",
     "db_id": "ik_bordro",
-    "question": "Soyadı Polat olan çalışanlarımız 2024’te toplam kaç gün rapor aldı?",
+    "question": "Soyadı Polat olan çalışanlarımız 2024’te toplam kaç iş günü rapor aldı?",
     "evidence": "",
     "SQL": "SELECT SUM(i.gun_sayisi) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE p.soyad IN ('Polat', 'POLAT') AND i.izin_turu = 'RAPOR' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p27",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_055",
@@ -602,7 +602,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE UPPER(p.ad) = UPPER('İbrahim') AND i.izin_turu = 'YILLIK' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p28",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_056",
@@ -613,7 +613,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p28",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_057",
@@ -624,18 +624,18 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE LOWER(unvan) = 'kıdemli uzman' AND cinsiyet = 'K' AND isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p29",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_058",
     "db_id": "ik_bordro",
-    "question": "Şu anda ünvanı Şef olan kaç kadın çalışanımız var?",
+    "question": "Şu anda ünvanı Uzman olan kaç kadın çalışanımız var?",
     "evidence": "",
-    "SQL": "SELECT COUNT(*) FROM personel WHERE unvan IN ('Şef', 'ŞEF') AND cinsiyet = 'K' AND isten_cikis_tarihi IS NULL",
+    "SQL": "SELECT COUNT(*) FROM personel WHERE unvan IN ('Uzman', 'UZMAN') AND cinsiyet = 'K' AND isten_cikis_tarihi IS NULL",
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p29",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_059",
@@ -646,7 +646,7 @@
     "trap": "case_i",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE soyad LIKE 'yılmaz' AND ise_giris_tarihi < '2015-01-01'",
     "pair_id": "ik_bordro_p30",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_060",
@@ -657,7 +657,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p30",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_061",
@@ -668,7 +668,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE unvan IN ('Muhasebe Uzman', 'MUHASEBE UZMAN') AND ise_giris_tarihi >= '2021-01-01' AND cinsiyet = 'K'",
     "pair_id": "ik_bordro_p31",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_062",
@@ -679,7 +679,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p31",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_063",
@@ -690,7 +690,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT p.dogum_tarihi FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'Pazarlama' AND p.ad = 'Zeynep Hanım'",
     "pair_id": "ik_bordro_p32",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_064",
@@ -701,7 +701,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p32",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_065",
@@ -712,7 +712,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT COUNT(*) FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'İK' AND p.isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p33",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_066",
@@ -723,7 +723,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p33",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_067",
@@ -734,7 +734,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT ROUND(SUM(b.brut_ucret), 2) FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.unvan IN ('Güvenlik Görevlileri', 'GÜVENLİK GÖREVLİLERİ') AND p.ise_giris_tarihi >= '2020-01-01' AND b.donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p34",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_068",
@@ -745,7 +745,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p34",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_069",
@@ -756,7 +756,7 @@
     "trap": "suffix_value",
     "trap_sql": "SELECT SUM(i.gun_sayisi) FROM izin i JOIN personel p ON p.personel_id = i.personel_id WHERE p.unvan IN ('Vardiya Amir', 'VARDİYA AMİR') AND p.ise_giris_tarihi >= '2019-01-01' AND i.izin_turu = 'YILLIK' AND i.baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p35",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_070",
@@ -767,7 +767,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p35",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_071",
@@ -778,7 +778,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT ad, soyad FROM personel ORDER BY personel_id DESC LIMIT 1",
     "pair_id": "ik_bordro_p36",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_072",
@@ -789,7 +789,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p36",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_073",
@@ -800,7 +800,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM personel p JOIN departman d ON d.departman_id = p.departman_id WHERE d.departman_adi = 'Lojistik' AND p.ise_giris_tarihi >= '2020-01-01'",
     "pair_id": "ik_bordro_p37",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_074",
@@ -811,7 +811,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p37",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_075",
@@ -822,7 +822,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE sube_id = 2 AND isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p38",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_076",
@@ -833,7 +833,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p38",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_077",
@@ -844,7 +844,7 @@
     "trap": "schema_link",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL",
     "pair_id": "ik_bordro_p39",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_078",
@@ -855,29 +855,29 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p39",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_079",
     "db_id": "ik_bordro",
-    "question": "2024’te çalışanlarımız toplam kaç gün hastalık izni kullandı?",
+    "question": "2024’te çalışanlarımız toplam kaç iş günü hastalık izni kullandı?",
     "evidence": "",
     "SQL": "SELECT SUM(gun_sayisi) FROM izin WHERE izin_turu = 'RAPOR' AND baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "trap": "schema_link",
     "trap_sql": "SELECT SUM(gun_sayisi) FROM izin WHERE izin_turu = 'HASTALIK' AND baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "pair_id": "ik_bordro_p40",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_080",
     "db_id": "ik_bordro",
-    "question": "2024’te çalışanlarımız toplam kaç gün yıllık izin kullandı?",
+    "question": "2024’te çalışanlarımız toplam kaç iş günü yıllık izin kullandı?",
     "evidence": "",
     "SQL": "SELECT SUM(gun_sayisi) FROM izin WHERE izin_turu = 'YILLIK' AND baslangic_tarihi BETWEEN '2024-01-01' AND '2024-12-31'",
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p40",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_081",
@@ -888,7 +888,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT MAX(saat) FROM fazla_mesai",
     "pair_id": "ik_bordro_p41",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_082",
@@ -899,29 +899,29 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p41",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_083",
     "db_id": "ik_bordro",
-    "question": "20170037 sicil numaralı çalışanımızın sistemdeki ilk bordrosu hangi aya ait?",
+    "question": "20230211 sicil numaralı çalışanımızın sistemdeki ilk bordrosu hangi aya ait?",
     "evidence": "",
-    "SQL": "SELECT b.donem FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.sicil_no = '20170037' ORDER BY CAST(SUBSTR(b.donem, LENGTH(b.donem) - 3, 4) AS INTEGER), CASE SUBSTR(b.donem, 1, LENGTH(b.donem) - 5) WHEN 'Ocak' THEN 1 WHEN 'Şubat' THEN 2 WHEN 'Mart' THEN 3 WHEN 'Nisan' THEN 4 WHEN 'Mayıs' THEN 5 WHEN 'Haziran' THEN 6 WHEN 'Temmuz' THEN 7 WHEN 'Ağustos' THEN 8 WHEN 'Eylül' THEN 9 WHEN 'Ekim' THEN 10 WHEN 'Kasım' THEN 11 WHEN 'Aralık' THEN 12 END LIMIT 1",
+    "SQL": "SELECT b.donem FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.sicil_no = '20230211' ORDER BY CAST(SUBSTR(b.donem, LENGTH(b.donem) - 3, 4) AS INTEGER), CASE SUBSTR(b.donem, 1, LENGTH(b.donem) - 5) WHEN 'Ocak' THEN 1 WHEN 'Şubat' THEN 2 WHEN 'Mart' THEN 3 WHEN 'Nisan' THEN 4 WHEN 'Mayıs' THEN 5 WHEN 'Haziran' THEN 6 WHEN 'Temmuz' THEN 7 WHEN 'Ağustos' THEN 8 WHEN 'Eylül' THEN 9 WHEN 'Ekim' THEN 10 WHEN 'Kasım' THEN 11 WHEN 'Aralık' THEN 12 END LIMIT 1",
     "trap": "tr_format",
-    "trap_sql": "SELECT b.donem FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.sicil_no = '20170037' ORDER BY b.donem LIMIT 1",
+    "trap_sql": "SELECT b.donem FROM bordro b JOIN personel p ON p.personel_id = b.personel_id WHERE p.sicil_no = '20230211' ORDER BY b.donem LIMIT 1",
     "pair_id": "ik_bordro_p42",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_084",
     "db_id": "ik_bordro",
-    "question": "20170037 sicil numaralı çalışanımız ne zaman işe başladı?",
+    "question": "20230211 sicil numaralı çalışanımız ne zaman işe başladı?",
     "evidence": "",
-    "SQL": "SELECT ise_giris_tarihi FROM personel WHERE sicil_no = '20170037'",
+    "SQL": "SELECT ise_giris_tarihi FROM personel WHERE sicil_no = '20230211'",
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p42",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_085",
@@ -932,7 +932,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM izin WHERE izin_turu = 'YILLIK' AND baslangic_tarihi BETWEEN '01.03.2024' AND '31.03.2024'",
     "pair_id": "ik_bordro_p43",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_086",
@@ -943,7 +943,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p43",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_087",
@@ -954,7 +954,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE donem = 'Aralık 2024' AND brut_ucret > 50.000",
     "pair_id": "ik_bordro_p44",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_088",
@@ -965,7 +965,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p44",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_089",
@@ -976,7 +976,7 @@
     "trap": "tr_format",
     "trap_sql": "SELECT ROUND(SUM(net_ucret), 2) FROM bordro WHERE donem = '2024/02'",
     "pair_id": "ik_bordro_p45",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_090",
@@ -987,7 +987,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p45",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_091",
@@ -998,7 +998,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE donem = 'Haziran 2023' AND calisma_gunu = 30 AND brut_ucret = 8506.80",
     "pair_id": "ik_bordro_p46",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_092",
@@ -1009,7 +1009,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p46",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_093",
@@ -1020,7 +1020,7 @@
     "trap": "domain",
     "trap_sql": "SELECT ROUND(SUM(gelir_vergisi + damga_vergisi), 2) FROM bordro WHERE donem = 'Aralık 2024'",
     "pair_id": "ik_bordro_p47",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_094",
@@ -1031,18 +1031,18 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p47",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_095",
     "db_id": "ik_bordro",
-    "question": "Mart 2024’te ayı tam çalışan personelimizden kaçının günlük brüt kazancı bin lirayı geçiyor?",
+    "question": "Mart 2024’te ayı tam çalışan personelimizden kaçının günlük brüt ücreti bin lirayı geçiyor?",
     "evidence": "",
     "SQL": "SELECT COUNT(*) FROM bordro WHERE donem = 'Mart 2024' AND calisma_gunu = 30 AND brut_ucret / 30.0 > 1000",
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM bordro WHERE donem = 'Mart 2024' AND calisma_gunu = 30 AND brut_ucret / 22.0 > 1000",
     "pair_id": "ik_bordro_p48",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_096",
@@ -1053,18 +1053,18 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p48",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_097",
     "db_id": "ik_bordro",
-    "question": "Bu yıl şirketimizdeki 10. yılını dolduracak kaç çalışanımız var?",
+    "question": "Kaç çalışanımız bu yıl içinde şirketimizdeki 10. yılını tamamlıyor?",
     "evidence": "Veriler 05.01.2025 tarihi itibarıyla alınmıştır.",
     "SQL": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ise_giris_tarihi BETWEEN '2015-01-01' AND '2015-12-31'",
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ise_giris_tarihi BETWEEN '2016-01-01' AND '2016-12-31'",
     "pair_id": "ik_bordro_p49",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_098",
@@ -1075,7 +1075,7 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p49",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_099",
@@ -1086,7 +1086,7 @@
     "trap": "domain",
     "trap_sql": "SELECT COUNT(*) FROM personel WHERE isten_cikis_tarihi IS NULL AND ise_giris_tarihi < '2020-01-05'",
     "pair_id": "ik_bordro_p50",
-    "status": "draft"
+    "status": "v0.1"
   },
   {
     "question_id": "ik_bordro_100",
@@ -1097,6 +1097,6 @@
     "trap": "control",
     "trap_sql": null,
     "pair_id": "ik_bordro_p50",
-    "status": "draft"
+    "status": "v0.1"
   }
 ]

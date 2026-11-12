@@ -6,6 +6,7 @@
     "odeme.odenen_tutar is text in Turkish number format."
   ],
   "example_rows": {
+    "abone": ["abone_tipi = 'RESMI'", "abone_tipi = 'ISYERI'"],
     "adres": ["kaynak_sistem = 'ESKI_AKTARIM'"],
     "odeme": ["odenen_tutar LIKE '%.%'"]
   }
